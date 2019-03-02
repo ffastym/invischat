@@ -1,0 +1,97 @@
+@import "ChatMessage.scss";
+@import "UsersList.scss";
+
+.messages-wrapper {
+    height: 100%;
+}
+
+.chat-text-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-top-right-radius: $chat-border-radius;
+
+    &.with-users-list {
+        .chat-text {
+            transform: perspective(1000px) rotateY(70deg);
+            transition: transform .3s, box-shadow 0s .3s;
+        }
+    }
+
+}
+
+.chat-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    border-top-right-radius: $chat-border-radius;
+    border-top-left-radius: $chat-border-radius;
+    background: $color-white;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 5px;
+    overflow-x: hidden;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform .3s;
+    box-shadow: 15px 0 30px 1px rgba(0,0,0,0.1);
+}
+
+.unread-messages-count {
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    left: 50%;
+    width: -moz-max-content;
+    width: max-content;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 2;
+    background: $color-light-grey;
+    opacity: .9;
+    color: grey;
+    padding: 5px 30px 5px 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 0 rgba(255,255,255,0.8);
+}
+
+.unread-messages-count:after {
+    display: block;
+    content: "";
+    right: 11px;
+    top: 13px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid $color-grey;
+    transform: rotate(180deg);
+}
+
+.action-secondary {
+    @add-mixin action-secondary;
+
+    &.refresh {
+        &:before {
+            content: $fa-sync;
+        }
+
+        &:active,
+        &:focus {
+            &:before {
+                transform: rotate(360deg);
+                transition: .1s;
+            }
+        }
+    }
+
+    &.show-users {
+        &:before {
+            content: $fa-users;
+        }
+    }
+}

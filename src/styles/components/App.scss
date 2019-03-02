@@ -1,0 +1,188 @@
+/* App component styles */
+@import "../scrollBar.scss";
+@import 'Chat.scss';
+@import 'PopUp.scss';
+@import 'Gallery.scss';
+@import 'Header.scss';
+@import 'DarkTheme.scss';
+@import 'Home.scss';
+@import 'Nav.scss';
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+h1 {
+    font-size: 21px;
+}
+
+body {
+    font-family: $font-family-name-base;
+    font-size: $font-size-sm;
+    line-height: $line-height-base;
+
+    @media (--sm-min) {
+        font-size: $font-size-md;
+    }
+
+    @media (--lg-min) {
+        font-size: $font-size-lg;
+    }
+}
+
+aside {
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    position: absolute;
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+    left: 0;
+    width: calc(100% - #{$nav-sm-width});
+    height: 100%;
+
+    @media (--sm-min) {
+        width: calc(100% - #{$nav-md-width});
+    }
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}
+
+header,
+footer {
+    box-sizing: border-box;
+    padding: $padding-sm-base;
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type='checkbox'] {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+}
+
+input,
+textarea {
+    outline: none;
+    border: $chat-border;
+    border-radius: $pop-up-border-radius;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+
+input[type='text'] {
+    min-width: 240px;
+    text-align: center;
+    padding: 0 10px;
+    height: $button-height;
+}
+
+textarea {
+    padding: 10px;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 150px;
+    min-height: 150px;
+
+    @media (--sm-min) {
+        max-height: 200px;
+    }
+}
+
+header {
+    border-bottom: $chat-border;
+}
+
+footer {
+    border-top: $chat-border;
+    height: $footer-sm-height;
+}
+
+.error {
+    color: $color-red;
+    margin-top: 10px;
+}
+
+main {
+    text-align: center;
+    background: $color-white;
+    height: $main-sm-height;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transition: transform .3s, margin-right .3s .1s;
+
+    @media (--sm-min) {
+        transform-origin: right center;
+    }
+
+    &.nav-active {
+        box-shadow: -15px 0 30px 1px rgba(0,0,0,0.1);
+        transform: perspective(100px) rotateY(45deg);
+        transition: transform .3s .1s, margin-right .3s;
+
+        &:after {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 20px;
+            transition: box-shadow .3s .1s;
+            position: absolute;
+            right: 0;
+            top: 0;
+            box-shadow: inset -7px 0px 14px 0px rgba(179,179,179,0.2);
+        }
+
+        @media (--sm-min) {
+            margin-right: $nav-md-width;
+            transform: perspective(1000px) rotateY(-35deg);
+        }
+    }
+}
+
+.button {
+    @add-mixin button;
+    border-radius: $pop-up-border-radius;
+    height: $button-height;
+    background: $color-white;
+    border: $chat-border;
+    outline: none;
+    max-width: 45%;
+    text-transform: uppercase;
+}
+
+.page-main-wrapper {
+    position: relative;
+}
+
+footer {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    .fb-share-button {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

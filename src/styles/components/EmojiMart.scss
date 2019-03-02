@@ -1,0 +1,34 @@
+.emoji-mart {
+    z-index: 10;
+
+    &-scroll {
+        height: 200px !important;
+    }
+
+    &-preview {
+        height: 50px !important;
+    }
+
+    &-category .emoji-mart-emoji span,
+    .emoji-mart-emoji,
+    &-preview-skins,
+    &-anchor {
+        cursor: pointer !important;
+    }
+
+    @media (--sm-min) {
+        width: 400px !important;
+        max-width: calc(100% - 10px);
+    }
+}
+
+.emoji-mart,
+.emoji-mart-bar,
+.emoji-mart input {
+    border-color: $chat-border-color !important;
+}
+
+.emoji-wrapper {
+    display: inline-flex;
+    vertical-align: bottom;
+}

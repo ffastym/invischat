@@ -1,0 +1,119 @@
+/* App component styles */
+.pop-up {
+    background: $color-white;
+    border-radius: $pop-up-border-radius;
+    box-sizing: border-box;
+    left: 50%;
+    max-height: 90%;
+    max-width: 500px;
+    min-width: 200px;
+    padding: 35px 15px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    z-index: 15;
+
+    &-overlay {
+        background: $overlay-background-color;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    &-close {
+        position: absolute;
+        display: block;
+        right: 7px;
+        top: 7px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        @add-mixin close-button;
+
+        &:hover:before {
+            color: $color-red;
+        }
+    }
+
+    &-loader {
+        margin: auto;
+    }
+
+    &-title {
+        font-size: 18px;
+    }
+
+    &-text {
+        margin: 20px 0;
+    }
+
+    &-additional {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        min-height: 100px;
+        width: 100%;
+        border-radius: $pop-up-border-radius;
+        overflow: hidden;
+
+        input,
+        textarea {
+            display: block;
+            margin: auto;
+        }
+
+        .save-nick {
+            display: flex;
+            align-items: center;
+            margin: 20px auto 0;
+
+            &:before {
+                display: inline-block;
+                content: '';
+                height: 20px;
+                width: 20px;
+                font-family: $font-family-FA-light;
+                border: $chat-border;
+                margin-right: 15px;
+                font-size: 24px;
+            }
+        }
+
+
+        &.save {
+            .save-nick:before {
+                content: $fa-check;
+                color: $color-light-green;
+            }
+        }
+
+        &.invalid {
+            input,
+            textarea {
+                border-color: $color-red;
+            }
+        }
+    }
+
+    &-actions {
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        max-width: 300px;
+    }
+
+    .error {
+        margin: 10px auto 0;
+    }
+
+    .ok-button {
+        margin: auto;
+    }
+}

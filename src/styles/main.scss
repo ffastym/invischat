@@ -1,0 +1,12 @@
+/*Init variables and mixins*/
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/*Init fonts*/
+@import 'fonts.scss';
+
+/*Reset default browser styles*/
+@import 'reset.scss';
+
+/*Import components styles*/
+@import './components/App.scss';

@@ -1,0 +1,44 @@
+/*
+  Font Family Comic Sans cursive
+*/
+@font-face {
+    font-family: $font-family-comic;
+    src: url(/fonts/comic.eot);
+    src: url(/fonts/comic.eot?#iefix) format('embedded-opentype'),
+         url(/fonts/comic.woff) format('woff'),
+         url(/fonts/comic.woff2) format('woff2'),
+         url(/fonts/comic.ttf) format('truetype'),
+         url(/fonts/comic.svg) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+  Font Font-Awesome light
+*/
+@font-face {
+    font-family: $font-family-FA-light;
+    src: url(/fonts/fa-light-300.eot);
+    src: url(/fonts/fa-light-300.eot?#iefix) format('embedded-opentype'),
+         url(/fonts/fa-light-300.woff) format('woff'),
+         url(/fonts/fa-light-300.woff2) format('woff2'),
+         url(/fonts/fa-light-300.ttf) format('truetype'),
+         url(/fonts/fa-light-300.svg) format('svg');
+    font-weight: $font-weight-light;
+    font-style: normal;
+}
+
+/*
+  Font Font-Awesome solid
+*/
+@font-face {
+    font-family: $font-family-FA-solid;
+    src: url(/fonts/fa-solid-900.eot);
+    src: url(/fonts/fa-solid-900.eot?#iefix) format('embedded-opentype'),
+         url(/fonts/fa-solid-900.woff) format('woff'),
+         url(/fonts/fa-solid-900.woff2) format('woff2'),
+         url(/fonts/fa-solid-900.ttf) format('truetype'),
+         url(/fonts/fa-solid-900.svg) format('svg');
+    font-weight: $font-weight-solid;
+    font-style: normal;
+}

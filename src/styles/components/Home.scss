@@ -1,0 +1,44 @@
+/* Home component styles */
+.page-content {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &.privacy-policy {
+        text-align: justify;
+        overflow: auto;
+        display: block;
+        padding: $padding-sm-base;
+
+        h3 {
+            margin: 20px 0;
+        }
+
+        h4 {
+            margin: 15px 0;
+        }
+
+        h3, h4 {
+            text-align: center;
+            display: block;
+        }
+    }
+}
+
+.main-logo {
+    max-width: 80%;
+}
+
+.gender-hint {
+    width: 100%;
+    text-align: center;
+}
+
+.gender-fieldset {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    max-width: 400px;
+}

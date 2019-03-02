@@ -1,0 +1,307 @@
+@import "EmojiMart.scss";
+
+.chat-actions-toolbar {
+    position: relative;
+
+    .actions-wrapper {
+        align-items: flex-end;
+        border-top: $chat-border;
+        display: flex;
+        min-height: max-content;
+        padding: 10px;
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+
+        .actions-wrapper {
+            pointer-events: none;
+        }
+    }
+
+    .action {
+        height: 40px;
+
+        &:before {
+            line-height: 40px;
+        }
+
+        &.upload-photo {
+            &:before {
+                content: $fa-camera;
+            }
+        }
+
+        &.add-emoji {
+            position: absolute;
+            bottom: 10px;
+            z-index: 1;
+            left: 57px;
+            margin-right: 0;
+
+            &:before {
+                content: $fa-smile;
+            }
+        }
+
+        &.send-message {
+            &:before {
+                content: $fa-plane;
+            }
+        }
+
+        &.write-message {
+            overflow: hidden;
+            width: 100%;
+            border-radius: 20px;
+            height: auto;
+            min-height: $button-height;
+            border: $chat-border;
+            max-width: calc(100% - (20px + #{$button-width} * 2));
+
+            &:before {
+                display: none;
+            }
+
+            .message-area {
+                cursor: text;
+                box-sizing: border-box;
+                max-height: 118px;
+            }
+
+            .message-input {
+                max-height: 100px;
+                min-height: 20px;
+                padding: 9px 9px 9px 37px;
+                height: 100%;
+                overflow-y: auto;
+                outline: none;
+                text-align: left;
+            }
+        }
+
+        @media (--sm-min) {
+            &.upload-photo:hover {
+                &:before {
+                    content: $fa-camera-alt;
+                }
+            }
+
+            &.add-emoji:hover {
+                &:before {
+                    content: $fa-smile-wink;
+                }
+            }
+
+            &.send-message:hover {
+                &:before {
+                    font-family: $font-family-FA-solid;
+                }
+            }
+        }
+    }
+}
+
+.write-animation {
+    font-size: 13px;
+    top: -28px;
+    color: $color-grey;
+    font-style: italic;
+    left: 5px;
+    z-index: 2;
+    position: absolute;
+    background: rgba(255,255,255,.7);
+    border-radius: $chat-border-radius;
+    padding: 2px 0 2px 5px;
+    -webkit-box-shadow: 0 0 5px 0 rgba(255,255,255,0.8);
+    -moz-box-shadow: 0 0 5px 0 rgba(255,255,255,0.8);
+    box-shadow: 0 0 5px 0 rgba(255,255,255,0.8);
+}
+
+.write-animation:after {
+    content: $fa-pen;
+    font-family: $font-family-FA-light;
+    display: inline-block;
+    position: relative;
+    margin-left: 15px;
+    height: 13px;
+    width: 13px;
+    animation-name: revert-pencil;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes revert-pencil {
+    from {
+        transform: rotateZ(-30deg);
+        left: -15px;
+    }
+
+    to {
+        transform: rotateZ(-15deg);
+        left: -10px;
+    }
+}
+
+.quoted-message,
+.image-preview {
+    z-index: 10;
+    position: absolute;
+    top: -6px;
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+    overflow-wrap: break-word
+}
+
+.quote-wrapper,
+.preview-wrapper {
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 15px;
+    max-height: 100px;
+    opacity: .9;
+    box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.8);
+    background: lightgrey;
+
+    img {
+        max-width: 100%;
+        display: block;
+        max-height: 70px;
+    }
+}
+
+.preview-wrapper {
+    right: 5px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    max-width: calc(35% - 10px);
+    min-height: 70px;
+    min-width: 60px;
+}
+
+.quote-wrapper {
+    padding: 15px 30px 10px 30px;
+    left: 5px;
+    max-width: calc(65% - 10px);
+
+    &:before {
+        display: block;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        color: grey;
+        font-family: $font-family-FA-light;
+        content: $fa-quote;
+        width: 15px;
+        height: 15px;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        bottom: -15px;
+        left: 0;
+        height: 15px;
+        box-shadow: 0 -10px 35px 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.remove-quote,
+.remove-preview {
+    position: absolute;
+    display: block;
+    top: 8px;
+    cursor: pointer;
+    right: 8px;
+    width: 15px;
+    height: 12px;
+
+    &:before {
+        content: $fa-trash;
+        display: block;
+        color: grey;
+        font-family: $font-family-FA-light;
+        position: absolute;
+        top: 0;
+        font-size: 13px;
+    }
+}
+
+.remove-preview {
+    position: absolute;
+    background: $color-light-grey;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 10;
+    border: $chat-border;
+
+    &:before {
+        color: grey;
+        top: 0;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.image-preview-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 42px;
+    left: 5px;
+    height: 70px;
+    width: 60px;
+    z-index: 10;
+}
+
+.loader {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+
+    &:before {
+        content: $fa-spin;
+        font-family: $font-family-FA-light;
+        font-size: 24px;
+        color: grey;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        line-height: 30px;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}

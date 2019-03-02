@@ -1,0 +1,128 @@
+/*
+  Media
+*/
+
+/*Mobile*/
+@custom-media --sm-max (max-width: $sm);
+/*Tablet*/
+@custom-media --sm-min (min-width: $sm);
+@custom-media --md-max (max-width: $md);
+/*Desktop*/
+@custom-media --md-min (min-width: $md);
+@custom-media --lg-max (max-width: $lg);
+@custom-media --lg-min (min-width: $lg);
+
+/*
+  Buttons
+*/
+@define-mixin action-button {
+    border-radius: $button-border-radius;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: $padding-md-base;
+    height: $button-height;
+    text-align: center;
+    width: $button-width;
+
+    input {
+        visibility: hidden;
+    }
+
+    &:before {
+        color: $color-grey;
+        content: '';
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        line-height: 36px;
+        left: 0;
+        top: 0;
+        display: block;
+        font-family: $font-family-FA-light;
+        position: absolute;
+    }
+}
+
+@define-mixin action-secondary {
+    background: #EFEFEF;
+    z-index: 10;
+    position: absolute;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: $button-border-radius;
+    top: $padding-sm-base;
+    right: $padding-sm-base;
+    opacity: .7;
+
+    &:before {
+        content: '';
+        color: gray;
+        display: block;
+        font-family: $font-family-FA-light;
+        font-size: 20px;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    &.active {
+        opacity: 1;
+    }
+
+    @media (--sm-min) {
+        top: $padding-md-base;
+        right: $padding-md-base;
+    }
+}
+
+@define-mixin button {
+    display: inline-block;
+    width: 150px;
+
+    &:hover {
+        color: $color-white;
+        border-color: $color-white;
+        cursor: pointer;
+    }
+
+    &-accept,
+    &.ok-button {
+        &:hover {
+            background: $color-light-green;
+            border-color: $color-light-green;
+        }
+    }
+
+    &-reject:hover {
+        background: $color-red;
+        border-color: $color-red;
+    }
+}
+
+@define-mixin clearfix {
+    &:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
+
+@define-mixin close-button {
+    &:before {
+        position: absolute;
+        display: block;
+        left: 0;
+        content: $fa-x;
+        color: grey;
+        height: 100%;
+        font-size: 20px;
+        width: 100%;
+        line-height: 32px;
+        text-align: center;
+        font-family: $font-family-FA-light;
+    }
+}

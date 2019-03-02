@@ -1,0 +1,40 @@
+/* App component styles */
+nav {
+    position: absolute;
+    right: 0;
+    flex-direction: column;
+    width: $nav-sm-width;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-shadow: inset 7px 0px 20px 0px rgba(179,179,179,0.2);
+    }
+
+    @media (--sm-min) {
+        width: $nav-md-width;
+    }
+}
+
+.nav-link {
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+
+    @media (--sm-min) {
+        padding: 20px;
+    }
+}

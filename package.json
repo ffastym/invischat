@@ -1,17 +1,41 @@
 {
   "name": "invischat",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.3"
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "cloudinary": "^1.13.2",
+    "compression": "^1.7.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "emoji-mart": "^2.8.1",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "ignore-styles": "^5.0.1",
+    "nodemailer": "^4.6.8",
+    "react": "^16.8.1",
+    "react-app": "^1.1.2",
+    "react-dom": "^16.8.1",
+    "react-dropzone": "^5.0.1",
+    "react-helmet": "^5.2.0",
+    "react-localization": "^1.0.13",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.3",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "superagent": "^3.8.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build:css": "postcss src/styles/main.scss -o src/index.css",
+    "watch:css": "postcss src/styles/main.scss -o src/index.css -w",
+    "devserver": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "start": "node server/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +45,29 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "autoprefixer": "^9.4.7",
+    "css-mqpacker": "^7.0.0",
+    "postcss-cli": "^6.1.1",
+    "postcss-custom-media": "^7.0.7",
+    "postcss-discard-comments": "^4.0.1",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^9.1.0",
+    "postcss-mixins": "^6.2.1",
+    "postcss-nested": "^1.0.1",
+    "postcss-nesting": "^7.0.0",
+    "postcss-preset-env": "^6.5.0",
+    "postcss-scss": "^2.0.0",
+    "postcss-simple-vars": "^5.0.1",
+    "precss": "^4.0.0",
+    "react-logger": "^1.1.0",
+    "redux-logger": "^3.0.6",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.5.3"
+  }
 }

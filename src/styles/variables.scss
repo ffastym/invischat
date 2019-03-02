@@ -1,0 +1,113 @@
+/*
+  Colors
+*/
+$color-white: #FFFFFF;
+$color-grey: #808080;
+$color-dark-grey: #2F2F2F;
+$color-dark-heavy: #2A2A2A;
+$color-semi-grey: #b8b8b8;
+$color-light-grey: #EFEFEF;
+$color-light-green: #9FD468;
+$color-red: #ff0000;
+
+$color-primary: $color-white;
+$color-primary-dark: #E3E3E3;
+$color-background-dark: $color-dark-grey;
+
+$drop-zone-active-border-color: $color-light-green;
+
+$overlay-background-color: rgba(0, 0, 0, .85);
+
+/*
+  Fonts
+*/
+$font-family-comic: Comic Sans MS, Comic Sans, cursiv;
+$font-family-FA-light: Font Awesome;
+$font-family-FA-solid: Font Awesome solid;
+$font-family-name-base: $font-family-comic;
+
+$font-size-sm: 14px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+
+$line-height-base: 20px;
+
+$font-weight-tiny: 200;
+$font-weight-light: 300;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-solid: 900;
+
+/*
+  Breakpoints
+*/
+$sm: 768px;  /* mobile */
+$md: 1025px; /* tablet */
+$lg: 1968px; /* desktop */
+
+/*
+  Idents
+*/
+$padding-sm-base: 5px;
+$padding-md-base: 10px;
+
+/*
+  Buttons
+*/
+$button-width: 35px;
+$button-height: 35px;
+$button-border-radius: 5px;
+
+/*
+  Elements sizes
+*/
+$main-wrapper-width: 100%;
+$nav-sm-width: 100%;
+$nav-md-width: 30%;
+$nav-lg-width: 30%;
+$header-sm-height: 45px;
+$footer-sm-height: 45px;
+$header-md-height: 45px;
+$private-chat-md-width: 49.5%;
+$public-chat-md-width: 49.5%;
+$main-sm-height: calc(100vh - (#{$header-sm-height} + #{$footer-sm-height}));
+
+/*
+  Borders
+*/
+$chat-border-color: $color-grey;
+$chat-border: 1px solid $chat-border-color;
+$chat-border-radius: 15px;
+$pop-up-border-radius: 25px;
+
+/*
+  FA icons
+*/
+$fa-users      : '\f0c0';
+$fa-arrows     : '\f0ec';
+$fa-ring       : '\f0f3';
+$fa-ring-slash : '\f1f6';
+$fa-sun        : '\f185';
+$fa-sync       : '\f021';
+$fa-burger     : '\f0c9';
+$fa-moon       : '\f186';
+$fa-pen        : '\f304';
+$fa-user-edit  : '\f4ff';
+$fa-camera     : '\f030';
+$fa-comments   : '\f086';
+$fa-trophy     : '\f091';
+$fa-mute       : '\f05e';
+$fa-camera-alt : '\f332';
+$fa-smile      : '\f118';
+$fa-smile-wink : '\f4da';
+$fa-plane      : '\f1d8';
+$fa-heart      : '\f004';
+$fa-trash      : '\f1f8';
+$fa-arrow-right: '\f0a9';
+$fa-spin       : '\f3f4';
+$fa-check      : '\f00c';
+$fa-users      : '\f0c0';
+$fa-x          : '\f00d';
+$fa-quote      : '\f10d';
+

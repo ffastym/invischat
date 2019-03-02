@@ -1,0 +1,107 @@
+$user-action-width: 30px;
+$user-action-height: 40px;
+
+.users-list-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 27%;
+    box-sizing: border-box;
+    margin-top: 105%;
+    max-height: 80%;
+    overflow: auto;
+    width: 70%;
+    max-width: 300px;
+    z-index: 1;
+    transition: margin-top .1s;
+}
+
+.with-users-list {
+    .users-list-wrapper {
+        transition: margin-top .5s;
+        margin-top: 0;
+    }
+}
+
+.users-list {
+    li {
+        padding: 10px 15px;
+        position: relative;
+        min-height: 20px;
+        border-bottom: 1px solid $color-light-grey;
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}
+
+.client-color {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.client-action {
+    position: absolute;
+    display: inline-block;
+    height: $user-action-height;
+    cursor: pointer;
+    width: $user-action-width;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+
+    &:hover {
+        text-shadow: 0 0 10px $color-semi-grey;
+    }
+
+    &:before {
+        content: '';
+        font-family: $font-family-FA-light;
+        line-height: $user-action-height;
+        text-align: center;
+        font-size: 16px;
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &.start-chat {
+        &:before {
+            content: $fa-comments;
+        }
+    }
+
+    &.mute-user {
+        right: $user-action-width;
+
+        &:before {
+            content: $fa-mute;
+        }
+    }
+
+    &.change-nick {
+        &:before {
+            content: $fa-user-edit;
+        }
+    }
+
+    &.like-user {
+        right: calc(2 * #{$user-action-width});
+
+        &:before {
+            content: $fa-heart;
+        }
+
+        &.liked:before {
+            font-family: $font-family-FA-solid;
+        }
+    }
+}

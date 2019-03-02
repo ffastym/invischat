@@ -1,0 +1,267 @@
+.message-container {
+    display: flex;
+    position: relative;
+    margin: 20px 0;
+
+    &.anon,
+    &.same {
+        .message {
+            &.vip {
+                &:after {
+                    content: 'VIP';
+                    position: absolute;
+                    font-size: 9px;
+                    font-style: italic;
+                    color: $color-white;
+                    bottom: 0;
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+                }
+            }
+        }
+    }
+
+    &.anon {
+        .message.vip:after {
+            left: 3px;
+        }
+
+        &.active .message {
+            margin-left: 60px;
+        }
+
+        .likes-count {
+            text-align: left;
+
+            &:before {
+                right: -5px;
+            }
+        }
+
+        .time {
+            left: 0
+        }
+
+        .delete-message,
+        .like-message {
+            left: 30px;
+        }
+    }
+
+    &.same {
+        .message.vip:after {
+            right: 3px;
+        }
+
+        &.active .message {
+            margin-right: 60px;
+        }
+
+        .likes-count {
+            left: -40px;
+
+            &:before {
+                left: -5px;
+            }
+        }
+
+        .time {
+            right: 0;
+        }
+
+        .delete-message,
+        .like-message {
+            right: 30px;
+        }
+    }
+
+    .likes-count {
+        position: absolute;
+        height: 20px;
+        line-height: 20px;
+        cursor: pointer;
+        text-align: right;
+        color: $color-semi-grey;
+        width: 30px;
+        right: -40px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &:before {
+            content: $fa-heart;
+            font-family: $font-family-FA-solid;
+            font-size: $font-size-lg;
+            position: absolute;
+            color: $color-semi-grey;
+        }
+    }
+
+    &.active .message-action {
+        visibility: visible;
+    }
+}
+
+.time {
+    position: absolute;
+    bottom: -17px;
+    font-size: 12px;
+    width: max-content;
+    color: grey;
+}
+
+.bot .time {
+    left: 0;
+}
+
+.message-text.removed {
+    color: $color-grey;
+}
+
+.message {
+    font-family: $font-family-comic;
+    display: inline-block;
+    color: $color-white;
+    word-break: break-word;
+    position: relative;
+    overflow-wrap: break-word;
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    z-index: 5;
+    transition: .2s;
+}
+
+.message-action {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    visibility: hidden;
+    transition: .1s;
+
+    &:before {
+        color: $color-grey;
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 30px;
+        font-family: $font-family-FA-light;
+    }
+}
+
+.delete-message:before {
+    content: $fa-trash;
+}
+
+.quote-message:before {
+    content: $fa-quote
+}
+
+.like-message {
+    &:before {
+        content: $fa-heart;
+    }
+
+    &.liked:before {
+        font-family: $font-family-FA-solid;
+    }
+}
+
+.bot,
+.anon {
+    .message {
+        border-bottom-left-radius: unset;
+    }
+}
+
+.same {
+    justify-content: flex-end;
+
+    .message {
+        border-bottom-right-radius: unset;
+    }
+}
+
+.female .message {
+    background: rgba(158, 76, 86, 0.8);
+    background: -moz-linear-gradient(45deg, rgba(204,83,83,1) 0%, rgba(204,57,57,1) 48%, rgba(204,22,22,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(204,83,83,1) 0%,rgba(204,57,57,1) 48%,rgba(204,22,22,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(204,83,83,1) 0%,rgba(204,57,57,1) 48%,rgba(204,22,22,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc5353', endColorstr='#cc1616',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.male .message {
+    background: rgba(24, 76, 172, 0.7);
+    background: -moz-linear-gradient(45deg, rgba(56,138,201,1) 0%, rgba(35,78,153,0.98) 56%, rgba(18,66,155,0.97) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(56,138,201,1) 0%,rgba(35,78,153,0.98) 56%,rgba(18,66,155,0.97) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(56,138,201,1) 0%,rgba(35,78,153,0.98) 56%,rgba(18,66,155,0.97) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#388ac9', endColorstr='#f712429b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+.bot .message {
+    background: rgba(2, 165, 86, 0.7);
+    background: -moz-linear-gradient(45deg, rgba(44,127,0,1) 0%, rgba(44,127,0,1) 68%, rgba(21,91,0,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(44,127,0,1) 0%,rgba(44,127,0,1) 68%,rgba(21,91,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(44,127,0,1) 0%,rgba(44,127,0,1) 68%,rgba(21,91,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c7f00', endColorstr='#155b00',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.message-image {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+
+    img {
+        max-width: 100%;
+
+        @media (--min-sm) {
+            max-width: 190px;
+        }
+    }
+}
+
+.quote {
+    display: block;
+    border-top: 1px solid;
+    padding: 10px 0 0 25px;
+    position: relative;
+    margin-top: 10px;
+
+    &:before {
+        display: block;
+        position: absolute;
+        top: 5px;
+        left: 0;
+        content: $fa-quote;
+        width: 15px;
+        height: 15px;
+        font-family: $font-family-FA-light;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+
+        @media (--min-sm) {
+            max-width: 190px;
+        }
+    }
+}
+
+.message-image {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+
+    img {
+        max-width: 100%;
+        max-height: 190px;
+
+        @media (--sm-min) {
+            max-width: 190px;
+        }
+    }
+}
