@@ -1131,6 +1131,7 @@ h1{
     font-size:21px;
 }
 body{
+    max-height:100%;
     font-family:Comic Sans MS, Comic Sans, cursiv;
     font-size:14px;
     line-height:20px

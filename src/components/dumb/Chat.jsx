@@ -16,7 +16,6 @@ import Gallery from "./Gallery";
  */
 class Chat extends Component {
     constructor(props) {
-        console.log(props.ssr ? 'constr ssr' : 'const client');
         super(props);
 
         if (!props.ssr) {
@@ -154,8 +153,6 @@ class Chat extends Component {
      * @returns {*}
      */
     render() {
-        console.log(this.props.ssr ? 'render ssr' : 'render client');
-
         if (!this.props.ssr) {
             if (!localStorage.getItem('gender')) {
                 return <Redirect to='/'/>
@@ -169,7 +166,7 @@ class Chat extends Component {
                      onTouchMove={!this.props.isMobile ? this.handleSwipe : () => {}}
                      onTouchStart={!this.props.isMobile ? this.handleTouchStart : () => {}}
                      onTouchEnd={!this.props.isMobile ? this.handleTouchStop : () => {}}
-                     style={!this.props.isMobile ? {left: this.props.chatPosition + "px", transition: "linear .2s"} : {}}>
+                     style={!this.props.isMobile ? {left: this.props.chatPosition + "px", transition: "linear .05s"} : {}}>
                     <ChatWindow type='private' ssr={this.props.ssr}/>
                     <ChatWindow type='public' ssr={this.props.ssr}/>
                     {this.props.isGalleryActive && <Gallery/>}
