@@ -20,7 +20,7 @@ const socket = {
      * Connect to socket
      */
     connect: () => {
-        socket.chat = socket.io('localhost:3001');
+        socket.chat = socket.io(/*'localhost:3001'*/);
 
         return socket
     },

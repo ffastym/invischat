@@ -2,47 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="373ee0b0-8c3c-4988-8ffe-1e0897108897" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset-manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/magic.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/pop.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/comic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-light-300.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-light-300.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-light-300.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-light-300.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-light-300.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-solid-900.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-solid-900.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-solid-900.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-solid-900.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fa-solid-900.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/precache-manifest.f0cec96eda34969dd81f2e213f9c6aa3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/io.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/io.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/listeners/chatEvents.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/listeners/chatEvents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/renderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/renderer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-worker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dumb/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dumb/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/smart/ChatWindow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/ChatWindow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/socket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/1.2eed7deb.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/1.2eed7deb.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.9490558f.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.9490558f.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/1.b390673f.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/1.b390673f.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.7eb43342.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.7eb43342.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/runtime~main.229c360f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/runtime~main.229c360f.js.map" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -148,8 +108,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/socket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="66">
+              <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -568,24 +528,24 @@
       <workItem from="1551382677151" duration="2761000" />
       <workItem from="1551468974356" duration="6135000" />
       <workItem from="1551541653220" duration="7391000" />
-      <workItem from="1551558223374" duration="27620000" />
+      <workItem from="1551558223374" duration="28055000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="457738000" />
+    <option name="totallyTimeSpent" value="458173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49563318" visible="true" weight="0.18700266" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49563318" visible="true" weight="0.18700266" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.5043668" side_tool="true" weight="0.18700266" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32991204" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49933687" visible="true" weight="0.32844576" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49933687" weight="0.32844576" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.398827" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -593,7 +553,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006631" side_tool="true" weight="0.32991204" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32991204" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32991204" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32991204" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1014,8 +974,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/socket.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        <state relative-caret-position="66">
+          <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
