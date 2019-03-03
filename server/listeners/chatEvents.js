@@ -29,6 +29,8 @@ io.on('connection', (socket) => {
         let room = chatRooms.getRoom(rooms, gender);
 
         socket.join(room);
+        console.log('rooms ---> ', rooms);
+        console.log('gender ---> ', gender);
 
         socket.on('disconnect', () => {
             socket.leave(room, () => {

@@ -124,7 +124,7 @@ class ChatWindow extends Component {
                       style={{position: "absolute"}}
                       disableClick={true}
                       onDrop={this.onImageDrop.bind(this)}>
-                <MessagesWrapper type={this.props.type}/>
+                <MessagesWrapper type={this.props.type} ssr={this.props.ssr}/>
                 <ChatToolbar type={this.props.type}
                              removeImagePreview={this.removeImagePreview}
                              imageSelect={this.imageSelect}

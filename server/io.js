@@ -8,16 +8,14 @@ const compression = require('compression'),
     path = require('path'),
     PORT = 3001;
 
-router.use('*', serverRenderer);
-router.use(express.static(
-    path.resolve(__dirname, '..'),
-    {maxAge: '30d'},
-));
+router.get('/', serverRenderer);
+router.get('/chat', serverRenderer);
+router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
 // tell the app to use the above rules
 app.use(router);
 app.use(compression());
-app.use(express.static(__dirname + '/'));
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
 //Store all JS and CSS in Scripts folder.
 
 // start the app

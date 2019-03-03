@@ -16,12 +16,15 @@ import Gallery from "./Gallery";
  */
 class Chat extends Component {
     constructor(props) {
+        console.log(props.ssr ? 'constr ssr' : 'const client');
         super(props);
 
-        const gender = localStorage.getItem('gender');
+        if (!props.ssr) {
+            const gender = localStorage.getItem('gender');
 
-        if (!props.gender && gender) {
-            props.setGender(gender)
+            if (!props.gender && gender) {
+                props.setGender(gender)
+            }
         }
 
         this.state = {
@@ -57,16 +60,19 @@ class Chat extends Component {
             socket.joinChat()
         }
 
-        window.onbeforeunload = () => {
-            return "Усю переписку буде втрачено. Ви справді бажаєте покинути чат?";
-        };
-
-        window.onunload = () => {
-            socket.leaveRoom();
-        };
+        window.onbeforeunload = this.onBeforeUnload;
+        window.onunload = this.onUnload;
 
         socket.subscribeJoinRoom()
     }
+
+    onBeforeUnload = () => {
+        return "Усю переписку буде втрачено. Ви справді бажаєте покинути чат?";
+    };
+
+    onUnload = () => {
+        socket.leaveRoom();
+    };
 
     /**
      * Detect first touch on chat screen
@@ -134,6 +140,9 @@ class Chat extends Component {
     componentWillUnmount() {
         this.props.setIsInChat(false);
 
+        window.removeEventListener('onbeforeunload', this.onBeforeUnload);
+        window.removeEventListener('onunload', this.onUnload);
+
         if (this.props.room) {
             socket.leaveChat()
         }
@@ -145,8 +154,12 @@ class Chat extends Component {
      * @returns {*}
      */
     render() {
-        if (!localStorage.getItem('gender')) {
-            return <Redirect to='/'/>
+        console.log(this.props.ssr ? 'render ssr' : 'render client');
+
+        if (!this.props.ssr) {
+            if (!localStorage.getItem('gender')) {
+                return <Redirect to='/'/>
+            }
         }
 
         return (
@@ -157,8 +170,8 @@ class Chat extends Component {
                      onTouchStart={!this.props.isMobile ? this.handleTouchStart : () => {}}
                      onTouchEnd={!this.props.isMobile ? this.handleTouchStop : () => {}}
                      style={!this.props.isMobile ? {left: this.props.chatPosition + "px", transition: "linear .2s"} : {}}>
-                    <ChatWindow type='private'/>
-                    <ChatWindow type='public'/>
+                    <ChatWindow type='private' ssr={this.props.ssr}/>
+                    <ChatWindow type='public' ssr={this.props.ssr}/>
                     {this.props.isGalleryActive && <Gallery/>}
                 </div>
             </div>

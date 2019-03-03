@@ -115,7 +115,7 @@ class App extends Component {
                     <Nav/>
                     <main className={this.props.isNavActive ? 'nav-active' : ''}>
                         <Switch>
-                            <Route path="/chat" component={Chat}/>
+                            <Route path="/chat" render={() => (<Chat ssr={this.props.ssr}/>)}/>
                             <Route path="/privacy_policy" component={PrivacyPolicy}/>
                             <Route path="/" render={() => (<Home ssr={this.props.ssr}/>)}/>
                         </Switch>
