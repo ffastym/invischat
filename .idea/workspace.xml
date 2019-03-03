@@ -5,10 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/asset-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/precache-manifest.78ae54a351f149a0f6acd8a3f95fcb73.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/precache-manifest.78ae54a351f149a0f6acd8a3f95fcb73.js" beforeDir="false" afterPath="$PROJECT_DIR$/precache-manifest.da323e5c83ef78575f0a93ce7f5a4e00.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/io.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/io.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/precache-manifest.da323e5c83ef78575f0a93ce7f5a4e00.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/precache-manifest.da323e5c83ef78575f0a93ce7f5a4e00.js" beforeDir="false" afterPath="$PROJECT_DIR$/precache-manifest.78ae54a351f149a0f6acd8a3f95fcb73.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/service-worker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/socket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/1.fd8830d1.chunk.css" beforeDir="false" />
@@ -17,8 +15,8 @@
       <change beforePath="$PROJECT_DIR$/static/css/main.f85a90c1.chunk.css.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/1.2257f913.chunk.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/1.2257f913.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.a2e5a4bf.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.a2e5a4bf.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/main.1a7e007f.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/main.1a7e007f.chunk.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/runtime~main.229c360f.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/runtime~main.229c360f.js.map" beforeDir="false" />
     </list>
@@ -45,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="200">
               <caret line="70" column="30" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
             </state>
           </provider>
@@ -63,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/socket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="48" />
+            <state relative-caret-position="220">
+              <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -277,9 +275,9 @@
         <option value="$PROJECT_DIR$/src/components/dumb/Home.jsx" />
         <option value="$PROJECT_DIR$/sitemap.xml" />
         <option value="$PROJECT_DIR$/server/middleware/renderer.js" />
-        <option value="$PROJECT_DIR$/src/socket.js" />
         <option value="$PROJECT_DIR$/server/io.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/socket.js" />
       </list>
     </option>
   </component>
@@ -490,15 +488,16 @@
       <workItem from="1551382677151" duration="2761000" />
       <workItem from="1551468974356" duration="6135000" />
       <workItem from="1551541653220" duration="7391000" />
-      <workItem from="1551558223374" duration="3274000" />
+      <workItem from="1551558223374" duration="3467000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="433392000" />
+    <option name="totallyTimeSpent" value="433585000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.18700266" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -901,35 +900,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sitemap.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/socket.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/middleware/renderer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -950,8 +922,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
+        <state relative-caret-position="200">
           <caret line="70" column="30" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/middleware/renderer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sitemap.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
