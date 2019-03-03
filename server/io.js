@@ -8,7 +8,7 @@ const compression = require('compression'),
     path = require('path'),
     PORT = 3001;
 
-router.use('^/$', serverRenderer);
+router.use('*', serverRenderer);
 router.use(express.static(
     path.resolve(__dirname, '..'),
     {maxAge: '30d'},
