@@ -77,7 +77,9 @@ class MessagesWrapper extends PureComponent {
             });
 
             socket.chat.off('new user connected').on('new user connected', (nick) => {
-                this.sendBotMessage('NEW_USER_IN_PUBLIC', nick);
+                if (nick) {
+                    this.sendBotMessage('NEW_USER_IN_PUBLIC', nick);
+                }
             });
 
             socket.chat.off('liked message').on('liked message', (data) => {

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="373ee0b0-8c3c-4988-8ffe-1e0897108897" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/fonts/comic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/socket.js" afterDir="false" />
     </list>
@@ -34,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/src/socket.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="154">
-              <caret line="22" column="74" lean-forward="true" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
+              <caret line="22" column="75" lean-forward="true" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -54,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="65" column="15" lean-forward="true" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
+            <state relative-caret-position="154">
+              <caret line="80" column="68" lean-forward="true" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="68" />
               <folding>
                 <element signature="e#34#76#0" expanded="true" />
               </folding>
@@ -99,7 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>100vh</find>
       <find>$main-sm-height</find>
       <find>.1s</find>
       <find>#2f2f2f</find>
@@ -129,6 +126,7 @@
       <find>disconnect</find>
       <find>проблеми</find>
       <find>USER_DISCONNECTED</find>
+      <find>NEW_USER_IN_PUBLIC</find>
     </findStrings>
     <replaceStrings>
       <replace>$</replace>
@@ -171,8 +169,8 @@
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\styles\components</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\styles</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\server</dir>
-      <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat</dir>
+      <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -448,12 +446,12 @@
       <workItem from="1551468974356" duration="6135000" />
       <workItem from="1551541653220" duration="7391000" />
       <workItem from="1551558223374" duration="31711000" />
-      <workItem from="1551644757318" duration="24715000" />
+      <workItem from="1551644757318" duration="25302000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="486544000" />
+    <option name="totallyTimeSpent" value="487131000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -836,16 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="65" column="15" lean-forward="true" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-          <folding>
-            <element signature="e#34#76#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/dumb/Chat.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -866,10 +854,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="80" column="68" lean-forward="true" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="68" />
+          <folding>
+            <element signature="e#34#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/socket.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="22" column="74" lean-forward="true" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
+          <caret line="22" column="75" lean-forward="true" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>

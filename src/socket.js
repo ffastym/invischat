@@ -20,7 +20,7 @@ const socket = {
      * Connect to socket
      */
     connect: () => {
-        socket.chat = socket.io('', {'sync disconnect on unload': true });
+        socket.chat = socket.io('', {'sync disconnect on unload': false });
 
         return socket
     },
