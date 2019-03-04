@@ -3,14 +3,7 @@
 */
 @font-face {
     font-family: $font-family-comic;
-    src: url(/fonts/Comic_Sans_MS.eot);
-    src: url(/fonts/Comic_Sans_MS.eot?#iefix) format('embedded-opentype'),
-         url(/fonts/Comic_Sans_MS.woff) format('woff'),
-         url(/fonts/Comic_Sans_MS.woff2) format('woff2'),
-         url(/fonts/Comic_Sans_MS.ttf) format('truetype'),
-         url(/fonts/Comic_Sans_MS.svg) format('svg');
-    font-weight: normal;
-    font-style: normal;
+    src: url(/fonts/comic.ttf);
 }
 
 /*
