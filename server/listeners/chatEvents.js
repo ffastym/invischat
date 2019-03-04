@@ -55,11 +55,9 @@ io.on('connection', (socket) => {
         socket.join(room);
 
         socket.on('disconnect', () => {
-            if (socket.rooms.length) {
-                socket.leave(room, () => {
-                    io.sockets.to(room).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
-                })
-            }
+            socket.leave(room, () => {
+                io.sockets.to(room).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
+            })
         });
 
         socket.emit('joined room', room);

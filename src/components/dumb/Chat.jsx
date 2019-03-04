@@ -73,7 +73,11 @@ class Chat extends Component {
      * When user is leave chat
      */
     onUnload = () => {
-        socket.leaveRoom();
+        socket.chat.emit('leave room', {
+            room: this.props.room,
+            gender: this.props.gender,
+            destroy: true
+        })
     };
 
     /**

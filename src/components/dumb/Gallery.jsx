@@ -2,10 +2,7 @@
  * @author Yuriy Matviyuk
  */
 import React from 'react'
-import roomActions from "../../actions/roomActions";
 import galleryActions from "../../actions/galleryActions";
-import popUpActions from "../../actions/popUpActions";
-import appActions from "../../actions/appActions";
 import {connect} from "react-redux";
 
 /**

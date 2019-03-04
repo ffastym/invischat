@@ -37,6 +37,13 @@ class MessagesWrapper extends PureComponent {
      * ComponentDidMount
      */
     componentDidMount() {
+        if (!this.state.notify && !this.state.notify2) {
+            this.setState({
+                notify  : new Audio('/audio/magic.mp3'),
+                notify2 : new Audio('/audio/pop.mp3')
+            })
+        }
+
         const type = this.props.type,
             getMessageEvent = 'get ' + type + ' message';
 
@@ -112,8 +119,8 @@ class MessagesWrapper extends PureComponent {
             if (isAlien) {
                 this.scrollToLastMessage();
 
-                if (this.props.isNotificationsEnabled && type === 'private') {
-                    !this.props.ssr && this.state.notify.play();
+                if (this.props.isNotificationsEnabled && type === 'private' && this.state.notify) {
+                    this.state.notify.play();
                 }
             } else {
                 this.scrollToLastMessage(true);
@@ -150,7 +157,11 @@ class MessagesWrapper extends PureComponent {
             }
         });
 
-        this.props.isMobile && window.addEventListener("resize", this.scrollToLastMessage())
+        this.props.isMobile && window.addEventListener("resize", this.resizeHandler)
+    };
+
+    resizeHandler = () => {
+        this.scrollToLastMessage(true)
     };
 
     /**
@@ -262,12 +273,12 @@ class MessagesWrapper extends PureComponent {
         switch (message) {
             case 'ROOM_IS_FULL' :
                 this.props.setIsFull(true);
-                !this.props.ssr && this.state.notify2.play();
+                this.state.notify2.play();
                 text = 'Співрозмовника знайдено! Розпочніть Ваш діалог';
                 break;
             case 'INTERLOCUTOR_LEAVE' :
                 socket.leaveRoom();
-                !this.props.ssr && this.state.notify2.play();
+                this.state.notify2.play();
                 text = 'Співрозмовник покинув чат';
                 break;
             case 'USER_DISCONNECTED' :
@@ -276,7 +287,7 @@ class MessagesWrapper extends PureComponent {
             case 'ROOM_IS_EMPTY' :
                 if (this.props.isFull) {
                     socket.leaveRoom();
-                    !this.props.ssr && this.state.notify2.play();
+                    this.state.notify2.play();
                     text = 'Співрозмовник покинув чат';
                 } else {
                     text = null
@@ -341,6 +352,10 @@ class MessagesWrapper extends PureComponent {
     getRef = (node) => {
         this.chatTextRef = node
     };
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.resizeHandler)
+    }
 
     /**
      * Render MessagesWrapper component
