@@ -95,6 +95,7 @@ io.on('connection', (socket) => {
 
     socket.on('rejoin room', (data) => {
         socket.join(data.room);
+        io.sockets.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
 
         if (!data.isFull) {
             return rooms[data.gender].push(data.room)
