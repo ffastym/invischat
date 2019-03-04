@@ -60,7 +60,9 @@ class MessagesWrapper extends PureComponent {
             });
 
             socket.chat.off('disconnect').on('disconnect', () => {
-                this.sendBotMessage('CONNECTION_PROBLEM');
+                setTimeout(() => {
+                    this.sendBotMessage('CONNECTION_PROBLEM');
+                }, 1)
             });
 
             socket.chat.off('reconnect').on('reconnect', () => {

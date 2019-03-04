@@ -59,8 +59,8 @@ class Chat extends Component {
             socket.joinChat()
         }
 
-        window.onbeforeunload = this.onBeforeUnload;
-        window.onunload = this.onUnload;
+        window.addEventListener('beforeunload', this.onBeforeUnload, false);
+        window.addEventListener('unload', this.onUnload, false);
 
         socket.subscribeJoinRoom()
     }
@@ -144,8 +144,8 @@ class Chat extends Component {
     componentWillUnmount() {
         this.props.setIsInChat(false);
 
-        window.removeEventListener('onbeforeunload', this.onBeforeUnload);
-        window.removeEventListener('onunload', this.onUnload);
+        window.removeEventListener('beforeunload', this.onBeforeUnload);
+        window.removeEventListener('unload', this.onUnload);
 
         if (this.props.room) {
             socket.leaveChat()
