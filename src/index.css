@@ -1,5 +1,5 @@
 @font-face{
-    font-family:Comic Sans MS, Comic Sans, cursive;
+    font-family:Comic Sans MS, Comic Sans;
     src:url(/fonts/Comic_Sans_MS.eot);
     src:url(/fonts/Comic_Sans_MS.eot?#iefix) format('embedded-opentype'),
          url(/fonts/Comic_Sans_MS.woff) format('woff'),
@@ -149,7 +149,7 @@ table{
     color:#808080;
 }
 .message{
-    font-family:Comic Sans MS, Comic Sans, cursive;
+    font-family:Comic Sans MS, Comic Sans;
     display:inline-block;
     color:#FFFFFF;
     word-break:break-word;
@@ -1140,7 +1140,7 @@ h1{
     font-size:21px;
 }
 body{
-    font-family:Comic Sans MS, Comic Sans, cursive;
+    font-family:Comic Sans MS, Comic Sans;
     font-size:14px;
     line-height:20px
 }
