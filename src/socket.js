@@ -62,12 +62,13 @@ const socket = {
     /**
      * Leave private room
      */
-    leaveRoom: () => {
+    leaveRoom: (leaveApp = false) => {
         const state = store.getState(),
             data = {
                 room    : state.room.roomName,
                 gender  : state.user.gender,
-                destroy : !state.room.isFull
+                destroy : !state.room.isFull,
+                leaveApp
             };
 
         socket.chat.emit('leave room', data);

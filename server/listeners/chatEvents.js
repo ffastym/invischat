@@ -63,12 +63,11 @@ io.on('connection', (socket) => {
         socket.emit('joined room', room);
     });
 
-    socket.on('full disconnect', () => {
-        socket.removeAllListeners('disconnect', () => {});
-        socket.disconnect();
-    });
-
     socket.on('leave room', (data) => {
+        if (data.leaveApp) {
+            socket.removeAllListeners('disconnect')
+        }
+
         socket.leave(data.room, () => {
             chatRooms.leaveRoom(rooms, data)
         })
