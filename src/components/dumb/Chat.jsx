@@ -73,7 +73,7 @@ class Chat extends Component {
      * When user is leave chat
      */
     onUnload = () => {
-        socket.leaveRoom(true);
+        socket.leaveRoom();
     };
 
     /**
