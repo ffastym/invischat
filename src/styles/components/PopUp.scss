@@ -49,7 +49,7 @@
     }
 
     &-text {
-        margin: 20px 0;
+        margin: 15px 0;
     }
 
     &-additional {
@@ -57,14 +57,17 @@
         flex-direction: column;
         align-items: center;
         flex-wrap: wrap;
-        margin-bottom: 20px;
-        min-height: 100px;
+        margin-bottom: 15px;
+        min-height: 85px;
         width: 100%;
         border-radius: $pop-up-border-radius;
         overflow: hidden;
 
-        input,
-        textarea {
+        @media (--sm-min) {
+            min-height: 100px;
+        }
+
+        input {
             display: block;
             margin: auto;
         }
@@ -72,7 +75,7 @@
         .save-nick {
             display: flex;
             align-items: center;
-            margin: 20px auto 0;
+            margin: 15px auto 0;
 
             &:before {
                 display: inline-block;
@@ -90,13 +93,12 @@
         &.save {
             .save-nick:before {
                 content: $fa-check;
-                color: $color-light-green;
+                color: $color-green;
             }
         }
 
         &.invalid {
-            input,
-            textarea {
+            input {
                 border-color: $color-red;
             }
         }

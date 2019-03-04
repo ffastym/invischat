@@ -3,9 +3,12 @@
  */
 import io from '../io'
 import chatRooms from '../chatRooms'
+import Cloudinary from '../cloudinary';
+import MailSender from '../email'
 
 let clientsCount = 0,
     users = {},
+    allUsers = [],
     rooms = {
         male   : [],
         female : []
@@ -25,12 +28,31 @@ io.on('connection', (socket) => {
         io.emit('change clients count', --clientsCount)
     });
 
+    socket.on('all users update', (data) => {
+        if (data.isRemove && allUsers.indexOf(data.id) !== -1) {
+            allUsers.splice(allUsers.indexOf(data.id), 1)
+        } else if(allUsers.indexOf(data.id) === -1) {
+            allUsers.push(data.id)
+        }
+
+        io.emit('all users updated', allUsers)
+    });
+
+    //remove image from server after uploading
+    socket.on('remove uploaded image', (img) => {
+        setTimeout(() => {
+            Cloudinary.removeImage(img)
+        }, 60000)
+    });
+
+    socket.on('send mail', (message) => {
+        MailSender.sendEmail(io, message)
+    });
+
     socket.on('join chat', (gender) => {
         let room = chatRooms.getRoom(rooms, gender);
 
         socket.join(room);
-        console.log('rooms ---> ', rooms);
-        console.log('gender ---> ', gender);
 
         socket.on('disconnect', () => {
             socket.leave(room, () => {

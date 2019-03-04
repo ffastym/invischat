@@ -1,5 +1,6 @@
 import express from 'express'
 import serverRenderer from './middleware/renderer'
+import Cloudinary from './cloudinary';
 import socketIo from 'socket.io';
 
 const compression = require('compression'),
@@ -20,6 +21,8 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 // start the app
 const server = app.listen(process.env.PORT || PORT, (error) => {
+    setInterval(Cloudinary.removeAllUploads, 600000);
+
     if (error) {
         return console.log('Server listening error', error);
     }

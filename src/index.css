@@ -1,11 +1,11 @@
 @font-face{
-    font-family:Comic Sans MS, Comic Sans, cursiv;
-    src:url(/fonts/comic.eot);
-    src:url(/fonts/comic.eot?#iefix) format('embedded-opentype'),
-         url(/fonts/comic.woff) format('woff'),
-         url(/fonts/comic.woff2) format('woff2'),
-         url(/fonts/comic.ttf) format('truetype'),
-         url(/fonts/comic.svg) format('svg');
+    font-family:Comic Sans MS, Comic Sans, cursive;
+    src:url(/fonts/Comic_Sans_MS.eot);
+    src:url(/fonts/Comic_Sans_MS.eot?#iefix) format('embedded-opentype'),
+         url(/fonts/Comic_Sans_MS.woff) format('woff'),
+         url(/fonts/Comic_Sans_MS.woff2) format('woff2'),
+         url(/fonts/Comic_Sans_MS.ttf) format('truetype'),
+         url(/fonts/Comic_Sans_MS.svg) format('svg');
     font-weight:normal;
     font-style:normal;
 }
@@ -149,7 +149,7 @@ table{
     color:#808080;
 }
 .message{
-    font-family:Comic Sans MS, Comic Sans, cursiv;
+    font-family:Comic Sans MS, Comic Sans, cursive;
     display:inline-block;
     color:#FFFFFF;
     word-break:break-word;
@@ -780,6 +780,12 @@ table{
 .active-chat{
     display:block;
 }
+.mail-text{
+    margin:25px auto;
+    width:95%;
+    max-width:700px;
+    min-height:130px;
+}
 .pop-up{
     background:#FFFFFF;
     border-radius:25px;
@@ -820,7 +826,7 @@ table{
         display:block;
         left:0;
         content:'\f00d';
-        color:grey;
+        color:#808080;
         height:100%;
         font-size:20px;
         width:100%;
@@ -838,27 +844,27 @@ table{
         font-size:18px;
     }
 .pop-up-text{
-        margin:20px 0;
+        margin:15px 0;
     }
 .pop-up-additional{
         display:flex;
         flex-direction:column;
         align-items:center;
         flex-wrap:wrap;
-        margin-bottom:20px;
-        min-height:100px;
+        margin-bottom:15px;
+        min-height:85px;
         width:100%;
         border-radius:25px;
-        overflow:hidden;
+        overflow:hidden
     }
-.pop-up-additional input, .pop-up-additional textarea{
+.pop-up-additional input{
             display:block;
             margin:auto;
         }
 .pop-up-additional .save-nick{
             display:flex;
             align-items:center;
-            margin:20px auto 0
+            margin:15px auto 0
         }
 .pop-up-additional .save-nick:before{
                 display:inline-block;
@@ -872,9 +878,9 @@ table{
             }
 .pop-up-additional.save .save-nick:before{
                 content:'\f00c';
-                color:#9FD468;
+                color:#4A9000;
             }
-.pop-up-additional.invalid input, .pop-up-additional.invalid textarea{
+.pop-up-additional.invalid input{
                 border-color:#ff0000;
             }
 .pop-up-actions{
@@ -919,7 +925,7 @@ table{
         display:block;
         left:0;
         content:'\f00d';
-        color:grey;
+        color:#808080;
         height:100%;
         font-size:20px;
         width:100%;
@@ -1043,36 +1049,39 @@ header{
 .dark main, .dark .chat-text{
         background:#2F2F2F;
     }
-.dark .write-animation, .dark .action-secondary, .dark .unread-messages-count, .dark .pop-up, .dark .emoji-mart .emoji-mart-category-label > span, .dark .emoji-mart, .dark .emoji-mart input, .dark .preview-wrapper, .dark .quote-wrapper, .dark input, .dark button{
+.dark .write-animation, .dark .action-secondary, .dark .unread-messages-count, .dark .pop-up, .dark .emoji-mart .emoji-mart-category-label > span, .dark .emoji-mart, .dark .emoji-mart input, .dark .preview-wrapper, .dark .quote-wrapper, .dark textarea, .dark input, .dark button{
         background:#2A2A2A;
         color:#E3E3E3;
     }
+.dark input:focus, .dark textarea:focus{
+            border-color:#EFEFEF;
+        }
 .dark .emoji-mart .emoji-mart-category .emoji-mart-emoji:hover:before, .dark .emoji-mart-skin-swatches{
         background:#444444;
     }
 .dark .quote-wrapper:after{
         box-shadow:0 -10px 35px 10px rgba(30,30,30,.8)
     }
-.page-content{
+.page-content.home{
     height:100%;
     align-items:center;
     display:flex;
     flex-wrap:wrap;
     justify-content:center
 }
-.page-content.privacy-policy{
+.page-content.home.privacy-policy{
         text-align:justify;
         overflow:auto;
         display:block;
         padding:5px;
     }
-.page-content.privacy-policy h3{
+.page-content.home.privacy-policy h3{
             margin:20px 0;
         }
-.page-content.privacy-policy h4{
+.page-content.home.privacy-policy h4{
             margin:15px 0;
         }
-.page-content.privacy-policy h3, .page-content.privacy-policy h4{
+.page-content.home.privacy-policy h3, .page-content.home.privacy-policy h4{
             text-align:center;
             display:block;
         }
@@ -1131,8 +1140,7 @@ h1{
     font-size:21px;
 }
 body{
-    max-height:100%;
-    font-family:Comic Sans MS, Comic Sans, cursiv;
+    font-family:Comic Sans MS, Comic Sans, cursive;
     font-size:14px;
     line-height:20px
 }
@@ -1180,7 +1188,7 @@ input[type='checkbox']{
 label{
     cursor:pointer;
 }
-input, textarea{
+input{
     outline:none;
     border:1px solid #808080;
     border-radius:25px;
@@ -1193,13 +1201,6 @@ input[type='text']{
     padding:0 10px;
     height:35px;
 }
-textarea{
-    padding:10px;
-    max-width:100%;
-    min-width:100%;
-    max-height:150px;
-    min-height:150px
-}
 header{
     border-bottom:1px solid #808080;
 }
@@ -1207,14 +1208,53 @@ footer{
     border-top:1px solid #808080;
     height:45px;
 }
+input, textarea{
+    outline:none;
+    box-shadow:none;
+    box-sizing:border-box;
+    border:1px solid #808080;
+    border-radius:15px;
+    padding:10px
+}
+input:focus, textarea:focus{
+        border-color:#2F2F2F;
+    }
 .error{
     color:#ff0000;
     margin-top:10px;
 }
+.page-wrapper{
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+}
+.page-content{
+    overflow:auto;
+    padding:5px 5px 30px;
+    box-sizing:border-box;
+    height:100%
+}
+.page-content .page-title{
+        font-size:24px;
+        margin:25px auto;
+    }
+.page-content h3{
+        margin:25px auto;
+    }
+.page-content h4{
+        margin:15px auto;
+    }
+.page-main-wrapper{
+    position:relative;
+    height:calc(100% - (45px + 45px));
+    z-index:1;
+}
 main{
+    height:100%;
     text-align:center;
     background:#FFFFFF;
-    height:calc(100vh - (45px + 45px));
     overflow:hidden;
     -webkit-transform-style:preserve-3d;
             transform-style:preserve-3d;
@@ -1262,16 +1302,13 @@ main.nav-active:after{
     text-transform:uppercase;
 }
 .button-accept:hover, .button.ok-button:hover{
-            background:#9FD468;
+            background:#4A9000;
             border-color:#9FD468;
         }
 .button-reject:hover{
         background:#ff0000;
         border-color:#ff0000;
     }
-.page-main-wrapper{
-    position:relative;
-}
 footer{
     position:relative;
     align-items:center;
@@ -1340,7 +1377,7 @@ footer .fb-share-button{
         border:1px solid #808080
 }
         .chat-window.active{
-            border-color:#9FD468;
+            border-color:#4A9000;
             opacity:.9;
         }
 .private{
@@ -1354,6 +1391,10 @@ footer .fb-share-button{
 .chat-text{
         padding:10px
 }
+
+    .pop-up-additional{
+            min-height:100px
+    }
 nav{
         width:30%
 }
@@ -1366,8 +1407,8 @@ body{
 aside{
         width:calc(100% - 30%)
 }
-textarea{
-        max-height:200px
+.page-content{
+        padding:10px
 }
 main{
         -webkit-transform-origin:right center;

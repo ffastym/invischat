@@ -127,6 +127,7 @@ class MessagesWrapper extends PureComponent {
                                  publicColor={message.publicColor}
                                  socketId={message.socketId}
                                  gender={message.gender}
+                                 nickName={message.nick}
                                  image={message.imageUrl}
                     />
                 )
@@ -236,6 +237,10 @@ class MessagesWrapper extends PureComponent {
      * Show/hide list of active users in public chat
      */
     toggleUsersList = () => {
+        if (!this.props.nick) {
+            return this.props.showPopUp('CREATE_NICK')
+        }
+
         this.setState({
             isShowUsers: !this.state.isShowUsers
         })
@@ -369,6 +374,7 @@ const mapStateToProps = (state) => {
         isMobile               : state.app.isMobile,
         newMessagesQty         : state.message.newMessagesQty,
         chatPosition           : state.app.chatPosition,
+        nick                   : state.user.nick,
         room                   : state.room.roomName,
         mutedList              : state.user.mutedList,
         isNotificationsEnabled : state.app.isNotificationsEnabled

@@ -26,7 +26,7 @@ const Home = (props) => {
     }
 
     return (
-        <div className='page-content'>
+        <div className='page-content home'>
             <div className='main-logo'>
                 <img src='/images/logo.png' alt='Invischat'/>
             </div>

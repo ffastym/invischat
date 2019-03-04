@@ -4,6 +4,7 @@
 const initialState = {
     gender           : null,
     nick             : null,
+    userId           : null,
     isNewInPublic    : true,
     isLongInChat     : false,
     mutedList        : [],
@@ -20,6 +21,12 @@ const userReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 gender: action.payload
+            };
+            break;
+        case 'SET_USER_ID':
+            state = {
+                ...state,
+                userId: action.payload
             };
             break;
         case 'SET_NICK':

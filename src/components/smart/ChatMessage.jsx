@@ -44,7 +44,7 @@ class ChatMessage extends Component {
             name;
 
         if (this.props.type === 'public') {
-            name = this.props.nick
+            name = this.props.nickName
         } else if (this.props.label === 'bot') {
             name = 'Бот'
         } else if (this.props.label === 'anon') {

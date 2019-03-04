@@ -172,6 +172,7 @@ const socket = {
                 messageId: messageId,
                 key: messageId,
                 gender: state.user.gender,
+                nick: state.user.nick,
                 socketId: socket.chat.id,
                 room: message.type === 'private' ? state.room.roomName : null
             });

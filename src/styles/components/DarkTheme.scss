@@ -16,10 +16,18 @@
     .emoji-mart input,
     .preview-wrapper,
     .quote-wrapper,
+    textarea,
     input,
     button {
         background: $color-dark-heavy;
         color: $color-primary-dark;
+    }
+
+    input,
+    textarea {
+        &:focus {
+            border-color: $color-light-grey;
+        }
     }
 
     .emoji-mart .emoji-mart-category .emoji-mart-emoji:hover:before,

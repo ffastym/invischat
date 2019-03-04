@@ -19,6 +19,20 @@ const userActions = {
     },
 
     /**
+     * Set unique user id
+     *
+     * @param id
+     *
+     * @returns {{payload: *, type: string}}
+     */
+    setUserId: (id) => {
+        return {
+            type    : 'SET_USER_ID',
+            payload : id
+        }
+    },
+
+    /**
      * Mute/unmute list
      *
      * @param list

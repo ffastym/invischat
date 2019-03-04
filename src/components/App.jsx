@@ -7,6 +7,7 @@ import Footer from './dumb/Footer'
 import Header from './dumb/Header'
 import Home from './dumb/Home'
 import Nav from './dumb/Nav'
+import ContactUs from './smart/ContactUs'
 import PopUp from './smart/PopUp';
 import PrivacyPolicy from './dumb/PrivacyPolicy'
 import React, {Component} from 'react'
@@ -37,6 +38,20 @@ class App extends Component {
      * ComponentDidMount
      */
     componentDidMount() {
+        socket.chat.on('all users updated', (data) => {
+            //console.log('users ---> ', data);
+        });
+
+        let userId = localStorage.getItem('unique_id');
+
+        if (!userId) {
+            userId = Math.floor(Math.random() * Math.floor(999999999));
+            localStorage.setItem('unique_id', userId)
+        }
+
+        this.props.setUserId(userId);
+        socket.chat.emit('all users update', {id: userId});
+
         this.detectDeviceType();
         this.setTheme();
 
@@ -76,7 +91,11 @@ class App extends Component {
 
         socket.chat.off('like').on('like', (isLiked) => {
             this.props.setLikesCount(isLiked ? this.props.likesCount + 1 : this.props.likesCount - 1)
-        })
+        });
+
+        window.onunload = () => {
+            !this.props.ssr && socket.chat.emit('all users update', {id: this.props.userId, isRemove: true});
+        }
     }
 
     /**
@@ -117,6 +136,7 @@ class App extends Component {
                         <Switch>
                             <Route path="/chat" render={() => (<Chat ssr={this.props.ssr}/>)}/>
                             <Route path="/privacy_policy" component={PrivacyPolicy}/>
+                            <Route path="/contact_us" component={ContactUs}/>
                             <Route path="/" render={() => (<Home ssr={this.props.ssr}/>)}/>
                         </Switch>
                     </main>
@@ -133,6 +153,7 @@ const mapStateToProps = (state) => {
         isNavActive : state.app.isNavActive,
         theme       : state.app.theme,
         likesCount  : state.user.likesCount,
+        userId      : state.user.userId,
         isMobile    : state.app.isMobile,
         chatPosition: state.app.chatPosition,
         isPopUpShow : state.popup.isPopUpShow
@@ -157,6 +178,15 @@ const mapDispatchToProps = (dispatch) => {
          */
         setTheme: (theme) => {
             dispatch(appActions.setTheme(theme))
+        },
+
+        /**
+         * Set unique user id
+         *
+         * @param id
+         */
+        setUserId: (id) => {
+            dispatch(userActions.setUserId(id))
         },
 
         /**

@@ -112,7 +112,9 @@ class CreateNick extends Component {
     }
 }
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = () => {
+    return {}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {

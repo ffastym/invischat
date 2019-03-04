@@ -18,7 +18,8 @@ const Nav = (props) => {
         <nav className="menu">
             <NavLink className="nav-link" exact={true} onClick={props.toggleMenu} to='/'>Головна</NavLink>
             <NavLink className="nav-link" onClick={props.toggleMenu} to='/chat'>Чат</NavLink>
-            <NavLink className="nav-link" onClick={props.toggleMenu} to='/privacy_policy'>Політика <br/> конфіденційності</NavLink>
+            <NavLink className="nav-link" onClick={props.toggleMenu} to='/contact_us'>Написати Нам</NavLink>
+            <NavLink className="nav-link" onClick={props.toggleMenu} to='/privacy_policy'>Політика <br/> Конфіденційності</NavLink>
         </nav>
     )
 };

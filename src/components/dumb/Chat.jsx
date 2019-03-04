@@ -69,6 +69,9 @@ class Chat extends Component {
         return "Усю переписку буде втрачено. Ви справді бажаєте покинути чат?";
     };
 
+    /**
+     * When user is leave chat
+     */
     onUnload = () => {
         socket.leaveRoom();
     };
@@ -123,14 +126,16 @@ class Chat extends Component {
         let position;
 
         if (this.state.prevPosition !== -window.innerWidth &&  this.props.chatPosition < -this.state.minSwipeLength) {
-            position = -window.innerWidth
+            position = -window.innerWidth;
+            this.props.clearNewMessagesQty()
         } else if (this.props.chatPosition > -window.innerWidth + this.state.minSwipeLength) {
-            position = 0
+            position = 0;
+            this.props.clearNewMessagesQty()
         } else {
             position = this.state.prevPosition
         }
 
-        this.props.setChatPosition(position)
+        this.props.setChatPosition(position);
     };
 
     /**
@@ -166,7 +171,7 @@ class Chat extends Component {
                      onTouchMove={!this.props.isMobile ? this.handleSwipe : () => {}}
                      onTouchStart={!this.props.isMobile ? this.handleTouchStart : () => {}}
                      onTouchEnd={!this.props.isMobile ? this.handleTouchStop : () => {}}
-                     style={!this.props.isMobile ? {left: this.props.chatPosition + "px", transition: "linear .05s"} : {}}>
+                     style={!this.props.isMobile ? {left: this.props.chatPosition + "px", transition: "linear .1s"} : {}}>
                     <ChatWindow type='private' ssr={this.props.ssr}/>
                     <ChatWindow type='public' ssr={this.props.ssr}/>
                     {this.props.isGalleryActive && <Gallery/>}
@@ -183,6 +188,7 @@ const mapStateToProps = (state) => {
         publicColor     : state.message.publicColor,
         isGalleryActive : state.gallery.isActive,
         gender          : state.user.gender,
+        newMessagesQty  : state.message.newMessagesQty,
         room            : state.room.roomName,
         nick            : state.user.nick
     }
@@ -197,6 +203,12 @@ const mapDispatchToProps = (dispatch) => {
          */
         setChatPosition: (position) => {
             dispatch(appActions.setChatPosition(position));
+        },
+
+        /**
+         * Clear new messages qty
+         */
+        clearNewMessagesQty: () => {
             dispatch(messageActions.setNewMessagesQty(0))
         },
 

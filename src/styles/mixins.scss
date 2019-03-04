@@ -92,7 +92,7 @@
     &-accept,
     &.ok-button {
         &:hover {
-            background: $color-light-green;
+            background: $color-green;
             border-color: $color-light-green;
         }
     }
@@ -117,7 +117,7 @@
         display: block;
         left: 0;
         content: $fa-x;
-        color: grey;
+        color: $color-grey;
         height: 100%;
         font-size: 20px;
         width: 100%;

@@ -4,6 +4,7 @@
 import appActions from '../../actions/appActions'
 import React from 'react'
 import {connect} from 'react-redux'
+import {Helmet} from "react-helmet"
 import {NavLink} from 'react-router-dom'
 import messageActions from "../../actions/messageActions";
 
@@ -55,6 +56,9 @@ const Header = (props) => {
                       title='show menu'>
                 </span>
             </div>
+            <Helmet>
+                <meta name="theme-color" content={props.theme === 'dark' ? '#2F2F2F' : '#FFFFFF'} />
+            </Helmet>
         </header>
     )
 };

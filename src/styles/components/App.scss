@@ -1,6 +1,7 @@
 /* App component styles */
 @import "../scrollBar.scss";
 @import 'Chat.scss';
+@import 'ContactUs.scss';
 @import 'PopUp.scss';
 @import 'Gallery.scss';
 @import 'Header.scss';
@@ -25,7 +26,6 @@ h1 {
 }
 
 body {
-    max-height: 100%;
     font-family: $font-family-name-base;
     font-size: $font-size-sm;
     line-height: $line-height-base;
@@ -81,8 +81,7 @@ label {
     cursor: pointer;
 }
 
-input,
-textarea {
+input {
     outline: none;
     border: $chat-border;
     border-radius: $pop-up-border-radius;
@@ -97,18 +96,6 @@ input[type='text'] {
     height: $button-height;
 }
 
-textarea {
-    padding: 10px;
-    max-width: 100%;
-    min-width: 100%;
-    max-height: 150px;
-    min-height: 150px;
-
-    @media (--sm-min) {
-        max-height: 200px;
-    }
-}
-
 header {
     border-bottom: $chat-border;
 }
@@ -118,15 +105,67 @@ footer {
     height: $footer-sm-height;
 }
 
+input,
+textarea {
+    outline: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    border: $chat-border;
+    border-radius: $chat-border-radius;
+    padding: $padding-md-base;
+
+    &:focus {
+        border-color: $color-dark-grey;
+    }
+}
+
 .error {
     color: $color-red;
     margin-top: 10px;
 }
 
+.page-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.page-content {
+    overflow: auto;
+    padding: $padding-sm-base $padding-sm-base 30px;
+    box-sizing: border-box;
+    height: 100%;
+
+    @media (--sm-min) {
+        padding: $padding-md-base;
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin: 25px auto;
+    }
+
+    h3 {
+        margin: 25px auto;
+    }
+
+    h4 {
+        margin: 15px auto;
+    }
+}
+
+.page-main-wrapper {
+    position: relative;
+    height: $main-sm-height;
+    z-index: 1;
+}
+
 main {
+    height: 100%;
     text-align: center;
     background: $color-white;
-    height: $main-sm-height;
     overflow: hidden;
     transform-style: preserve-3d;
     transform-origin: left center;
@@ -169,10 +208,6 @@ main {
     outline: none;
     max-width: 45%;
     text-transform: uppercase;
-}
-
-.page-main-wrapper {
-    position: relative;
 }
 
 footer {

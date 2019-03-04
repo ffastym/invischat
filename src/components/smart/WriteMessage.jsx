@@ -57,7 +57,7 @@ class WriteMessage extends Component {
             }, 2500);
         }
 
-        if (text.toString() >= 1000) {
+        if (text.toString().length >= 1000) {
             alert('Ваше повідомлення надто довге. Будь ласка, зменшіть кількість символів');
             return false
         }
