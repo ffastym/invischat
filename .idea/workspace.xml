@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="373ee0b0-8c3c-4988-8ffe-1e0897108897" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/dumb/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dumb/Chat.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" afterDir="false" />
     </list>
@@ -86,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="62" column="34" lean-forward="true" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+            <state relative-caret-position="295">
+              <caret line="71" column="57" lean-forward="true" selection-start-line="71" selection-start-column="57" selection-end-line="71" selection-end-column="57" />
               <folding>
                 <element signature="e#34#76#0" expanded="true" />
               </folding>
@@ -110,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/dumb/Chat.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="333">
+              <caret line="75" column="38" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
               <folding>
                 <element signature="e#34#72#0" expanded="true" />
               </folding>
@@ -134,7 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>chat-windows</find>
       <find>transition</find>
       <find>getRoom</find>
       <find>100vh</find>
@@ -164,6 +162,7 @@
       <find>Math.random</find>
       <find>onbefore</find>
       <find>disconnect</find>
+      <find>з'єднання</find>
     </findStrings>
     <replaceStrings>
       <replace>$</replace>
@@ -203,11 +202,11 @@
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\build</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\components</dir>
-      <dir>C:\Users\Xiaomi\WebstormProjects\invischat</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\styles\components</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\styles</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\server</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src</dir>
+      <dir>C:\Users\Xiaomi\WebstormProjects\invischat</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -265,8 +264,8 @@
         <option value="$PROJECT_DIR$/src/styles/variables.scss" />
         <option value="$PROJECT_DIR$/src/socket.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" />
         <option value="$PROJECT_DIR$/src/components/dumb/Chat.jsx" />
+        <option value="$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx" />
       </list>
     </option>
   </component>
@@ -478,12 +477,12 @@
       <workItem from="1551468974356" duration="6135000" />
       <workItem from="1551541653220" duration="7391000" />
       <workItem from="1551558223374" duration="31711000" />
-      <workItem from="1551644757318" duration="22398000" />
+      <workItem from="1551644757318" duration="22943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="484227000" />
+    <option name="totallyTimeSpent" value="484772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -828,16 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/listeners/chatEvents.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="e#34#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/App.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="946">
@@ -886,22 +875,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx">
+    <entry file="file://$PROJECT_DIR$/server/listeners/chatEvents.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="62" column="34" lean-forward="true" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+        <state relative-caret-position="242">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
           <folding>
-            <element signature="e#34#76#0" expanded="true" />
+            <element signature="e#34#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/dumb/Chat.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        <state relative-caret-position="333">
+          <caret line="75" column="38" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
           <folding>
             <element signature="e#34#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/smart/MessagesWrapper.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="71" column="57" lean-forward="true" selection-start-line="71" selection-start-column="57" selection-end-line="71" selection-end-column="57" />
+          <folding>
+            <element signature="e#34#76#0" expanded="true" />
           </folding>
         </state>
       </provider>
