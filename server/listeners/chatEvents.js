@@ -94,7 +94,9 @@ io.on('connection', (socket) => {
     });
 
     socket.on('rejoin room', (data) => {
-        socket.join(data.room);
+        socket.join(data.room, () => {
+            socket.broadcast.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
+        });
 
         if (!data.isFull) {
             return rooms[data.gender].push(data.room)
@@ -111,8 +113,6 @@ io.on('connection', (socket) => {
         checkRoom.then((isEmpty) => {
             if (isEmpty) {
                 io.to(socket.id).emit('get private message', {botMessage: 'ROOM_IS_EMPTY'});
-            } else {
-                io.sockets.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
             }
         })
     });
