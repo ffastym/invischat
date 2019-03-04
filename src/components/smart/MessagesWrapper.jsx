@@ -66,12 +66,10 @@ class MessagesWrapper extends PureComponent {
             });
 
             socket.chat.off('reconnect').on('reconnect', () => {
-                setTimeout(() => {
-                    socket.reJoinRoom()
-                        .addToPublicList();
-                    this.props.setConnectionStatus(true);
-                    this.sendBotMessage('CONNECTION_RESTORED');
-                }, 200)
+                socket.reJoinRoom()
+                      .addToPublicList();
+                this.props.setConnectionStatus(true);
+                this.sendBotMessage('CONNECTION_RESTORED');
             })
         } else {
             socket.chat.off('get public chat info').on('get public chat info', () => {
