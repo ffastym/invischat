@@ -75,7 +75,6 @@ class MessagesWrapper extends PureComponent {
             socket.chat.off('reconnect').on('reconnect', () => {
                 socket.reJoinRoom()
                       .addToPublicList();
-                this.props.setConnectionStatus(true);
                 this.sendBotMessage('CONNECTION_RESTORED');
             })
         } else {
@@ -282,6 +281,7 @@ class MessagesWrapper extends PureComponent {
                 text = 'Співрозмовник покинув чат';
                 break;
             case 'USER_DISCONNECTED' :
+                this.props.setConnectionStatus(false);
                 text = 'У співрозмовника виникли проблеми зі з\'єднанням. Очікуємо відновлення зв\'язку';
                 break;
             case 'ROOM_IS_EMPTY' :
@@ -309,7 +309,12 @@ class MessagesWrapper extends PureComponent {
                     ' Приємного спілкування!';
                 break;
             case 'CONNECTION_RESTORED' :
-                text = 'З\'єднання відновлено';
+                if (!this.props.isConnected) {
+                    this.props.setConnectionStatus(true);
+                    text = 'З\'єднання відновлено';
+                } else {
+                    text = null
+                }
                 break;
             default:
                 text = 'default'
@@ -394,6 +399,7 @@ const mapStateToProps = (state) => {
         newMessagesQty         : state.message.newMessagesQty,
         chatPosition           : state.app.chatPosition,
         nick                   : state.user.nick,
+        isConnected            : state.app.isConnected,
         room                   : state.room.roomName,
         mutedList              : state.user.mutedList,
         isNotificationsEnabled : state.app.isNotificationsEnabled
