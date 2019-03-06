@@ -45,7 +45,11 @@ const chatRooms = {
         if (data.destroy) { // Destroy room if it is not full and exist in rooms list
             let genderRooms = rooms[data.gender];
 
-            genderRooms.splice(genderRooms.indexOf(data.room), 1)
+            if (genderRooms && genderRooms.length) {
+                let index = genderRooms.indexOf(data.room);
+
+                index !== -1 && genderRooms.splice(index, 1)
+            }
         }
     },
 

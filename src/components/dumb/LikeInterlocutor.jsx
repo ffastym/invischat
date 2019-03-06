@@ -68,7 +68,7 @@ const LikeInterlocutor = (props) => {
 
     return (
         <React.Fragment>
-            <div className="pop-up-text">Введіть ім'я поточного співрозмовника під яким бажаєте берегти
+            <div className="pop-up-text">Введіть ім'я поточного співрозмовника під яким бажаєте зберегти
                 його до списку улюблених</div>
             <div className={additionalClassName}>
                 <input type='text' autoFocus={true} ref={getInputRef} onKeyPress={checkKey}/>

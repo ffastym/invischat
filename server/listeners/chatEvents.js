@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', (reason) => {
         if (reason !== 'transport close') {
-            io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
+            chatRooms.leaveRoom(rooms, {gender: socket.gender, room: socket.currentRoom, destroy: true})
         }
 
         // Decrement clients count after new user connection
@@ -51,7 +51,8 @@ io.on('connection', (socket) => {
         let room = chatRooms.getRoom(rooms, gender);
 
         socket.join(room, () => {
-            socket.currentRoom = room
+            socket.currentRoom = room;
+            socket.gender = gender;
         });
 
         socket.emit('joined room', room);
@@ -98,6 +99,7 @@ io.on('connection', (socket) => {
     socket.on('rejoin room', (data) => {
         socket.join(data.room, () => {
             socket.currentRoom = data.room;
+            socket.gender = data.gender;
             socket.broadcast.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
         });
 
