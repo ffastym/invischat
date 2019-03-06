@@ -1,12 +1,12 @@
 /**
  * @author Yuriy Matviyuk
  */
+import appActions from "../../actions/appActions";
+import popUpActions from "../../actions/popUpActions";
 import React, {Component} from 'react'
 import socket from '../../socket'
-import appActions from "../../actions/appActions";
-import {connect} from "react-redux";
 import userActions from "../../actions/userActions";
-import popUpActions from "../../actions/popUpActions";
+import {connect} from "react-redux";
 
 /**
  * UsersList component
@@ -31,9 +31,17 @@ class UsersList extends Component {
      * ComponentDidMount method
      */
     componentDidMount() {
-        socket.chat.off('change clients').on('change clients', (data) => {
-            this.createList(data);
-        });
+        const likedList = localStorage.getItem('liked_list');
+
+        if (likedList) {
+            this.props.changeLikedList(JSON.parse(likedList))
+        }
+
+        socket.subscribeChangeClients();
+
+        socket.chat.off('list update force').on('list update force', (data) => {
+            this.createList(data)
+        })
     };
 
     /**
@@ -69,39 +77,48 @@ class UsersList extends Component {
      * @param snapshot
      */
     componentDidUpdate(prevProps, prevState, snapshot) {
+        const prevData = this.state.prevData;
+
         if (prevProps.mutedList.length !== this.props.mutedList.length) {
-            this.createList(this.state.prevData, true)
+            this.createList(prevData, true)
         }
 
-        if (prevProps.likedList.length !== this.props.likedList.length) {
-            this.createList(this.state.prevData, true)
+        if (prevProps.nick !== this.props.nick && prevData[this.props.userId]) {
+            socket.chat.emit('changed nick', {
+                nick: this.props.nick,
+                userId: this.props.userId
+            });
+        }
+
+        if (Object.keys(prevProps.likedList).length !== Object.keys(this.props.likedList).length) {
+            this.createList(prevData, true)
         }
 
         if (prevProps.likesCount !== this.props.likesCount) {
-            this.createList(this.state.prevData, true)
+            this.createList(prevData, true)
+        }
+
+        if (Object.keys(prevProps.allUsersList).length !== Object.keys(this.props.allUsersList).length) {
+            this.createList(this.props.allUsersList)
         }
     }
 
     /**
      * Like user Handler
      *
-     * @param id
+     * @param data
      */
-    likeUser = (id) => {
-        const prevList = this.props.likedList;
-        let newList,
-            isLiked;
+    likeUser = (data) => {
+        const userId = data.userId;
 
-        if (prevList.indexOf(id) !== -1) {
-            newList = prevList.filter((existId) => existId !== id);
-            isLiked = false
+        let newList = {...this.props.likedList};
+
+        if (newList[userId]) {
+            newList = delete newList[userId];
         } else {
-            newList = prevList.concat(id);
-            socket.chat.emit('like user', id);
-            isLiked = true
+            newList[userId] = data;
         }
 
-        socket.chat.emit('like user', {id, isLiked});
         this.props.changeLikedList(newList)
     };
 
@@ -133,58 +150,65 @@ class UsersList extends Component {
             });
         }
 
-        for (let socketId in data) {
-            if (data.hasOwnProperty(socketId)) {
-                let isMuted = this.props.mutedList.indexOf(socketId) !== -1,
-                    isLiked = this.props.likedList.indexOf(socketId) !== -1,
-                    userData = data[socketId];
+        for (let userId in data) {
+            if (data.hasOwnProperty(userId)) {
+                let isMuted = this.props.mutedList.indexOf(data[userId].socketId) !== -1,
+                    likeButtonClassName = this.props.likedList[userId]
+                        ? 'liked like-user client-action' : 'like-user client-action',
+                    userData = data[userId];
+
+                if (!userData.nick) {
+                    return
+                }
 
                 clientsData.push(
-                    <li key={socketId}>
-                        {this.props.isLongInChat &&
-                            <span className={isLiked ? 'liked like-user client-action' : 'like-user client-action'}
-                                  onClick={() => {this.likeUser(socketId)}}>
+                    <li key={userId}>
+                        <span className="client-color" style={{backgroundColor: userData.color}}/>
+                        <span className="name">{userData.nick}</span>
+                        <span className='user-actions'>
+                            {userData.socketId !== socket.chat.id &&
+                            <span className={likeButtonClassName}
+                                  onClick={() => {this.likeUser(userData)}}>
                                 {this.props.likesCount !== 0
                                 && <span className='likes-count' children={this.props.likesCount}/>}
                             </span>}
-                        <span className="client-color" style={{backgroundColor: userData.color}}/>
-                        {userData.nick}
-                        {this.props.isModerator &&
-                        <span
-                            className={userData.isVIP ? 'set-vip-status client-action vip' : 'set-vip-status client-action'}
-                            title='Надати VIP статус'
-                            onClick={(e) => {
-                                e.target.classList.toggle('vip');
-                                this.setVIPStatus(userData.id)
-                            }}
-                        />}
-                        {socketId === socket.chat.id &&
-                        <span className='client-action change-nick' onClick={this.props.changeNick}/>}
-                        {this.props.isModerator &&
-                        socketId !== socket.chat.id &&
-                        <span
-                            className={userData.isBlocked ? 'ban-client client-action blocked' : 'ban-client client-action'}
-                            title='Заблокувати'
-                            onClick={(e) => {
-                                e.target.classList.toggle('blocked');
-                                this.blockClient(socketId)
-                            }}
-                        />}
-                        {socketId !== socket.chat.id &&
-                        <React.Fragment>
+                            {this.props.isModerator &&
+                            <span
+                                className={userData.isVIP ? 'set-vip-status client-action vip' : 'set-vip-status client-action'}
+                                title='Надати VIP статус'
+                                onClick={(e) => {
+                                    e.target.classList.toggle('vip');
+                                    this.setVIPStatus(userData.id)
+                                }}
+                            />}
+                            {userData.socketId === socket.chat.id &&
+                            <span className='client-action change-nick' onClick={this.props.changeNick}/>}
+                            {this.props.isModerator &&
+                            userData.socketId !== socket.chat.id &&
+                            <span
+                                className={userData.isBlocked ? 'ban-client client-action blocked' : 'ban-client client-action'}
+                                title='Заблокувати'
+                                onClick={(e) => {
+                                    e.target.classList.toggle('blocked');
+                                    this.blockClient(userId)
+                                }}
+                            />}
+                            {userData.socketId !== socket.chat.id &&
+                            <React.Fragment>
                             <span className='start-chat client-action'
                                   title='розпочати приватний чат'
                                   onClick={() => {
-                                      this.proposePrivateChat(userData.nick, socketId)
+                                      this.proposePrivateChat(userData.nick, userData.socketId)
                                   }}
                             />
-                            <span className={isMuted ? 'mute-user client-action muted' : 'mute-user client-action'}
-                                  title='ігнорувати користувача'
-                                  onClick={() => {
-                                      this.muteUser(socketId)
-                                  }}
-                            />
-                        </React.Fragment>}
+                                <span className={isMuted ? 'mute-user client-action muted' : 'mute-user client-action'}
+                                      title='ігнорувати користувача'
+                                      onClick={() => {
+                                          this.muteUser(userData.socketId)
+                                      }}
+                                />
+                            </React.Fragment>}
+                        </span>
                     </li>
                 )
             }
@@ -215,7 +239,7 @@ class UsersList extends Component {
      */
     render() {
         return (
-            <div className="users-list-wrapper" onClick={this.props.toggleUsersList}>
+            <div className="users-list-wrapper">
                 <ul className='users-list'>
                     {this.state.clientsList}
                 </ul>
@@ -227,8 +251,9 @@ class UsersList extends Component {
 const mapStateToProps = (state) => {
     return {
         nick         : state.user.nick,
-        isLongInChat : state.user.isLongInChat,
         mutedList    : state.user.mutedList,
+        allUsersList : state.user.allUsersList,
+        userId       : state.user.userId,
         likesCount   : state.user.likesCount,
         likedList    : state.user.likedList
     }

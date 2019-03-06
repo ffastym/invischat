@@ -19,7 +19,6 @@
     border-radius: $button-border-radius;
     cursor: pointer;
     display: inline-block;
-    margin-right: $padding-md-base;
     height: $button-height;
     text-align: center;
     width: $button-width;
@@ -44,16 +43,18 @@
 }
 
 @define-mixin action-secondary {
+    position: relative;
     background: #EFEFEF;
-    z-index: 10;
-    position: absolute;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: $action-secondary-width;
+    height: $action-secondary-height;
     border-radius: $button-border-radius;
-    top: $padding-sm-base;
-    right: $padding-sm-base;
+    margin-top: $padding-sm-base;
     opacity: .7;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
 
     &:before {
         content: '';
@@ -66,16 +67,11 @@
         left: 0;
         position: absolute;
         text-align: center;
-        line-height: 40px;
+        line-height: $action-secondary-height;
     }
 
     &.active {
         opacity: 1;
-    }
-
-    @media (--sm-min) {
-        top: $padding-md-base;
-        right: $padding-md-base;
     }
 }
 
@@ -109,6 +105,10 @@
         content: "";
         clear: both;
     }
+}
+
+@define-mixin transform-door-effect {
+    transform: perspective(1000px) rotateY(70deg);
 }
 
 @define-mixin close-button {

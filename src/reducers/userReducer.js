@@ -6,9 +6,9 @@ const initialState = {
     nick             : null,
     userId           : null,
     isNewInPublic    : true,
-    isLongInChat     : false,
     mutedList        : [],
-    likedList        : [],
+    likedList        : {},
+    allUsersList     : {},
     likesCount       : 0,
     senderId         : null,
     senderNick       : null,
@@ -21,6 +21,12 @@ const userReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 gender: action.payload
+            };
+            break;
+        case 'SET_ALL_USERS_LIST':
+            state = {
+                ...state,
+                allUsersList: action.payload
             };
             break;
         case 'SET_USER_ID':
@@ -69,12 +75,6 @@ const userReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 interlocutorNick: action.payload
-            };
-            break;
-        case 'SET_IS_LONG_IN_CHAT':
-            state = {
-                ...state,
-                isLongInChat: true
             };
             break;
         default:

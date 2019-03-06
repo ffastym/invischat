@@ -8,7 +8,6 @@ import MailSender from '../email'
 
 let clientsCount = 0,
     users = {},
-    allUsers = [],
     rooms = {
         male   : [],
         female : []
@@ -23,19 +22,14 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         // Decrement clients count after new user connection
-        delete users[socket.id];
-        io.emit('change clients', users);
-        io.emit('change clients count', --clientsCount)
-    });
-
-    socket.on('all users update', (data) => {
-        if (data.isRemove && allUsers.indexOf(data.id) !== -1) {
-            allUsers.splice(allUsers.indexOf(data.id), 1)
-        } else if(allUsers.indexOf(data.id) === -1) {
-            allUsers.push(data.id)
+        for (let userId in users) {
+            if (users.hasOwnProperty(userId) && users[userId].socketId === socket.id) {
+                delete users[userId];
+            }
         }
 
-        io.emit('all users updated', allUsers)
+        io.emit('change clients', users);
+        io.emit('change clients count', --clientsCount)
     });
 
     //remove image from server after uploading
@@ -72,8 +66,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('leave chat', () => {
-        delete users[socket.id];
-        io.emit('change clients', users);
+        for (let userId in users) {
+            if (users.hasOwnProperty(userId) && users[userId].socketId === socket.id) {
+                delete users[userId];
+                io.emit('change clients', users);
+            }
+        }
     });
 
     socket.on('send public message', (message) => {
@@ -82,6 +80,10 @@ io.on('connection', (socket) => {
 
     socket.on('send private message', (message) => {
         io.sockets.to(message.room).emit('get private message', message);
+    });
+
+    socket.on('set interlocutor id', (data) => {
+        socket.broadcast.to(data.room).emit('get interlocutor id', data.id)
     });
 
     /**
@@ -119,17 +121,30 @@ io.on('connection', (socket) => {
         })
     });
 
+    socket.on('changed nick', (data) => {
+        users[data.userId].nick = data.nick;
+        io.emit('list update force', users);
+    });
+
     socket.on('connect to public chat', (data) => {
-        data.id = socket.id;
-        users[socket.id] = data;
+        if (!data.userId) {
+            return
+        }
+
+        data.socketId = socket.id;
+        users[data.userId] = data;
         io.emit('change clients', users);
         socket.broadcast.emit('new user connected', data.nick);
         io.to(socket.id).emit('get public chat info');
     });
 
     socket.on('reconnect to public chat', (data) => {
-        data.id = socket.id;
-        users[socket.id] = data;
+        if (!data.userId) {
+            return
+        }
+
+        data.socketId = socket.id;
+        users[data.userId] = data;
         io.emit('change clients', users);
     });
 

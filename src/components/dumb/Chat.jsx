@@ -154,6 +154,8 @@ class Chat extends Component {
         if (this.props.room) {
             socket.leaveChat()
         }
+
+        this.props.clearAllUsersList()
     }
 
     /**
@@ -192,6 +194,8 @@ const mapStateToProps = (state) => {
         publicColor     : state.message.publicColor,
         isGalleryActive : state.gallery.isActive,
         gender          : state.user.gender,
+        allUsersList    : state.user.allUsersList,
+        userId          : state.user.userId,
         newMessagesQty  : state.message.newMessagesQty,
         room            : state.room.roomName,
         nick            : state.user.nick
@@ -207,6 +211,13 @@ const mapDispatchToProps = (dispatch) => {
          */
         setChatPosition: (position) => {
             dispatch(appActions.setChatPosition(position));
+        },
+
+        /**
+         * Clear all users List
+         */
+        clearAllUsersList: () => {
+            dispatch(userActions.setAllUsersList({}));
         },
 
         /**

@@ -4,6 +4,9 @@ $user-action-height: 40px;
 .users-list-wrapper {
     position: absolute;
     top: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
     transform: translateY(-50%);
     left: 27%;
     box-sizing: border-box;
@@ -24,6 +27,8 @@ $user-action-height: 40px;
 }
 
 .users-list {
+    width: 100%;
+
     li {
         padding: 10px 15px;
         position: relative;
@@ -36,10 +41,19 @@ $user-action-height: 40px;
     }
 }
 
+.user-actions {
+    position: absolute;
+    display: block;
+    height: $user-action-height;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+}
+
 .client-color {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
@@ -47,14 +61,11 @@ $user-action-height: 40px;
 }
 
 .client-action {
-    position: absolute;
+    position: relative;
     display: inline-block;
     height: $user-action-height;
     cursor: pointer;
     width: $user-action-width;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
 
     &:hover {
         text-shadow: 0 0 10px $color-semi-grey;
@@ -66,6 +77,7 @@ $user-action-height: 40px;
         line-height: $user-action-height;
         text-align: center;
         font-size: 16px;
+        color: $color-grey;
         width: inherit;
         height: inherit;
         position: absolute;
@@ -80,10 +92,12 @@ $user-action-height: 40px;
     }
 
     &.mute-user {
-        right: $user-action-width;
-
         &:before {
             content: $fa-mute;
+        }
+
+        &.muted:before {
+            color: $color-red;
         }
     }
 
@@ -94,14 +108,18 @@ $user-action-height: 40px;
     }
 
     &.like-user {
-        right: calc(2 * #{$user-action-width});
-
         &:before {
             content: $fa-heart;
         }
 
         &.liked:before {
             font-family: $font-family-FA-solid;
+        }
+    }
+
+    &.remove-user {
+        &:before {
+            content: $fa-trash;
         }
     }
 }

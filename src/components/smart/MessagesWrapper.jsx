@@ -8,9 +8,11 @@ import {connect} from "react-redux";
 import roomActions from "../../actions/roomActions";
 import appActions from "../../actions/appActions";
 import UsersList from "./UsersList";
+import SavedList from "./SavedList";
 import popUpActions from "../../actions/popUpActions";
 import galleryActions from "../../actions/galleryActions";
 import messageActions from "../../actions/messageActions";
+import userActions from "../../actions/userActions";
 
 /**
  * MessagesWrapper component
@@ -25,11 +27,10 @@ class MessagesWrapper extends PureComponent {
         super(props);
         
         this.state = {
-            notify         : !props.ssr && new Audio('/audio/magic.mp3'),
-            notify2        : !props.ssr && new Audio('/audio/pop.mp3'),
-            isShowUsers    : false,
-            newMessagesQty : 0,
-            messages       : []
+            notify          : !props.ssr && new Audio('/audio/magic.mp3'),
+            notify2         : !props.ssr && new Audio('/audio/pop.mp3'),
+            newMessagesQty  : 0,
+            messages        : []
         };
     }
 
@@ -66,16 +67,8 @@ class MessagesWrapper extends PureComponent {
                 />)
             });
 
-            socket.chat.off('disconnect').on('disconnect', () => {
-                setTimeout(() => {
-                    this.sendBotMessage('CONNECTION_PROBLEM');
-                }, 100)
-            });
-
-            socket.chat.off('reconnect').on('reconnect', () => {
-                socket.reJoinRoom()
-                      .addToPublicList();
-                this.sendBotMessage('CONNECTION_RESTORED');
+            socket.chat.off('get interlocutor id').on('get interlocutor id', (id) => {
+                this.props.setInterlocutorId(id)
             })
         } else {
             socket.chat.off('get public chat info').on('get public chat info', () => {
@@ -92,6 +85,18 @@ class MessagesWrapper extends PureComponent {
                 this.likesHandler(data)
             })
         }
+
+        socket.chat.off('disconnect').on('disconnect', () => {
+            setTimeout(() => {
+                this.sendBotMessage('CONNECTION_PROBLEM');
+            }, 100)
+        });
+
+        socket.chat.off('reconnect').on('reconnect', () => {
+            socket.reJoinRoom()
+                .addToPublicList();
+            this.sendBotMessage('CONNECTION_RESTORED');
+        });
 
         socket.chat.off(getMessageEvent).on(getMessageEvent, (message) => {
             //Ignore message if client is muted
@@ -231,33 +236,38 @@ class MessagesWrapper extends PureComponent {
     /**
      * Search new interlocutor in private chat
      */
-    searchNew = () => {
-        if (this.props.room && !this.props.isFull) {
+    refreshChat = () => {
+        const isPrivate = this.props.type === 'private';
+
+        if (isPrivate && this.props.room && !this.props.isFull) {
             return this.props.showPopUp('CAN_NOT_REFRESH')
         }
 
-        if (this.props.type === 'private') {
-            this.setState({
-                messages: []
-            }, () => {
-                this.sendBotMessage('SEARCH_NEW')
-            });
-        }
-
-        socket.searchNew()
+        this.setState({
+            messages: []
+        }, () => {
+            if (isPrivate) {
+                this.sendBotMessage('SEARCH_NEW');
+                socket.searchNew()
+            }
+        });
     };
 
     /**
      * Show/hide list of active users in public chat
      */
-    toggleUsersList = () => {
-        if (!this.props.nick) {
+    toggleList = (e, open = false) => {
+        if (this.props.type === 'public' && !this.props.nick) {
             return this.props.showPopUp('CREATE_NICK')
         }
 
-        this.setState({
-            isShowUsers: !this.state.isShowUsers
-        })
+        let classList = this.chatTextWrapperRef.classList;
+
+        if (open) {
+            classList.toggle('with-users-list')
+        } else if (classList.contains('with-users-list') && !e.target.classList.contains('users-list')) {
+            classList.remove('with-users-list')
+        }
     };
 
     /**
@@ -273,6 +283,7 @@ class MessagesWrapper extends PureComponent {
             case 'ROOM_IS_FULL' :
                 this.props.setIsFull(true);
                 this.state.notify2.play();
+                socket.chat.emit('set interlocutor id', {room: this.props.room, id: this.props.userId});
                 text = 'Співрозмовника знайдено! Розпочніть Ваш діалог';
                 break;
             case 'INTERLOCUTOR_LEAVE' :
@@ -342,7 +353,7 @@ class MessagesWrapper extends PureComponent {
     getScrollHeight = () => {
         const chat = this.chatTextRef;
 
-        if (chat.scrollHeight === Math.ceil(chat.scrollTop + chat.innerHeight)) {
+        if (chat.scrollHeight === Math.ceil(chat.scrollTop + chat.clientHeight)) {
             this.setState({
                 newMessagesQty: 0
             })
@@ -358,6 +369,28 @@ class MessagesWrapper extends PureComponent {
         this.chatTextRef = node
     };
 
+    getChatTextWrapperRef = (node) => {
+        this.chatTextWrapperRef = node
+    };
+
+    /**
+     * Add user from private chat to the favorite list
+     */
+    saveUser = () => {
+        let newList = {...this.props.likedList},
+            userId = this.props.interlocutorId;
+
+        if (newList[userId]) {
+            delete newList[userId];
+            this.props.changeLikedList(newList)
+        } else {
+            this.props.showPopUp('LIKE_INTERLOCUTOR')
+        }
+    };
+
+    /**
+     * Component unmounted from DOM
+     */
     componentWillUnmount() {
         window.removeEventListener('resize', this.resizeHandler)
     }
@@ -366,23 +399,41 @@ class MessagesWrapper extends PureComponent {
      * Render MessagesWrapper component
      */
     render() {
-        const textWrapperClassName = this.props.type === 'public' && this.state.isShowUsers
-            ? 'chat-text-wrapper with-users-list' : 'chat-text-wrapper';
+        const saveUserClassName = this.props.likedList[this.props.interlocutorId] ?
+            'action-secondary save-user saved' : 'action-secondary save-user';
 
         return (
-            <div className={textWrapperClassName} onScroll={this.getScrollHeight}>
-                {this.props.type === 'private' &&
+            <div className='chat-text-wrapper'
+                 onScroll={this.getScrollHeight}
+                 onClick={this.toggleList}
+                 ref={this.getChatTextWrapperRef}>
+                <div className="actions-secondary">
                     <span className="action-secondary refresh"
-                         title="шукати нового співрозмовника"
-                         onClick={this.searchNew}
-                    />}
-                {this.props.type === 'public' &&
-                    <span className="action-secondary show-users"
+                          title="шукати нового співрозмовника"
+                          onClick={this.refreshChat}
+                    />
+                    {this.props.type === 'private' &&
+                    <React.Fragment>
+                        <span className='action-secondary saved-list users-list'
+                              title="зберегти співрозмовника"
+                              onClick={(e) => {this.toggleList(e, true)}}
+                        />
+                        {this.props.isFull &&
+                        <span className={saveUserClassName}
+                              title="зберегти співрозмовника"
+                              onClick={this.saveUser}
+                        />}
+                    </React.Fragment>}
+                    {this.props.type === 'public' &&
+                    <span className="action-secondary show-users users-list"
                           title="показати хто у чаті"
-                          onClick={this.toggleUsersList}
+                          onClick={(e) => {this.toggleList(e, true)}}
                     />}
+                </div>
                 <div className='chat-text' ref={this.getRef}>{this.state.messages}</div>
-                {this.props.type === 'public' && <UsersList toggleUsersList={this.toggleUsersList}/>}
+                {this.props.type === 'public'
+                    ? <UsersList/>
+                    : <SavedList/>}
                 {this.state.newMessagesQty ?
                     <span className="unread-messages-count"
                           onClick={() => {this.scrollToLastMessage(true)}}
@@ -398,9 +449,12 @@ const mapStateToProps = (state) => {
         isMobile               : state.app.isMobile,
         newMessagesQty         : state.message.newMessagesQty,
         chatPosition           : state.app.chatPosition,
+        userId                 : state.user.userId,
+        interlocutorId         : state.room.interlocutorId,
         nick                   : state.user.nick,
         isConnected            : state.app.isConnected,
         room                   : state.room.roomName,
+        likedList              : state.user.likedList,
         mutedList              : state.user.mutedList,
         isNotificationsEnabled : state.app.isNotificationsEnabled
     }
@@ -442,6 +496,24 @@ const mapDispatchToProps = (dispatch) => {
          */
         setNewMessagesQty: (qty) => {
             dispatch(messageActions.setNewMessagesQty(qty))
+        },
+
+        /**
+         * Like/dislike user
+         *
+         * @param list
+         */
+        changeLikedList: (list) => {
+            dispatch(userActions.changeLikedList(list))
+        },
+
+        /**
+         * Set interlocutor Public Id
+         *
+         * @param id
+         */
+        setInterlocutorId: (id) => {
+            dispatch(roomActions.setInterlocutorId(id))
         },
 
         /**

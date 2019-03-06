@@ -18,9 +18,7 @@ const Cloudinary = {
      * @param img
      */
     removeImage: (img) => {
-        cloudinary.v2.uploader.destroy(img, {invalidate: true}, (error, result) => {
-            console.log(result || error);
-
+        cloudinary.v2.uploader.destroy(img, {invalidate: true}, (error) => {
             //try again if error occur
             if (error) {
                 setTimeout(() => {
@@ -35,7 +33,7 @@ const Cloudinary = {
      */
     removeAllUploads: () => {
         cloudinary.v2.api.delete_all_resources({invalidate: true}, (error, result) => {
-            console.log(result || error);
+            error && console.log(error);
         })
     }
 };

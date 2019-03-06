@@ -9,12 +9,6 @@ import ReactDOM from 'react-dom'
 import store from './store'
 import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
-import socket from "./socket";
-
-/**
- * Connect to socket
- */
-socket.connect();
 
 ReactDOM.hydrate((
     <BrowserRouter>

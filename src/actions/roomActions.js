@@ -16,6 +16,13 @@ const roomActions = {
         }
     },
 
+    setInterlocutorId: (id) => {
+        return {
+            type: 'SET_INTERLOCUTOR_ID',
+            payload: id
+        }
+    },
+
     /**
      * Set is full room
      *

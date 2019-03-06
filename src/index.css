@@ -251,6 +251,9 @@ table{
 .users-list-wrapper{
     position:absolute;
     top:50%;
+    height:50%;
+    display:flex;
+    align-items:center;
     -webkit-transform:translateY(-50%);
             transform:translateY(-50%);
     left:27%;
@@ -267,6 +270,9 @@ table{
         transition:margin-top .5s;
         margin-top:0;
     }
+.users-list{
+    width:100%;
+}
 .users-list li{
         padding:10px 15px;
         position:relative;
@@ -276,10 +282,19 @@ table{
 .users-list li:last-of-type{
             border-bottom:none;
         }
+.user-actions{
+    position:absolute;
+    display:block;
+    height:40px;
+    top:50%;
+    -webkit-transform:translateY(-50%);
+            transform:translateY(-50%);
+    right:0;
+}
 .client-color{
     position:absolute;
-    width:10px;
-    height:10px;
+    width:7px;
+    height:7px;
     border-radius:50%;
     top:50%;
     -webkit-transform:translateY(-50%);
@@ -287,15 +302,11 @@ table{
     left:0;
 }
 .client-action{
-    position:absolute;
+    position:relative;
     display:inline-block;
     height:40px;
     cursor:pointer;
-    width:30px;
-    top:50%;
-    -webkit-transform:translateY(-50%);
-            transform:translateY(-50%);
-    right:0
+    width:30px
 }
 .client-action:hover{
         text-shadow:0 0 10px #b8b8b8;
@@ -306,6 +317,7 @@ table{
         line-height:40px;
         text-align:center;
         font-size:16px;
+        color:#808080;
         width:inherit;
         height:inherit;
         position:absolute;
@@ -315,23 +327,23 @@ table{
 .client-action.start-chat:before{
             content:'\f086';
         }
-.client-action.mute-user{
-        right:30px
-    }
 .client-action.mute-user:before{
             content:'\f05e';
+        }
+.client-action.mute-user.muted:before{
+            color:#ff0000;
         }
 .client-action.change-nick:before{
             content:'\f4ff';
         }
-.client-action.like-user{
-        right:calc(2 * 30px)
-    }
 .client-action.like-user:before{
             content:'\f004';
         }
 .client-action.like-user.liked:before{
             font-family:Font Awesome solid;
+        }
+.client-action.remove-user:before{
+            content:'\f1f8';
         }
 .messages-wrapper{
     height:100%;
@@ -406,18 +418,28 @@ table{
     -webkit-transform:rotate(180deg);
             transform:rotate(180deg);
 }
-.action-secondary{
-    background:#EFEFEF;
+.actions-secondary{
     z-index:10;
     position:absolute;
+    right:5px;
+    top:5px;
+    display:flex;
+    flex-direction:column;
+    width:40px
+}
+.action-secondary{
+    position:relative;
+    background:#EFEFEF;
     cursor:pointer;
     width:40px;
     height:40px;
     border-radius:5px;
-    top:5px;
-    right:5px;
+    margin-top:5px;
     opacity:.7
 }
+.action-secondary:first-of-type{
+        margin-top:0;
+    }
 .action-secondary:before{
         content:'';
         color:gray;
@@ -442,11 +464,20 @@ table{
                         transform:rotate(360deg);
                 transition:.1s;
             }
+.action-secondary.save-user:before{
+            content:'\f004';
+        }
+.action-secondary.save-user.saved:before{
+            font-family:Font Awesome solid;
+        }
+.action-secondary.saved-list:before{
+            content:'\f500';
+        }
 .action-secondary.show-users:before{
             content:'\f0c0';
         }
 .emoji-mart{
-    z-index:10;
+    z-index:15;
 }
 .emoji-mart-scroll{
         height:200px !important;
@@ -468,6 +499,7 @@ table{
     position:relative;
 }
 .chat-actions-toolbar .actions-wrapper{
+        justify-content:space-between;
         align-items:flex-end;
         border-top:1px solid #808080;
         display:flex;
@@ -779,6 +811,10 @@ table{
     max-width:700px;
     min-height:130px;
 }
+.send-mail-loader .loader{
+        display:block;
+        margin:30px auto;
+    }
 .pop-up{
     background:#FFFFFF;
     border-radius:25px;
@@ -974,7 +1010,6 @@ header{
     border-radius:5px;
     cursor:pointer;
     display:inline-block;
-    margin-right:10px;
     height:35px;
     text-align:center;
     width:35px;
@@ -1034,6 +1069,9 @@ header{
     position:absolute;
     text-shadow:0 0 10px #969696;
     top:-5px;
+}
+header .action{
+    margin-right:10px;
 }
 .dark{
     background:#2F2F2F;
@@ -1259,8 +1297,8 @@ main{
 }
 main.nav-active{
         box-shadow:-15px 0 30px 1px rgba(0,0,0,0.1);
-        -webkit-transform:perspective(100px) rotateY(45deg);
-                transform:perspective(100px) rotateY(45deg);
+        -webkit-transform:perspective(1000px) rotateY(70deg);
+                transform:perspective(1000px) rotateY(70deg);
         transition:margin-right .3s, -webkit-transform .3s .1s;
         transition:transform .3s .1s, margin-right .3s;
         transition:transform .3s .1s, margin-right .3s, -webkit-transform .3s .1s
@@ -1345,7 +1383,7 @@ footer .fb-share-button{
     .message-image img{
             max-width:190px
     }
-.action-secondary{
+.actions-secondary{
         top:10px;
         right:10px
 }

@@ -68,6 +68,8 @@ const userActions = {
      * @returns {{payload: *, type: string}}
      */
     changeLikedList: (list) => {
+        localStorage.setItem('liked_list', JSON.stringify(list));
+
         return {
             type    : 'CHANGE_LIKED_LIST',
             payload : list
@@ -75,13 +77,16 @@ const userActions = {
     },
 
     /**
-     * Set user as long in chat
+     * set all connected users list
      *
-     * @returns {{type: string}}
+     * @param list
+     *
+     * @returns {{payload: *, type: string}}
      */
-    setIsLongInChat: () => {
+    setAllUsersList: (list) => {
         return {
-            type: 'SET_IS_LONG_IN_CHAT'
+            type    : 'SET_ALL_USERS_LIST',
+            payload : list
         }
     },
 

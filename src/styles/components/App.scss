@@ -177,7 +177,7 @@ main {
 
     &.nav-active {
         box-shadow: -15px 0 30px 1px rgba(0,0,0,0.1);
-        transform: perspective(100px) rotateY(45deg);
+        @add-mixin transform-door-effect;
         transition: transform .3s .1s, margin-right .3s;
 
         &:after {

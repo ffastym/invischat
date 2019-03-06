@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 /**
  * UsersList component
  */
-class UsersList extends Component {
+class SavedList extends Component {
     /**
      * UsersList Constructor
      *
@@ -22,8 +22,8 @@ class UsersList extends Component {
         
         this.state = {
             clientsList: [],
-            isToggled: false,
-            prevData: []
+            allUsersList: {},
+            isToggled: false
         };
     }
 
@@ -31,159 +31,81 @@ class UsersList extends Component {
      * ComponentDidMount method
      */
     componentDidMount() {
-        socket.chat.off('change clients').on('change clients', (data) => {
-            this.createList(data);
-        });
-    };
+        let userId = localStorage.getItem('unique_id');
 
-    /**
-     * Unsubscribe from events
-     */
-    componentWillUnmount() {
-        socket.chat.off('change clients')
-    }
+        if (!userId) {
+            userId = Math.floor(Math.random() * Math.floor(999999999));
+            localStorage.setItem('unique_id', userId)
+        }
 
-    /**
-     * Block client in public chat
-     *
-     * @param id
-     */
-    blockClient = (id) => {
-        socket.chat.emit('block user', id)
-    };
-
-    /**
-     * Set VIP status
-     *
-     * @param id
-     */
-    setVIPStatus = (id) => {
-        socket.chat.emit('set vip status', id)
+        this.props.setUserId(userId);
     };
 
     /**
      * Component did update
      *
      * @param prevProps
-     * @param prevState
-     * @param snapshot
      */
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.mutedList.length !== this.props.mutedList.length) {
-            this.createList(this.state.prevData, true)
+    componentDidUpdate(prevProps) {
+        if (Object.keys(prevProps.likedList).length !== Object.keys(this.props.likedList).length) {
+            this.createList(this.props.likedList)
         }
 
-        if (prevProps.likedList.length !== this.props.likedList.length) {
-            this.createList(this.state.prevData, true)
-        }
-
-        if (prevProps.likesCount !== this.props.likesCount) {
-            this.createList(this.state.prevData, true)
+        if (Object.keys(prevProps.allUsersList).length !== Object.keys(this.props.allUsersList).length) {
+            this.createList(this.props.likedList)
         }
     }
 
     /**
-     * Like user Handler
+     * Remove user from liked list
      *
-     * @param id
+     * @param userId
      */
-    likeUser = (id) => {
-        const prevList = this.props.likedList;
-        let newList,
-            isLiked;
+    removeUser = (userId) => {
+        let newList = {...this.props.likedList};
 
-        if (prevList.indexOf(id) !== -1) {
-            newList = prevList.filter((existId) => existId !== id);
-            isLiked = false
-        } else {
-            newList = prevList.concat(id);
-            isLiked = true
-        }
+        delete newList[userId];
 
-        socket.chat.emit('like user', {id, isLiked, userId: this.props.userId});
         this.props.changeLikedList(newList)
-    };
-
-    /**
-     * Mute user in public chat
-     *
-     * @param id
-     */
-    muteUser = (id) => {
-        const prevList = this.props.mutedList;
-
-        this.props.changeMutedList(prevList.indexOf(id) !== -1
-            ? prevList.filter((existId) => existId !== id)
-            : prevList.concat(id))
     };
 
     /**
      * Create list of clients
      *
      * @param data
-     * @param usePrevData
      */
-    createList = (data, usePrevData = false) => {
+    createList = (data) => {
         let clientsData = [];
 
-        if (!usePrevData) {
-            this.setState({
-                prevData: data
-            });
-        }
+        for (let userId in data) {
+            if (data.hasOwnProperty(userId)) {
+                let userData = data[userId],
+                    isOnline = this.props.allUsersList.hasOwnProperty(userId),
+                    statusColor = isOnline ? '#9FD468' : '#808080';
 
-        for (let socketId in data) {
-            if (data.hasOwnProperty(socketId)) {
-                let isMuted = this.props.mutedList.indexOf(socketId) !== -1,
-                    isLiked = this.props.likedList.indexOf(socketId) !== -1,
-                    userData = data[socketId];
+                if (isOnline) {
+                    data[userId].socketId = this.props.allUsersList[userId].socketId
+                }
 
                 clientsData.push(
-                    <li key={socketId}>
-                        {socketId !== socket.chat.id &&
-                            <span className={isLiked ? 'liked like-user client-action' : 'like-user client-action'}
-                                  onClick={() => {this.likeUser(socketId)}}>
-                                {this.props.likesCount !== 0
-                                && <span className='likes-count' children={this.props.likesCount}/>}
-                            </span>}
-                        <span className="client-color" style={{backgroundColor: userData.color}}/>
-                        {userData.nick}
-                        {this.props.isModerator &&
-                        <span
-                            className={userData.isVIP ? 'set-vip-status client-action vip' : 'set-vip-status client-action'}
-                            title='Надати VIP статус'
-                            onClick={(e) => {
-                                e.target.classList.toggle('vip');
-                                this.setVIPStatus(userData.id)
-                            }}
-                        />}
-                        {socketId === socket.chat.id &&
-                        <span className='client-action change-nick' onClick={this.props.changeNick}/>}
-                        {this.props.isModerator &&
-                        socketId !== socket.chat.id &&
-                        <span
-                            className={userData.isBlocked ? 'ban-client client-action blocked' : 'ban-client client-action'}
-                            title='Заблокувати'
-                            onClick={(e) => {
-                                e.target.classList.toggle('blocked');
-                                this.blockClient(socketId)
-                            }}
-                        />}
-                        {socketId !== socket.chat.id &&
-                        <React.Fragment>
-                            <span className='start-chat client-action'
+                    <li key={userId}>
+                        <span className="client-color" style={{backgroundColor: statusColor}}
+                              title={isOnline ? 'online' : 'offline'}/>
+                        <span className="name">{userData.nick}</span>
+                        <span className='user-actions'>
+                            {isOnline && <span className='start-chat client-action'
                                   title='розпочати приватний чат'
                                   onClick={() => {
-                                      this.proposePrivateChat(userData.nick, socketId)
+                                      this.proposePrivateChat(userData.nick, userData.socketId)
                                   }}
-                            />
-                            <span className={isMuted ? 'mute-user client-action muted' : 'mute-user client-action'}
-                                  title='ігнорувати користувача'
+                            />}
+                            <span className='remove-user client-action'
+                                  title='видалити користувача зі списку'
                                   onClick={() => {
-                                      this.muteUser(socketId)
+                                      this.removeUser(userId)
                                   }}
                             />
-                        </React.Fragment>}
+                        </span>
                     </li>
                 )
             }
@@ -214,9 +136,14 @@ class UsersList extends Component {
      */
     render() {
         return (
-            <div className="users-list-wrapper" onClick={this.props.toggleUsersList}>
+            <div className="users-list-wrapper">
                 <ul className='users-list'>
-                    {this.state.clientsList}
+                    {this.state.clientsList.length
+                        ? this.state.clientsList :
+                    <li>Тут буде відображатися список усіх збережених користувачів. Щоб зберегти користувача натисніть
+                        на іконку серця у вікні приватного чату або поряд з ніком у списку загального чату. Колір поряд
+                        з користувачем у цьому списку означає його статус online (зелений) і offline (сірий).
+                    </li>}
                 </ul>
             </div>
         )
@@ -225,11 +152,8 @@ class UsersList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        nick         : state.user.nick,
-        isLongInChat : state.user.isLongInChat,
-        mutedList    : state.user.mutedList,
-        likesCount   : state.user.likesCount,
-        likedList    : state.user.likedList
+        likedList    : state.user.likedList,
+        allUsersList : state.user.allUsersList
     }
 };
 
@@ -245,6 +169,15 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         /**
+         * Set all connected users list
+         *
+         * @param list
+         */
+        setAllUsersList: (list) => {
+            dispatch(userActions.setAllUsersList(list))
+        },
+
+        /**
          * Change nick name
          */
         changeNick: () => {
@@ -253,12 +186,12 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         /**
-         * Mute/unmute user
+         * Set unique user id
          *
-         * @param list
+         * @param id
          */
-        changeMutedList: (list) => {
-            dispatch(userActions.changeMutedList(list))
+        setUserId: (id) => {
+            dispatch(userActions.setUserId(id))
         },
 
         /**
@@ -272,5 +205,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersList)
+export default connect(mapStateToProps, mapDispatchToProps)(SavedList)
 

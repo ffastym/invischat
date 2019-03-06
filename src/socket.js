@@ -105,7 +105,7 @@ const socket = {
     /**
      * Search new interlocutor in private chat
      *
-     * @returns {{searchNew: (function()), io: lookup, chat: null, leaveRoom: (function()), subscribeJoinRoom: (function()), reJoinRoom: socket.reJoinRoom, joinChat: (function()), sendMessage: (function(*)), subscribeUsersCount: (function()), connect: (function())}}
+     * @returns {{refreshChat: (function()), io: lookup, chat: null, leaveRoom: (function()), subscribeJoinRoom: (function()), reJoinRoom: socket.reJoinRoom, joinChat: (function()), sendMessage: (function(*)), subscribeUsersCount: (function()), connect: (function())}}
      */
     searchNew: () => {
         if (store.getState().room.roomName) {
@@ -134,12 +134,13 @@ const socket = {
     /**
      * Join public add user to public list
      *
-     * @returns {{searchNew: (function()), io: lookup, chat: null, leaveRoom: (function()), subscribeJoinRoom: (function()), reJoinRoom: socket.reJoinRoom, setNick: (function(*=)), joinChat: (function()), addToPublicList: (function()), sendMessage: (function(*)), subscribeUsersCount: (function()), connect: (function())}}
+     * @returns {{refreshChat: (function()), io: lookup, chat: null, leaveRoom: (function()), subscribeJoinRoom: (function()), reJoinRoom: socket.reJoinRoom, setNick: (function(*=)), joinChat: (function()), addToPublicList: (function()), sendMessage: (function(*)), subscribeUsersCount: (function()), connect: (function())}}
      */
     addToPublicList: () => {
         const state = store.getState(),
               userData = {
                   nick      : state.user.nick,
+                  userId    : state.user.userId,
                   isVIP     : state.user.isVIP,
                   isBlocked : state.user.isBlocked,
                   color     : state.message.publicColor
@@ -153,6 +154,15 @@ const socket = {
         }
 
         return socket
+    },
+
+    /**
+     * Subscribe for changes users in public chat
+     */
+    subscribeChangeClients: () => {
+        socket.chat.off('change clients').on('change clients', (list) => {
+            store.dispatch(userActions.setAllUsersList(list))
+        })
     },
 
     /**

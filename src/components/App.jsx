@@ -30,28 +30,12 @@ class App extends Component {
         this.state = {
             mobileBreakpoint: 768
         };
-
-        //setTimeout(props.setIsLongInChat, 600000)
     }
 
     /**
      * ComponentDidMount
      */
     componentDidMount() {
-        socket.chat.on('all users updated', (data) => {
-            //console.log('users ---> ', data);
-        });
-
-        let userId = localStorage.getItem('unique_id');
-
-        if (!userId) {
-            userId = Math.floor(Math.random() * Math.floor(999999999));
-            localStorage.setItem('unique_id', userId)
-        }
-
-        this.props.setUserId(userId);
-        socket.chat.emit('all users update', {id: userId});
-
         this.detectDeviceType();
         this.setTheme();
 
@@ -181,15 +165,6 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         /**
-         * Set unique user id
-         *
-         * @param id
-         */
-        setUserId: (id) => {
-            dispatch(userActions.setUserId(id))
-        },
-
-        /**
          * Set likes count
          *
          * @param qty
@@ -258,13 +233,6 @@ const mapDispatchToProps = (dispatch) => {
          */
         setIsFull: (isFull) => {
             dispatch(roomActions.setIsFull(isFull))
-        },
-
-        /**
-         * Set user as long in chat
-         */
-        setIsLongInChat: () => {
-            dispatch(userActions.setIsLongInChat())
         }
     }
 };

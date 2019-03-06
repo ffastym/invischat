@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 import CreateNick from './CreateNick'
 import socket from '../../socket'
 import {connect} from "react-redux"
+import LikeInterlocutor from '../dumb/LikeInterlocutor'
 import popUpActions from "../../actions/popUpActions"
 import {Redirect} from 'react-router-dom'
 
@@ -55,6 +56,12 @@ class PopUp extends Component {
                     title : 'Запит на приватний чат',
                     text   : sender + ' пропонує перейти у приватний чат. Поточний приватний чат буде втрачено. Бажаєте перейти?',
                     isModal: true
+                };
+                break;
+            case 'LIKE_INTERLOCUTOR' :
+                state = {
+                    title         : 'Зберегти співрозмовника',
+                    customContent : <LikeInterlocutor/>
                 };
                 break;
             case 'PRIVATE_REQUEST_REJECTED' :

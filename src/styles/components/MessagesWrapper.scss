@@ -14,7 +14,7 @@
 
     &.with-users-list {
         .chat-text {
-            transform: perspective(1000px) rotateY(70deg);
+            @add-mixin transform-door-effect;
             transition: transform .3s, box-shadow 0s .3s;
         }
     }
@@ -72,6 +72,21 @@
     transform: rotate(180deg);
 }
 
+.actions-secondary {
+    z-index: 10;
+    position: absolute;
+    right: $padding-sm-base;
+    top: $padding-sm-base;
+    display: flex;
+    flex-direction: column;
+    width: $action-secondary-width;
+
+    @media (--sm-min) {
+        top: $padding-md-base;
+        right: $padding-md-base;
+    }
+}
+
 .action-secondary {
     @add-mixin action-secondary;
 
@@ -86,6 +101,22 @@
                 transform: rotate(360deg);
                 transition: .1s;
             }
+        }
+    }
+
+    &.save-user {
+        &:before {
+            content: $fa-heart;
+        }
+
+        &.saved:before {
+            font-family: $font-family-FA-solid;
+        }
+    }
+
+    &.saved-list {
+        &:before {
+            content: $fa-users-two;
         }
     }
 

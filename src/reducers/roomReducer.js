@@ -2,8 +2,9 @@
  * @author Yuriy Matviyuk
  */
 const initialState = {
-    roomName : null,
-    isFull   : false
+    roomName       : null,
+    isFull         : false,
+    interlocutorId : null
 };
 
 const appReducer = (state = initialState, action) => {
@@ -12,6 +13,12 @@ const appReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 roomName: action.payload
+            };
+            break;
+        case 'SET_INTERLOCUTOR_ID':
+            state = {
+                ...state,
+                interlocutorId: action.payload
             };
             break;
         case 'LEAVE_ROOM':

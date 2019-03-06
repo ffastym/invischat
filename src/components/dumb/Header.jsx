@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {Helmet} from "react-helmet"
 import {NavLink} from 'react-router-dom'
 import messageActions from "../../actions/messageActions";
+import socket from "../../socket";
 
 /**
  * Header component
@@ -15,6 +16,10 @@ import messageActions from "../../actions/messageActions";
  * @constructor
  */
 const Header = (props) => {
+    if (!socket.chat){
+        socket.connect();
+    }
+
     let burgerClassName = props.isNavActive
             ? 'action menu-burger active'
             : 'action menu-burger',

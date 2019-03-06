@@ -4,6 +4,7 @@
     position: relative;
 
     .actions-wrapper {
+        justify-content: space-between;
         align-items: flex-end;
         border-top: $chat-border;
         display: flex;

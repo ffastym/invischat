@@ -166,9 +166,10 @@ class ChatMessage extends Component {
     render() {
         let activeClass = this.state.isShowActions ? " active" : "",
             isYourMessage = this.props.socketId === socket.chat.id,
-            label = isYourMessage ? 'same you' : 'anon',
+            genderClass = this.props.gender === this.props.userGender ? ' same' : ' anon',
+            label = isYourMessage ? 'you' : '',
             hasQuote = this.props.quotedMessage || this.props.quotedImage,
-            containerClassName = "message-container " + this.props.gender + " " + label + activeClass,
+            containerClassName = "message-container " + this.props.gender + " " + label + activeClass + genderClass,
             likeActionClassName = this.state.isLiked
                 ? "message-action like-message liked"
                 : "message-action like-message";
@@ -222,8 +223,9 @@ class ChatMessage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        nick    : state.user.nick,
-        gallery : state.gallery
+        nick       : state.user.nick,
+        userGender : state.user.gender,
+        gallery    : state.gallery
     }
 };
 

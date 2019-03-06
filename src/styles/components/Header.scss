@@ -75,3 +75,7 @@ header {
     text-shadow: 0 0 10px #969696;
     top: -5px;
 }
+
+header .action {
+    margin-right: $padding-md-base;
+}
