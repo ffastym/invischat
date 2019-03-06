@@ -63,12 +63,16 @@ const socket = {
      * Leave private room
      */
     leaveRoom: () => {
-        const state = store.getState(),
-            data = {
-                room    : state.room.roomName,
-                gender  : state.user.gender,
-                destroy : !state.room.isFull
-            };
+        const state = store.getState();
+
+        if (state.room.roomName || state.user.gender) {
+            return socket;
+        }
+        const data = {
+            room    : state.room.roomName,
+            gender  : state.user.gender,
+            destroy : !state.room.isFull
+        };
 
         socket.chat.emit('leave room', data);
         store.dispatch(roomActions.leaveRoom());
