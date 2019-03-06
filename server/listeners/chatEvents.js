@@ -20,7 +20,11 @@ io.on('connection', (socket) => {
     // Increment clients count after new user connection
     io.emit('change clients count', ++clientsCount);
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', (reason) => {
+        if (reason !== 'transport close') {
+            io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
+        }
+
         // Decrement clients count after new user connection
         for (let userId in users) {
             if (users.hasOwnProperty(userId) && users[userId].socketId === socket.id) {
@@ -46,14 +50,8 @@ io.on('connection', (socket) => {
     socket.on('join chat', (gender) => {
         let room = chatRooms.getRoom(rooms, gender);
 
-        socket.join(room);
-
-        socket.on('disconnect', (reason) => {
-            if (reason !== 'transport close') {
-                socket.leave(room, () => {
-                    io.sockets.to(room).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
-                })
-            }
+        socket.join(room, () => {
+            socket.currentRoom = room
         });
 
         socket.emit('joined room', room);
@@ -99,6 +97,7 @@ io.on('connection', (socket) => {
 
     socket.on('rejoin room', (data) => {
         socket.join(data.room, () => {
+            socket.currentRoom = data.room;
             socket.broadcast.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
         });
 

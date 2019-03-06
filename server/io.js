@@ -11,6 +11,8 @@ const compression = require('compression'),
 
 router.get('/', serverRenderer);
 router.get('/chat', serverRenderer);
+router.get('/privacy_policy', serverRenderer);
+router.get('/contact_us', serverRenderer);
 router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
 // tell the app to use the above rules

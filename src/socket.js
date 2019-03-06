@@ -65,9 +65,10 @@ const socket = {
     leaveRoom: () => {
         const state = store.getState();
 
-        if (state.room.roomName || state.user.gender) {
+        if (!state.room.roomName || !state.user.gender) {
             return socket;
         }
+
         const data = {
             room    : state.room.roomName,
             gender  : state.user.gender,
