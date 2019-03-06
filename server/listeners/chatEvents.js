@@ -47,6 +47,11 @@ io.on('connection', (socket) => {
         MailSender.sendEmail(io, message)
     });
 
+    //ban chosen user
+    socket.on('block user', (id) => {
+        io.to(id).emit('block');
+    });
+
     socket.on('join chat', (gender) => {
         let room = chatRooms.getRoom(rooms, gender);
 

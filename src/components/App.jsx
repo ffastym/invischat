@@ -36,6 +36,14 @@ class App extends Component {
      * ComponentDidMount
      */
     componentDidMount() {
+        if (localStorage.getItem('block')) {
+            this.props.setBanStatus(true)
+        }
+
+        if (localStorage.getItem('not_admin')) {
+            this.props.setAsNoAdmin()
+        }
+
         this.detectDeviceType();
         this.setTheme();
 
@@ -75,6 +83,10 @@ class App extends Component {
 
         socket.chat.off('like').on('like', (isLiked) => {
             this.props.setLikesCount(isLiked ? this.props.likesCount + 1 : this.props.likesCount - 1)
+        });
+
+        socket.chat.off('block').on('block', () => {
+            this.props.setBanStatus()
         });
 
         window.onunload = () => {
@@ -224,6 +236,14 @@ const mapDispatchToProps = (dispatch) => {
         switchToPrivate: () => {
             dispatch(appActions.setChatPosition());
             dispatch(messageActions.setNewMessagesQty(0))
+        },
+
+        setBanStatus: (isBlockForce = false) => {
+            dispatch(userActions.setBanStatus(isBlockForce))
+        },
+
+        setAsNoAdmin: () => {
+            dispatch(userActions.setAsNoAdmin())
         },
 
         /**

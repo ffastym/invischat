@@ -10,6 +10,8 @@ const initialState = {
     likedList        : {},
     allUsersList     : {},
     likesCount       : 0,
+    isBlocked        : false,
+    isModerator      : false,
     senderId         : null,
     senderNick       : null,
     interlocutorNick : null
@@ -27,6 +29,18 @@ const userReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 allUsersList: action.payload
+            };
+            break;
+        case 'SET_BAN_STATUS':
+            state = {
+                ...state,
+                isBlocked: action.payload
+            };
+            break;
+        case 'SET_AS_NOADMIN':
+            state = {
+                ...state,
+                isNoAdmin: true
             };
             break;
         case 'SET_USER_ID':
@@ -57,6 +71,12 @@ const userReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 likedList: action.payload
+            };
+            break;
+        case 'SET_AS_MODERATOR':
+            state = {
+                ...state,
+                isModerator: true
             };
             break;
         case 'SET_IS_NEW':

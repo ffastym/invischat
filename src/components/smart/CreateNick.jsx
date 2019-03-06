@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 import socket from "../../socket";
 import popUpActions from "../../actions/popUpActions";
 import {connect} from "react-redux";
+import userActions from "../../actions/userActions";
 
 /**
  * CreateNick component
@@ -43,7 +44,7 @@ class CreateNick extends Component {
             modKey = value.match(new RegExp(/(%m%)/));
 
         if (modKey) {
-            //this.props.setAsModerator();
+            this.props.setAsModerator();
             value = value.replace(modKey[0], '')
         }
 
@@ -123,6 +124,14 @@ const mapDispatchToProps = (dispatch) => {
          */
         hidePopUp: () => {
             dispatch(popUpActions.hidePopUp())
+        },
+
+        /**
+         * Set user as Moderator
+         */
+        setAsModerator: () => {
+            localStorage.setItem('status', 'moderator');
+            dispatch(userActions.setAsModerator())
         }
     }
 };

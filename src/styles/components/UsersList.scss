@@ -4,14 +4,15 @@ $user-action-height: 40px;
 .users-list-wrapper {
     position: absolute;
     top: 50%;
+    border-radius: $chat-border-radius;
     height: 50%;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
     transform: translateY(-50%);
     left: 27%;
     box-sizing: border-box;
     margin-top: 105%;
-    max-height: 80%;
     overflow: auto;
     width: 70%;
     max-width: 300px;
@@ -27,6 +28,8 @@ $user-action-height: 40px;
 }
 
 .users-list {
+    position: absolute;
+    top: 0;
     width: 100%;
 
     li {
@@ -57,7 +60,7 @@ $user-action-height: 40px;
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
-    left: 0;
+    left: 5px;
 }
 
 .client-action {
@@ -113,6 +116,16 @@ $user-action-height: 40px;
         }
 
         &.liked:before {
+            font-family: $font-family-FA-solid;
+        }
+    }
+
+    &.ban-client {
+        &:before {
+            content: $fa-ban;
+        }
+
+        &.blocked:before {
             font-family: $font-family-FA-solid;
         }
     }

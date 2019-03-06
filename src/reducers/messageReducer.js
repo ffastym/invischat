@@ -19,7 +19,8 @@ const initialState = {
         quotedImage     : null
     },
     publicColor : null,
-    newMessagesQty: 0
+    newMessagesQty: 0,
+    fakeMessageData: {}
 };
 
 const messageReducer = (state = initialState, action) => {
@@ -54,6 +55,12 @@ const messageReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 newMessagesQty: action.payload
+            };
+            break;
+        case 'SET_FAKE_MESSAGE_DATA':
+            state = {
+                ...state,
+                fakeMessageData: action.payload
             };
             break;
         case 'RESET_MESSAGE_DATA':

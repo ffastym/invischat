@@ -16,6 +16,13 @@ const messageActions = {
         }
     },
 
+    sendFakeMessage: (data) => {
+        return {
+            type    : 'SET_FAKE_MESSAGE_DATA',
+            payload : data
+        }
+    },
+
     /**
      * Set quantity on new messages in not active chat
      *

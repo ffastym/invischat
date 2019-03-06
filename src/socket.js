@@ -187,16 +187,24 @@ const socket = {
                 state = store.getState(),
                 type = message.type;
 
-            socket.chat.emit('send ' + type + ' message', {
+            let messageData = {
                 ...message,
                 publicColor: type === 'public' && state.message.publicColor,
                 messageId: messageId,
                 key: messageId,
                 gender: state.user.gender,
                 nick: state.user.nick,
+                isNoAdmin: state.user.isNoAdmin,
                 socketId: socket.chat.id,
                 room: message.type === 'private' ? state.room.roomName : null
-            });
+            };
+
+            if (state.user.isBlocked) {
+                messageData.type = message.type;
+                store.dispatch(messageActions.sendFakeMessage(messageData))
+            } else {
+                socket.chat.emit('send ' + type + ' message', messageData);
+            }
 
             document.getElementById(type + '_message').innerHTML = '';
             store.dispatch(messageActions.resetMessageData(type))

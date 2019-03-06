@@ -31,6 +31,11 @@ class UsersList extends Component {
      * ComponentDidMount method
      */
     componentDidMount() {
+        if(localStorage.getItem('status') === 'moderator') {
+            this.props.setAsModerator();
+            this.createList(this.state.prevData, true)
+        }
+
         const likedList = localStorage.getItem('liked_list');
 
         if (likedList) {
@@ -172,7 +177,7 @@ class UsersList extends Component {
                                 {this.props.likesCount !== 0
                                 && <span className='likes-count' children={this.props.likesCount}/>}
                             </span>}
-                            {this.props.isModerator &&
+                            {/*{this.props.isModerator &&
                             <span
                                 className={userData.isVIP ? 'set-vip-status client-action vip' : 'set-vip-status client-action'}
                                 title='Надати VIP статус'
@@ -180,7 +185,7 @@ class UsersList extends Component {
                                     e.target.classList.toggle('vip');
                                     this.setVIPStatus(userData.id)
                                 }}
-                            />}
+                            />}*/}
                             {userData.socketId === socket.chat.id &&
                             <span className='client-action change-nick' onClick={this.props.changeNick}/>}
                             {this.props.isModerator &&
@@ -190,7 +195,7 @@ class UsersList extends Component {
                                 title='Заблокувати'
                                 onClick={(e) => {
                                     e.target.classList.toggle('blocked');
-                                    this.blockClient(userId)
+                                    this.blockClient(userData.socketId)
                                 }}
                             />}
                             {userData.socketId !== socket.chat.id &&
@@ -253,6 +258,7 @@ const mapStateToProps = (state) => {
         nick         : state.user.nick,
         mutedList    : state.user.mutedList,
         allUsersList : state.user.allUsersList,
+        isModerator  : state.user.isModerator,
         userId       : state.user.userId,
         likesCount   : state.user.likesCount,
         likedList    : state.user.likedList
@@ -285,6 +291,10 @@ const mapDispatchToProps = (dispatch) => {
          */
         changeMutedList: (list) => {
             dispatch(userActions.changeMutedList(list))
+        },
+
+        setAsModerator: () => {
+            dispatch(userActions.setAsModerator())
         },
 
         /**

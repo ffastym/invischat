@@ -140,6 +140,7 @@ class MessagesWrapper extends PureComponent {
                                  quotedMessage={message.quotedMessage}
                                  quotedImage={message.quotedImage}
                                  publicColor={message.publicColor}
+                                 isNoAdmin={message.isNoAdmin}
                                  socketId={message.socketId}
                                  gender={message.gender}
                                  nickName={message.nick}
@@ -167,6 +168,32 @@ class MessagesWrapper extends PureComponent {
     resizeHandler = () => {
         this.scrollToLastMessage(true)
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let message = this.props.fakeMessageData;
+
+        if (prevProps.fakeMessageData.key !== message.key && this.props.type === message.type) {
+            this.setState({
+                messages: this.state.messages.concat(
+                    <ChatMessage key={message.messageId}
+                                 message={message.text}
+                                 type={message.type}
+                                 label={socket.chat.id !== message.socketId ? 'anon' : 'you'}
+                                 messageId={message.messageId}
+                                 quotedMessage={message.quotedMessage}
+                                 quotedImage={message.quotedImage}
+                                 publicColor={message.publicColor}
+                                 socketId={message.socketId}
+                                 gender={message.gender}
+                                 nickName={message.nick}
+                                 image={message.imageUrl}
+                    />
+                )
+            }, () => {
+                this.scrollToLastMessage(true)
+            });
+        }
+    }
 
     /**
      * Likes Handler
@@ -452,6 +479,7 @@ const mapStateToProps = (state) => {
         userId                 : state.user.userId,
         interlocutorId         : state.room.interlocutorId,
         nick                   : state.user.nick,
+        fakeMessageData        : state.message.fakeMessageData,
         isConnected            : state.app.isConnected,
         room                   : state.room.roomName,
         likedList              : state.user.likedList,

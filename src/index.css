@@ -59,13 +59,14 @@ table{
     margin:20px 0
 }
 .message-container.anon .message.vip:after, .message-container.same .message.vip:after{
-                    content:'VIP';
+                    content:'неадмін';
                     position:absolute;
+                    word-break:keep-all;
                     font-size:9px;
+                    line-height:14px;
                     font-style:italic;
                     color:#FFFFFF;
                     bottom:0;
-                    text-shadow:0 0 10px rgba(255, 255, 255, 1);
                 }
 .message-container.anon .message.vip:after{
             left:3px;
@@ -251,7 +252,9 @@ table{
 .users-list-wrapper{
     position:absolute;
     top:50%;
+    border-radius:15px;
     height:50%;
+    box-shadow:0 0 5px 0 rgba(0,0,0,0.3);
     display:flex;
     align-items:center;
     -webkit-transform:translateY(-50%);
@@ -259,7 +262,6 @@ table{
     left:27%;
     box-sizing:border-box;
     margin-top:105%;
-    max-height:80%;
     overflow:auto;
     width:70%;
     max-width:300px;
@@ -271,6 +273,8 @@ table{
         margin-top:0;
     }
 .users-list{
+    position:absolute;
+    top:0;
     width:100%;
 }
 .users-list li{
@@ -299,7 +303,7 @@ table{
     top:50%;
     -webkit-transform:translateY(-50%);
             transform:translateY(-50%);
-    left:0;
+    left:5px;
 }
 .client-action{
     position:relative;
@@ -340,6 +344,12 @@ table{
             content:'\f004';
         }
 .client-action.like-user.liked:before{
+            font-family:Font Awesome solid;
+        }
+.client-action.ban-client:before{
+            content:'\f506';
+        }
+.client-action.ban-client.blocked:before{
             font-family:Font Awesome solid;
         }
 .client-action.remove-user:before{

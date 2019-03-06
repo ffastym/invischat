@@ -77,6 +77,48 @@ const userActions = {
     },
 
     /**
+     * Set User As moderator
+     *
+     * @returns {{type: string}}
+     */
+    setAsModerator: () => {
+        return {
+            type: 'SET_AS_MODERATOR'
+        }
+    },
+
+    setAsNoAdmin: () => {
+        return {
+            type: 'SET_AS_NOADMIN'
+        }
+    },
+
+    /**
+     * Set ban status
+     *
+     * @param isBlockForce
+     * @returns {{payload: boolean, type: string}}
+     */
+    setBanStatus: (isBlockForce = false) => {
+        let isBlocked;
+
+        if (isBlockForce) {
+            isBlocked = true
+        } else if (localStorage.getItem('block')) {
+            isBlocked = false;
+            localStorage.removeItem('block');
+        } else {
+            isBlocked = true;
+            localStorage.setItem('block', 'blocked');
+        }
+
+        return {
+            type    : 'SET_BAN_STATUS',
+            payload : isBlocked
+        }
+    },
+
+    /**
      * set all connected users list
      *
      * @param list
