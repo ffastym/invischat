@@ -101,7 +101,13 @@ const socket = {
      * Join to chat
      */
     joinChat: () => {
-        socket.chat.emit('join chat', store.getState().user.gender);
+        const gender = store.getState().user.gender;
+
+        if (!gender) {
+            return socket
+        }
+
+        socket.chat.emit('join chat', gender);
 
         return socket
     },
