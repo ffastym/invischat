@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
         newRating.ratesQty = ratesQty + 1;
 
         const filter = {"ratingDocument" : "true"},
-              newData = {"rating": rating};
+              newData = {"rating": newRating};
 
         mongodb.updateOne(filter, newData).then(() => {
             socket.emit('get rating', newRating);
