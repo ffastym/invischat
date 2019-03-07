@@ -2,6 +2,7 @@
  * @author Yuriy Matviyuk
  */
 import React from 'react'
+import RatingSnippet from './RatingSnippet'
 
 /**
  * Footer component
@@ -9,9 +10,10 @@ import React from 'react'
  * @returns {*}
  * @constructor
  */
-const Footer = () => {
+const Footer = ({rating}) => {
     return (
         <footer>
+            <RatingSnippet rating={rating}/>
             <span>&copy; 2019</span>
             <div className="fb-share-button"
                  data-href="http://www.invischat.com"

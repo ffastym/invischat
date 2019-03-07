@@ -91,6 +91,10 @@ class App extends Component {
 
         window.onunload = () => {
             !this.props.ssr && socket.chat.emit('all users update', {id: this.props.userId, isRemove: true});
+        };
+
+        if (!localStorage.getItem('rating')) {
+            setTimeout(() => {return this.showRating()}, 600000);
         }
     }
 
@@ -101,6 +105,13 @@ class App extends Component {
         if (localStorage.getItem('theme') === 'dark') {
             this.props.setTheme('dark')
         }
+    };
+
+    /**
+     * Show rating popup
+     */
+    showRating = () => {
+        return this.props.showPopUp('RATE_APP');
     };
 
     /**
@@ -137,7 +148,7 @@ class App extends Component {
                         </Switch>
                     </main>
                 </div>
-                <Footer/>
+                <Footer rating={this.props.rating}/>
                 {this.props.isPopUpShow && <PopUp/>}
             </div>
         )
@@ -238,10 +249,18 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(messageActions.setNewMessagesQty(0))
         },
 
+        /**
+         * Set user ban status
+         *
+         * @param isBlockForce
+         */
         setBanStatus: (isBlockForce = false) => {
             dispatch(userActions.setBanStatus(isBlockForce))
         },
 
+        /**
+         * Set noadmin status
+         */
         setAsNoAdmin: () => {
             dispatch(userActions.setAsNoAdmin())
         },

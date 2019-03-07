@@ -8,6 +8,7 @@ import {connect} from "react-redux"
 import LikeInterlocutor from '../dumb/LikeInterlocutor'
 import popUpActions from "../../actions/popUpActions"
 import {Redirect} from 'react-router-dom'
+import Rating from "./Rating";
 
 /**
  * PopUp component
@@ -45,6 +46,12 @@ class PopUp extends Component {
                 state = {
                     title         : 'Придумайте нікнейм',
                     customContent : <CreateNick/>
+                };
+                break;
+            case 'RATE_APP' :
+                state = {
+                    title         : 'Оцініть чат',
+                    customContent : <Rating/>
                 };
                 break;
             case 'PRIVATE_REQUEST' :

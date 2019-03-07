@@ -192,7 +192,7 @@ class ChatMessage extends Component {
                     />
                 }
                 <span onClick={this.props.label !== 'bot' ? this.toggleActions : () => {}}
-                      className={this.props.isNoAdmin ? "message vip" : "message"}
+                      className={this.props.type === 'public' && this.props.isNoAdmin ? "message vip" : "message"}
                       style={this.props.publicColor ? {background: this.props.publicColor} : {}}>
                     {this.state.messageText &&
                         <span className="message-text"

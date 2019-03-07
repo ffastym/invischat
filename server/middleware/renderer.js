@@ -2,13 +2,21 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import App from '../../src/components/App'
 import {StaticRouter} from "react-router-dom"
-
 import path from "path"
 import fs from "fs"
 import store from "../../src/store"
 import {Provider} from "react-redux"
+import mongodb from '../mongodb'
 
-export default (req, res, next) => {
+let rating = null;
+
+export default (req, res) => {
+    mongodb.getData('rating').then((result) => {
+        if (result.length && result[0].hasOwnProperty('rating')) {
+            rating = result[0].rating;
+        }
+    }).catch((err) => console.log(err));
+
     // point to the html file created by CRA's build tool
     const filePath = path.resolve(__dirname, '..', '..', 'build', 'index.html');
 
@@ -23,7 +31,7 @@ export default (req, res, next) => {
         const html = ReactDOMServer.renderToString(
             <StaticRouter location={req.url} context={context}>
                 <Provider store={store}>
-                    <App ssr={true} url={req.url}/>
+                    <App ssr={true} rating={rating} url={req.url}/>
                 </Provider>
             </StaticRouter>
         );

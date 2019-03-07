@@ -3,8 +3,10 @@
 @import 'Chat.scss';
 @import 'ContactUs.scss';
 @import 'PopUp.scss';
+@import 'Rating.scss';
 @import 'Gallery.scss';
 @import 'Header.scss';
+@import 'Footer.scss';
 @import 'DarkTheme.scss';
 @import 'Home.scss';
 @import 'Nav.scss';
@@ -98,11 +100,6 @@ input[type='text'] {
 
 header {
     border-bottom: $chat-border;
-}
-
-footer {
-    border-top: $chat-border;
-    height: $footer-sm-height;
 }
 
 input,
@@ -208,17 +205,4 @@ main {
     outline: none;
     max-width: 45%;
     text-transform: uppercase;
-}
-
-footer {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-
-    .fb-share-button {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
 }

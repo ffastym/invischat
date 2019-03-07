@@ -5,9 +5,11 @@ import io from '../io'
 import chatRooms from '../chatRooms'
 import Cloudinary from '../cloudinary';
 import MailSender from '../email'
+import mongodb from '../mongodb'
 
 let clientsCount = 0,
     users = {},
+    rating = null,
     rooms = {
         male   : [],
         female : []
@@ -19,6 +21,13 @@ let clientsCount = 0,
 io.on('connection', (socket) => {
     // Increment clients count after new user connection
     io.emit('change clients count', ++clientsCount);
+
+    mongodb.getData('rating').then((result) => {
+        if (result.length && result[0].hasOwnProperty('rating')) {
+            rating = result[0].rating;
+            socket.emit('get rating', rating);
+        }
+    }).catch((err) => console.log('Get data form DB err', err));
 
     socket.on('disconnect', (reason) => {
         if (reason !== 'transport close') {
@@ -34,6 +43,22 @@ io.on('connection', (socket) => {
 
         io.emit('change clients', users);
         io.emit('change clients count', --clientsCount)
+    });
+
+    socket.on('chat rate', (rate) => {
+        let ratesQty = parseInt(rating.ratesQty),
+            average = parseInt(rating.average),
+            newRating = {};
+
+        newRating.average = ((ratesQty * average + rate) / (ratesQty + 1)).toFixed(1);
+        newRating.ratesQty = ratesQty + 1;
+
+        const filter = {"ratingDocument" : "true"},
+              newData = {"rating": rating};
+
+        mongodb.updateOne(filter, newData).then(() => {
+            socket.emit('get rating', newRating);
+        }).catch((err) => {console.log('Document update error ---> ', err);})
     });
 
     //remove image from server after uploading

@@ -934,6 +934,37 @@ table{
 .pop-up .ok-button{
         margin:auto;
     }
+.star-rating__checkbox{
+    position:absolute;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    height:1px;
+    width:1px;
+    margin:-1px;
+    padding:0;
+    border:0;
+}
+.star-rating__star{
+    display:inline-block;
+    padding:3px;
+    vertical-align:middle;
+    line-height:1;
+    font-size:2em;
+    color:#ABABAB;
+    transition:color .2s ease-out;
+}
+.star-rating__star:hover{
+    cursor:pointer;
+}
+.star-rating__star.is-selected{
+    color:#FFD700;
+}
+.star-rating__star.is-disabled:hover{
+    cursor:default;
+}
+.pop-up-stars{
+    margin-bottom:15px;
+}
 .image-gallery{
     position:fixed;
     top:0;
@@ -1083,6 +1114,77 @@ header{
 header .action{
     margin-right:10px;
 }
+footer{
+    border-top:1px solid #808080;
+    height:45px;
+    align-items:center;
+}
+.rating-summary, .rating-stars{
+    display:inline-flex;
+    align-items:center;
+}
+.rating-summary{
+    margin-right:5px;
+}
+.rating-stars .rating-star{
+        display:inline-block;
+        width:17px;
+        height:20px
+    }
+.rating-stars .rating-star:before{
+            text-align:center;
+            display:block;
+            color:gold;
+            content:'\f005';
+            font-family:Font Awesome;
+            width:inherit;
+            height:inherit;
+            line-height:20px;
+        }
+.rating-stars.stars-1 .rating-star:first-of-type:before{
+            font-family:Font Awesome solid;
+        }
+.rating-stars.stars-1-5 .rating-star:first-of-type:before, .rating-stars.stars-1-5 .rating-star:nth-of-type(2):before{
+                    font-family:Font Awesome solid;
+                }
+.rating-stars.stars-1-5 .rating-star:nth-of-type(2):before{
+                content:'\f5c0';
+            }
+.rating-stars.stars-2 .rating-star:first-of-type:before, .rating-stars.stars-2 .rating-star:nth-of-type(2):before{
+                    font-family:Font Awesome solid;
+                }
+.rating-stars.stars-2-5 .rating-star:first-of-type:before, .rating-stars.stars-2-5 .rating-star:nth-of-type(2):before, .rating-stars.stars-2-5 .rating-star:nth-of-type(3):before{
+                    font-family:Font Awesome solid;
+                }
+.rating-stars.stars-2-5 .rating-star:nth-of-type(3):before{
+                content:'\f5c0';
+            }
+.rating-stars.stars-3 .rating-star:first-of-type:before, .rating-stars.stars-3 .rating-star:nth-of-type(2):before, .rating-stars.stars-3 .rating-star:nth-of-type(3):before{
+                    font-family:Font Awesome solid;
+                }
+.rating-stars.stars-3-5 .rating-star:before{
+                font-family:Font Awesome solid;
+            }
+.rating-stars.stars-3-5 .rating-star:nth-of-type(4):before{
+                    font-family:Font Awesome solid;
+                    content:'\f5c0';
+                }
+.rating-stars.stars-3-5 .rating-star:nth-of-type(5):before{
+                    font-family:Font Awesome;
+                }
+.rating-stars.stars-4 .rating-star:not(:last-of-type):before{
+                font-family:Font Awesome solid;
+            }
+.rating-stars.stars-4-5 .rating-star:before{
+                font-family:Font Awesome solid;
+            }
+.rating-stars.stars-4-5 .rating-star:last-of-type:before{
+                    font-family:Font Awesome solid;
+                    content:'\f5c0';
+                }
+.rating-stars.stars-5 .rating-star:before{
+            font-family:Font Awesome solid;
+        }
 .dark{
     background:#2F2F2F;
     color:#E3E3E3;
@@ -1245,10 +1347,6 @@ input[type='text']{
 header{
     border-bottom:1px solid #808080;
 }
-footer{
-    border-top:1px solid #808080;
-    height:45px;
-}
 input, textarea{
     outline:none;
     box-shadow:none;
@@ -1349,18 +1447,6 @@ main.nav-active:after{
 .button-reject:hover{
         background:#ff0000;
         border-color:#ff0000;
-    }
-footer{
-    position:relative;
-    align-items:center;
-    justify-content:center;
-}
-footer .fb-share-button{
-        position:absolute;
-        right:5px;
-        top:50%;
-        -webkit-transform:translateY(-50%);
-                transform:translateY(-50%);
     }
 @media (min-width: 768px){
         .page-wrapper ::-webkit-scrollbar{
