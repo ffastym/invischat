@@ -21,6 +21,7 @@ const Footer = ({rating}) => {
                  data-size="small"
                  data-mobile-iframe="true">
                 <a target="_blank"
+                   rel="noopener noreferrer"
                    href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Finvischat.com%2F&amp;src=sdkpreparse"
                    className="fb-xfbml-parse-ignore">Поширити</a>
             </div>

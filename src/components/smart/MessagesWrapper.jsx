@@ -6,7 +6,6 @@ import socket from "../../socket";
 import ChatMessage from '../smart/ChatMessage'
 import {connect} from "react-redux";
 import roomActions from "../../actions/roomActions";
-import appActions from "../../actions/appActions";
 import UsersList from "./UsersList";
 import SavedList from "./SavedList";
 import popUpActions from "../../actions/popUpActions";

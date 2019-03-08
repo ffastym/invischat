@@ -1,8 +1,7 @@
+import popUpActions from "../../actions/popUpActions"
 import React, {Component} from 'react'
-import socket from "../../socket";
-import popUpActions from "../../actions/popUpActions";
-import userActions from "../../actions/userActions";
-import {connect} from "react-redux";
+import socket from "../../socket"
+import {connect} from "react-redux"
 
 /**
  * Rating component

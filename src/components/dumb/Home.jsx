@@ -32,10 +32,16 @@ const Home = (props) => {
             </div>
             <div className='gender-hint'>Обери свою стать:</div>
             <div className='gender-fieldset'>
-                <NavLink className='gender female' onClick={() => {props.setGender('female')}} to='/chat'>
+                <NavLink className='gender female'
+                         aria-label="Invischat дівчина"
+                         onClick={() => {props.setGender('female')}}
+                         to='/chat'>
                     <img src='../../images/female.png' alt=''/>
                 </NavLink>
-                <NavLink className='gender male' onClick={() => {props.setGender('male')}} to='/chat'>
+                <NavLink className='gender male'
+                         aria-label="Invischat хлопець"
+                         onClick={() => {props.setGender('male')}}
+                         to='/chat'>
                     <img src='../../images/male.png' alt=''/>
                 </NavLink>
             </div>

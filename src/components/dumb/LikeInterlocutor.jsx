@@ -2,7 +2,6 @@
  * @author Yuriy Matviyuk
  */
 import React, {useState} from 'react'
-import appActions from "../../actions/appActions";
 import popUpActions from "../../actions/popUpActions";
 import userActions from "../../actions/userActions";
 import {connect} from "react-redux";
