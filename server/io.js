@@ -2,7 +2,6 @@ import express from 'express'
 import serverRenderer from './middleware/renderer'
 import Cloudinary from './cloudinary';
 import socketIo from 'socket.io';
-import sslRedirect  from 'heroku-ssl-redirect'
 
 const compression = require('compression'),
     app = express(),
@@ -17,7 +16,6 @@ router.get('/contact_us', serverRenderer);
 router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
 // tell the app to use the above rules
-app.use(sslRedirect);
 app.use(router);
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));

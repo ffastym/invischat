@@ -13,7 +13,6 @@
     "debug": "~2.6.9",
     "emoji-mart": "^2.8.1",
     "express": "~4.16.0",
-    "heroku-ssl-redirect": "0.0.4",
     "http-errors": "~1.6.2",
     "ignore-styles": "^5.0.1",
     "mongodb": "^3.1.13",
