@@ -89,9 +89,17 @@ class App extends Component {
             this.props.setBanStatus()
         });
 
-        window.onunload = () => {
-            !this.props.ssr && socket.chat.emit('all users update', {id: this.props.userId, isRemove: true});
-        };
+        socket.chat.off('reconnect').on('reconnect', () => {
+            this.props.setConnectionStatus(true);
+
+            if (this.props.isInChat && !this.props.isFull && this.props.room) {
+                socket.reJoinRoom()
+            }
+        });
+
+        socket.chat.off('disconnect').on('disconnect', () => {
+            this.props.setConnectionStatus(false)
+        });
 
         if (!localStorage.getItem('rating')) {
             setTimeout(() => {return this.showRating()}, 600000);
@@ -160,6 +168,9 @@ const mapStateToProps = (state) => {
         isNavActive : state.app.isNavActive,
         theme       : state.app.theme,
         likesCount  : state.user.likesCount,
+        isInChat    : state.app.isInChat,
+        isFull      : state.room.isFull,
+        room        : state.room.roomName,
         userId      : state.user.userId,
         isMobile    : state.app.isMobile,
         chatPosition: state.app.chatPosition,
@@ -263,6 +274,15 @@ const mapDispatchToProps = (dispatch) => {
          */
         setAsNoAdmin: () => {
             dispatch(userActions.setAsNoAdmin())
+        },
+
+        /**
+         * Set connection status
+         *
+         * @param isConnected
+         */
+        setConnectionStatus: (isConnected) => {
+            dispatch(appActions.setConnectionStatus(isConnected))
         },
 
         /**

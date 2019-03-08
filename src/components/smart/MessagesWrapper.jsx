@@ -72,7 +72,7 @@ class MessagesWrapper extends PureComponent {
             })
         } else {
             socket.chat.off('get public chat info').on('get public chat info', () => {
-                this.sendBotMessage('PUBLIC_WELCOME')
+                this.props.nick && this.sendBotMessage('PUBLIC_WELCOME')
             });
 
             socket.chat.off('new user connected').on('new user connected', (nick) => {
@@ -85,18 +85,6 @@ class MessagesWrapper extends PureComponent {
                 this.likesHandler(data)
             })
         }
-
-        socket.chat.off('disconnect').on('disconnect', () => {
-            setTimeout(() => {
-                this.sendBotMessage('CONNECTION_PROBLEM');
-            }, 100)
-        });
-
-        socket.chat.off('reconnect').on('reconnect', () => {
-            socket.reJoinRoom()
-                .addToPublicList();
-            this.sendBotMessage('CONNECTION_RESTORED');
-        });
 
         socket.chat.off(getMessageEvent).on(getMessageEvent, (message) => {
             //Ignore message if client is muted
@@ -171,6 +159,21 @@ class MessagesWrapper extends PureComponent {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         let message = this.props.fakeMessageData;
+
+        if (prevProps.isConnected && !this.props.isConnected) {
+            setTimeout(() => {
+                this.sendBotMessage('CONNECTION_PROBLEM');
+            }, 100)
+        }
+
+        if (!prevProps.isConnected && this.props.isConnected) {
+            if (this.props.type === 'private') {
+                socket.reJoinRoom()
+            }
+
+            socket.addToPublicList();
+            this.sendBotMessage('CONNECTION_RESTORED');
+        }
 
         if (prevProps.fakeMessageData.key !== message.key && this.props.type === message.type) {
             this.setState({
@@ -319,7 +322,6 @@ class MessagesWrapper extends PureComponent {
                 text = 'Співрозмовник покинув чат';
                 break;
             case 'USER_DISCONNECTED' :
-                this.props.setConnectionStatus(false);
                 text = 'У співрозмовника виникли проблеми зі з\'єднанням. Очікуємо відновлення зв\'язку';
                 break;
             case 'ROOM_IS_EMPTY' :
@@ -332,7 +334,6 @@ class MessagesWrapper extends PureComponent {
                 }
                 break;
             case 'CONNECTION_PROBLEM' :
-                this.props.setConnectionStatus(false);
                 text = 'Спостерігаються проблеми зі з\'єднанням. Очікуємо відновлення зв\'язку';
                 break;
             case 'SEARCH_NEW' :
@@ -347,15 +348,12 @@ class MessagesWrapper extends PureComponent {
                     ' Приємного спілкування!';
                 break;
             case 'CONNECTION_RESTORED' :
-                if (!this.props.isConnected) {
-                    this.props.setConnectionStatus(true);
-                    text = 'З\'єднання відновлено';
-                } else {
-                    text = null
-                }
+                text = !this.props.isFull && this.props.type === 'private' && this.props.room
+                    ? 'З\'єднання та пошук співрозмовника відновлено '
+                    : 'З\'єднання відновлено';
                 break;
             default:
-                text = 'default'
+                text = null
         }
 
         if (!text) {
@@ -372,6 +370,8 @@ class MessagesWrapper extends PureComponent {
                 />
             )
         });
+
+        this.scrollToLastMessage(true)
     };
 
     /**
@@ -542,15 +542,6 @@ const mapDispatchToProps = (dispatch) => {
          */
         setInterlocutorId: (id) => {
             dispatch(roomActions.setInterlocutorId(id))
-        },
-
-        /**
-         * Set connection status
-         *
-         * @param isConnected
-         */
-        setConnectionStatus: (isConnected) => {
-            dispatch(appActions.setConnectionStatus(isConnected))
         }
     }
 };

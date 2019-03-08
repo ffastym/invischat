@@ -60,24 +60,11 @@ class Chat extends Component {
         }
 
         window.addEventListener('beforeunload', this.onBeforeUnload, false);
-        window.addEventListener('unload', this.onUnload, false);
-
         socket.subscribeJoinRoom()
     }
 
     onBeforeUnload = () => {
         return "Усю переписку буде втрачено. Ви справді бажаєте покинути чат?";
-    };
-
-    /**
-     * When user is leave chat
-     */
-    onUnload = () => {
-        socket.chat.emit('leave room', {
-            room: this.props.room,
-            gender: this.props.gender,
-            destroy: true
-        })
     };
 
     /**
@@ -149,7 +136,6 @@ class Chat extends Component {
         this.props.setIsInChat(false);
 
         window.removeEventListener('beforeunload', this.onBeforeUnload);
-        window.removeEventListener('unload', this.onUnload);
 
         if (this.props.room) {
             socket.leaveChat()

@@ -30,8 +30,12 @@ io.on('connection', (socket) => {
     }).catch((err) => console.log('Get data form DB err', err));
 
     socket.on('disconnect', (reason) => {
-        if (reason !== 'transport close') {
+        if (reason === 'transport close') {
             chatRooms.leaveRoom(rooms, {gender: socket.gender, room: socket.currentRoom, destroy: true})
+        } else if (socket.adapter.rooms.hasOwnProperty(socket.currentRoom)) {
+            io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
+        } else if (socket.gender && rooms[socket.gender].indexOf(socket.currentRoom) !== -1) {
+            rooms[socket.gender].splice(rooms[socket.gender].indexOf(socket.currentRoom), 1);
         }
 
         // Decrement clients count after new user connection
@@ -130,7 +134,10 @@ io.on('connection', (socket) => {
         socket.join(data.room, () => {
             socket.currentRoom = data.room;
             socket.gender = data.gender;
-            socket.broadcast.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
+
+            if (socket.adapter.rooms[data.room].length > 1) {
+                socket.broadcast.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
+            }
         });
 
         if (!data.isFull) {
