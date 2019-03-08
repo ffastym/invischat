@@ -15,7 +15,6 @@ router.get('/privacy_policy', serverRenderer);
 router.get('/contact_us', serverRenderer);
 router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
-// tell the app to use the above rules
 app.use(router);
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
