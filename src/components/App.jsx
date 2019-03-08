@@ -143,7 +143,7 @@ class App extends Component {
 
         return (
             <div className={wrapperClassName}>
-                <Header/>
+                <Header ssr={this.props.ssr}/>
                 <div className='page-main-wrapper'>
                     <Aside/>
                     <Nav/>
