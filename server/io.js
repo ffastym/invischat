@@ -16,7 +16,7 @@ router.get('/privacy_policy', serverRenderer);
 router.get('/contact_us', serverRenderer);
 router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
-app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }));
+app.use(enforce.HTTPS({ trustXForwardedHostHeader: true,  trustProtoHeader: true }));
 app.use(router);
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
