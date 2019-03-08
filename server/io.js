@@ -1,6 +1,6 @@
 import express from 'express'
 import serverRenderer from './middleware/renderer'
-import secure from 'ssl-express-www'
+import enforce from 'express-sslify'
 import Cloudinary from './cloudinary';
 import socketIo from 'socket.io';
 
@@ -16,7 +16,7 @@ router.get('/privacy_policy', serverRenderer);
 router.get('/contact_us', serverRenderer);
 router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
-app.use(secure);
+app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }));
 app.use(router);
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));

@@ -13,6 +13,7 @@
     "debug": "~2.6.9",
     "emoji-mart": "^2.8.1",
     "express": "~4.16.0",
+    "express-sslify": "^1.2.0",
     "http-errors": "~1.6.2",
     "ignore-styles": "^5.0.1",
     "mongodb": "^3.1.13",
@@ -32,7 +33,6 @@
     "redux-thunk": "^2.3.0",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
-    "ssl-express-www": "^3.0.3",
     "superagent": "^3.8.3"
   },
   "scripts": {
