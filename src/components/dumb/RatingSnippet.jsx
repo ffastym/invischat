@@ -23,22 +23,24 @@ function RatingSnippet(props) {
     }
 
     let i = rating.average,
-        averageRating;
+        average = parseFloat(i).toFixed(1),
+        starsClassAdditional;
 
     if (i > 1 && i < 2) {
-        averageRating = 1.5
+        starsClassAdditional = 1.5
     } else if (i > 2 && i < 3) {
-        averageRating = 2.5
+        starsClassAdditional = 2.5
     } else if (i > 3 && i < 4) {
-        averageRating = 3.5
+        starsClassAdditional = 3.5
     } else if (i > 4 && i < 5) {
-        averageRating = 4.5
+        starsClassAdditional = 4.5
     } else {
-        averageRating = Math.ceil(i)
+        starsClassAdditional = Math.ceil(i);
+        average = starsClassAdditional
     }
 
     let ratingStarsClassName = rating
-            ? "rating-stars stars-" + averageRating.toString(10).replace('.', '-')
+            ? "rating-stars stars-" + starsClassAdditional.toString(10).replace('.', '-')
             : 'rating-stars';
 
     return (
@@ -48,12 +50,12 @@ function RatingSnippet(props) {
                      itemType="http://schema.org/AggregateRating">
                     <meta itemProp="bestRating" content="5"/>
                     <meta itemProp="worstRating" content="1"/>
-                    <meta itemProp="ratingValue" content={averageRating}/>
+                    <meta itemProp="ratingValue" content={average}/>
                     <meta itemProp="ratingCount" content={rating.ratesQty}/>
                 </div>
                 <div className='app=rating'>
                     <div className="rating-summary">
-                        {averageRating + '/5 (' + rating.ratesQty + ')'}
+                        {average + '/5 (' + rating.ratesQty + ')'}
                     </div>
                     <ul className={ratingStarsClassName}>
                         <li className='rating-star'/>
