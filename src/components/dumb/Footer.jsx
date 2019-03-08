@@ -16,7 +16,7 @@ const Footer = ({rating}) => {
             <RatingSnippet rating={rating}/>
             <span>&copy; 2019</span>
             <div className="fb-share-button"
-                 data-href="http://www.invischat.com"
+                 data-href="https://www.invischat.com"
                  data-layout="button_count"
                  data-size="small"
                  data-mobile-iframe="true">

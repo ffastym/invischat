@@ -45,9 +45,9 @@ function RatingSnippet(props) {
 
     return (
         <div>
-            <div itemScope itemType="http://schema.org/WebSite">
+            <div itemScope itemType="https://schema.org/WebSite">
                 <div style={{display: "none"}} itemProp="aggregateRating" itemScope
-                     itemType="http://schema.org/AggregateRating">
+                     itemType="https://schema.org/AggregateRating">
                     <meta itemProp="bestRating" content="5"/>
                     <meta itemProp="worstRating" content="1"/>
                     <meta itemProp="ratingValue" content={average}/>

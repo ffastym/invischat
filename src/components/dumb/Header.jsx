@@ -63,13 +63,8 @@ const Header = (props) => {
             </div>
             <Helmet>
                 <meta name="theme-color" content={props.theme === 'dark' ? '#2F2F2F' : '#FFFFFF'} />
-                {!props.ssr && window.location.href !== window.location.origin
-                    ? <link rel="canonical" href={window.location.origin}/>
-                    : <React.Fragment>
-                        <link rel="preload" href="/images/logo.png" as="image"/>
-                        <link rel="preload" href="/images/female.png" as="image"/>
-                        <link rel="preload" href="/images/male.png" as="image"/>
-                    </React.Fragment>}
+                {!props.ssr && window.location.href !== 'https://www.invischat.com'
+                    && <link rel="canonical" href="https://www.invischat.com"/>}
             </Helmet>
         </header>
     )

@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import  { Redirect } from 'react-router-dom'
+import {Helmet} from "react-helmet"
 import userActions from '../../actions/userActions'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
@@ -27,6 +28,11 @@ const Home = (props) => {
 
     return (
         <div className='page-content home'>
+            <Helmet>
+                <link rel="preload" href="/images/logo.png" as="image"/>
+                <link rel="preload" href="/images/female.png" as="image"/>
+                <link rel="preload" href="/images/male.png" as="image"/>
+            </Helmet>
             <div className='main-logo'>
                 <img src='/images/logo.png' alt='Invischat'/>
             </div>
