@@ -63,8 +63,8 @@ const Header = (props) => {
             </div>
             <Helmet>
                 <meta name="theme-color" content={props.theme === 'dark' ? '#2F2F2F' : '#FFFFFF'} />
-                {!props.ssr && window.location.href !== 'https://www.invischat.com'
-                    && <link rel="canonical" href="https://www.invischat.com"/>}
+                {!props.ssr && window.location.href !== 'https://www.invischat.com/chat'
+                    && <link rel="canonical" href="https://www.invischat.com/chat"/>}
             </Helmet>
         </header>
     )
