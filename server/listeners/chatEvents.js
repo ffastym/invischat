@@ -51,11 +51,13 @@ io.on('connection', (socket) => {
 
     socket.on('chat rate', (rate) => {
         let ratesQty = parseInt(rating.ratesQty),
-            average = parseInt(rating.average),
+            average = parseFloat(rating.average),
             newRating = {};
 
-        newRating.average = ((ratesQty * average + rate) / (ratesQty + 1)).toFixed(1);
-        newRating.ratesQty = ratesQty + 1;
+        average = ((ratesQty * average + rate) / (ratesQty + 1)).toFixed(1);
+        ratesQty = ratesQty + 1;
+
+        newRating = {average, ratesQty: ratesQty.toString(10)};
 
         const filter = {"ratingDocument" : "true"},
               newData = {"rating": newRating};
