@@ -54,10 +54,10 @@ io.on('connection', (socket) => {
             average = parseFloat(rating.average),
             newRating = {};
 
-        average = ((ratesQty * average + rate) / (ratesQty + 1)).toFixed(1);
-        ratesQty = ratesQty + 1;
+        let newAverage = ((ratesQty * average + rate) / (ratesQty + 1)),
+            newRatesQty = ratesQty + 1;
 
-        newRating = {average, ratesQty: ratesQty.toString(10)};
+        newRating = {"average" : newAverage, "ratesQty" : newRatesQty.toString(10)};
 
         const filter = {"ratingDocument" : "true"},
               newData = {"rating": newRating};
