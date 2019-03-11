@@ -1,6 +1,7 @@
 /* App component styles */
 nav {
     position: absolute;
+    z-index: 1;
     right: 0;
     flex-direction: column;
     width: $nav-sm-width;

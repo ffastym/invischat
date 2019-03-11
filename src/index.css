@@ -1243,6 +1243,7 @@ footer{
 }
 nav{
     position:absolute;
+    z-index:1;
     right:0;
     flex-direction:column;
     width:100%;
@@ -1391,6 +1392,8 @@ input:focus, textarea:focus{
     z-index:1;
 }
 main{
+    position:relative;
+    z-index:3;
     height:100%;
     text-align:center;
     background:#FFFFFF;
