@@ -30,13 +30,24 @@ io.on('connection', (socket) => {
     }).catch((err) => console.log('Get data form DB err', err));
 
     socket.on('disconnect', (reason) => {
+        console.log('reason ---> ', reason);
+        console.log('rooms before ---> ', rooms);
+        console.log('gender ---> ', socket.gender);
+        console.log('current room ---> ', socket.currentRoom);
+        console.log('socket.adapter.rooms ---> ', socket.adapter.rooms);
+
         if (reason === 'transport close') {
-            chatRooms.leaveRoom(rooms, {gender: socket.gender, room: socket.currentRoom, destroy: true})
+            chatRooms.leaveRoom(rooms, {gender: socket.gender, room: socket.currentRoom, destroy: true});
+            console.log('on transport close');
         } else if (socket.adapter.rooms.hasOwnProperty(socket.currentRoom)) {
             io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
+            console.log('on emit to room and wait');
         } else if (socket.gender && rooms[socket.gender].indexOf(socket.currentRoom) !== -1) {
+            console.log('disconnect with splice');
             rooms[socket.gender].splice(rooms[socket.gender].indexOf(socket.currentRoom), 1);
         }
+
+        console.log('rooms after ---> ', rooms);
 
         // Decrement clients count after new user connection
         for (let userId in users) {
@@ -209,7 +220,9 @@ io.on('connection', (socket) => {
     });
 
     socket.on('reject private request', (data) => {
-        io.to(data.senderId).emit('private request rejected', data.receiverNick)
+        let nick = data.receiverNick !== null ? data.receiverNick : 'користувач';
+
+        io.to(data.senderId).emit('private request rejected', nick)
     });
 
     socket.on('delete message', (id) => {
