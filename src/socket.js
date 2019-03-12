@@ -116,7 +116,7 @@ const socket = {
     /**
      * Search new interlocutor in private chat
      *
-     * @returns {{refreshChat: (function()), io: lookup, chat: null, leaveRoom: (function()), subscribeJoinRoom: (function()), reJoinRoom: socket.reJoinRoom, joinChat: (function()), sendMessage: (function(*)), subscribeUsersCount: (function()), connect: (function())}}
+     * @returns socket
      */
     searchNew: () => {
         if (store.getState().room.roomName) {
@@ -145,7 +145,7 @@ const socket = {
     /**
      * Join public add user to public list
      *
-     * @returns {{refreshChat: (function()), io: lookup, chat: null, leaveRoom: (function()), subscribeJoinRoom: (function()), reJoinRoom: socket.reJoinRoom, setNick: (function(*=)), joinChat: (function()), addToPublicList: (function()), sendMessage: (function(*)), subscribeUsersCount: (function()), connect: (function())}}
+     * @returns socket
      */
     addToPublicList: () => {
         const state = store.getState(),
@@ -171,7 +171,7 @@ const socket = {
      * Subscribe for changes users in public chat
      */
     subscribeChangeClients: () => {
-        socket.chat.off('change clients').on('change clients', (list) => {
+        socket.chat.on('change clients', (list) => {
             store.dispatch(userActions.setAllUsersList(list))
         })
     },

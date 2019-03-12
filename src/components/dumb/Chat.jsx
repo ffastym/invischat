@@ -141,6 +141,7 @@ class Chat extends Component {
             socket.leaveChat()
         }
 
+        socket.chat.off('joined room');
         this.props.clearAllUsersList()
     }
 

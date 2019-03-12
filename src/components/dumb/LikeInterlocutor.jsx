@@ -26,6 +26,8 @@ const LikeInterlocutor = (props) => {
     const acceptAction = () => {
         let value = inputRef.value.toString();
 
+        console.log('test ---> ', props.allUsersList);
+
         if (value.length && value.length <= 15) {
             let newList = {...props.likedList},
                 userId = props.interlocutorId;

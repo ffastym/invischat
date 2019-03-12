@@ -154,6 +154,7 @@ class ChatToolbar extends Component {
     componentWillUnmount() {
         document.removeEventListener('click', this.hideEmojiPicker);
         document.removeEventListener('tap', this.hideEmojiPicker);
+        socket.chat.off('show typing')
     }
 
     /**

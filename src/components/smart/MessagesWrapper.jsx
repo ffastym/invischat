@@ -26,8 +26,8 @@ class MessagesWrapper extends PureComponent {
         super(props);
         
         this.state = {
-            notify          : !props.ssr && new Audio('/audio/magic.mp3'),
-            notify2         : !props.ssr && new Audio('/audio/pop.mp3'),
+            notify          : null,
+            notify2         : null,
             newMessagesQty  : 0,
             messages        : []
         };
@@ -418,7 +418,14 @@ class MessagesWrapper extends PureComponent {
      * Component unmounted from DOM
      */
     componentWillUnmount() {
-        window.removeEventListener('resize', this.resizeHandler)
+        window.removeEventListener('resize', this.resizeHandler);
+        socket.chat.off('get interlocutor id')
+            .off('get public chat info')
+            .off('new user connected')
+            .off('liked message')
+            .off('deleted message')
+            .off('get private message')
+            .off('get public message')
     }
 
     /**

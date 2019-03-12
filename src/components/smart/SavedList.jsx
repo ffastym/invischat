@@ -169,15 +169,6 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         /**
-         * Set all connected users list
-         *
-         * @param list
-         */
-        setAllUsersList: (list) => {
-            dispatch(userActions.setAllUsersList(list))
-        },
-
-        /**
          * Change nick name
          */
         changeNick: () => {
