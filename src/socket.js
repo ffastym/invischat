@@ -137,17 +137,15 @@ const socket = {
      */
     setNick: (nick) => {
         store.dispatch(userActions.setNick(nick));
-        socket.addToPublicList();
+        socket.updateUsersList();
 
         return socket
     },
 
     /**
      * Join public add user to public list
-     *
-     * @returns socket
      */
-    addToPublicList: () => {
+    updateUsersList: () => {
         const state = store.getState(),
               userData = {
                   nick      : state.user.nick,
@@ -157,23 +155,12 @@ const socket = {
                   color     : state.message.publicColor
               };
 
-        if (state.user.isNewInPublic) {
+        if (state.user.nick && state.user.isNewInPublic) {
             socket.chat.emit('connect to public chat', userData);
             store.dispatch(userActions.setIsNew());
         } else {
             socket.chat.emit('reconnect to public chat', userData)
         }
-
-        return socket
-    },
-
-    /**
-     * Subscribe for changes users in public chat
-     */
-    subscribeChangeClients: () => {
-        socket.chat.on('change clients', (list) => {
-            store.dispatch(userActions.setAllUsersList(list))
-        })
     },
 
     /**

@@ -11,8 +11,8 @@ let clientsCount = 0,
     users = {},
     rating = null,
     rooms = {
-        male   : [],
-        female : []
+        male   : {},
+        female : {}
     };
 
 /**
@@ -42,12 +42,10 @@ io.on('connection', (socket) => {
         } else if (socket.adapter.rooms.hasOwnProperty(socket.currentRoom)) {
             io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
             console.log('on emit to room and wait');
-        } else if (socket.gender && rooms[socket.gender].indexOf(socket.currentRoom) !== -1) {
-            console.log('disconnect with splice');
-            rooms[socket.gender].splice(rooms[socket.gender].indexOf(socket.currentRoom), 1);
+        } else if (socket.gender && rooms[socket.gender][socket.currentRoom]) {
+            delete rooms[socket.gender][socket.currentRoom];
+            console.log('disconnect with delete');
         }
-
-        console.log('rooms after ---> ', rooms);
 
         // Decrement clients count after new user connection
         for (let userId in users) {
@@ -154,7 +152,8 @@ io.on('connection', (socket) => {
         });
 
         if (!data.isFull) {
-            return rooms[data.gender].push(data.room)
+            console.log('before and' + rooms + ' delete ---> ', data.room);
+            return rooms[data.gender][data.room] = data.room
         }
 
         const checkRoom = new Promise((resolve) => {

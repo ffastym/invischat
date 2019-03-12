@@ -19,17 +19,19 @@ const chatRooms = {
             same    = rooms[gender],
             another = rooms[gender === 'male' ? 'female' : 'male'];
 
-        if (another.length) {
-            room = another[0];
-            another.shift();
+        if (Object.keys(another).length) {
+            room = another[Object.keys(another)[0]];
+
             setTimeout(() => {
                 io.sockets.to(room).emit('get private message', {botMessage: 'ROOM_IS_FULL'})
-            }, 0)
+            }, 0);
+
+            delete another[Object.keys(another)[0]]
         } else {
             room = chatRooms.createRoom();
-            same.push(room)
+            same[room] = room
         }
-        
+
         return room
     },
 
@@ -45,10 +47,8 @@ const chatRooms = {
         if (data.destroy) { // Destroy room if it is not full and exist in rooms list
             let genderRooms = rooms[data.gender];
 
-            if (genderRooms && genderRooms.length) {
-                let index = genderRooms.indexOf(data.room);
-
-                index !== -1 && genderRooms.splice(index, 1)
+            if (genderRooms && Object.keys(genderRooms).length) {
+                delete genderRooms[data.room]
             }
         }
     },

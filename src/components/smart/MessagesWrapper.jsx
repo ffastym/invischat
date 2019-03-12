@@ -170,7 +170,7 @@ class MessagesWrapper extends PureComponent {
                 socket.reJoinRoom()
             }
 
-            socket.addToPublicList();
+            socket.updateUsersList();
             this.sendBotMessage('CONNECTION_RESTORED');
         }
 

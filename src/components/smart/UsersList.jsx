@@ -22,8 +22,7 @@ class UsersList extends Component {
         
         this.state = {
             clientsList: [],
-            isToggled: false,
-            prevData: []
+            isToggled: false
         };
     }
 
@@ -33,7 +32,6 @@ class UsersList extends Component {
     componentDidMount() {
         if(localStorage.getItem('status') === 'moderator') {
             this.props.setAsModerator();
-            this.createList(this.state.prevData, true)
         }
 
         const likedList = localStorage.getItem('liked_list');
@@ -42,11 +40,12 @@ class UsersList extends Component {
             this.props.changeLikedList(JSON.parse(likedList))
         }
 
-        socket.subscribeChangeClients();
+        socket.chat.on('change clients', (list) => {
+            this.props.setAllUsersList(list);
+            this.createList()
+        });
 
-        socket.chat.off('list update force').on('list update force', (data) => {
-            this.createList(data)
-        })
+        this.createList(this.props.allUsersList)
     };
 
     /**
@@ -66,15 +65,6 @@ class UsersList extends Component {
     };
 
     /**
-     * Set VIP status
-     *
-     * @param id
-     */
-    setVIPStatus = (id) => {
-        socket.chat.emit('set vip status', id)
-    };
-
-    /**
      * Component did update
      *
      * @param prevProps
@@ -82,29 +72,17 @@ class UsersList extends Component {
      * @param snapshot
      */
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const prevData = this.state.prevData;
-
-        if (prevProps.mutedList.length !== this.props.mutedList.length) {
-            this.createList(prevData, true)
+        if (prevProps.mutedList.length !== this.props.mutedList.length
+            || prevProps.nick !== this.props.nick
+            || Object.keys(prevProps.likedList).length !== Object.keys(this.props.likedList).length) {
+            this.createList()
         }
 
-        if (prevProps.nick !== this.props.nick && prevData[this.props.userId]) {
+        if (prevProps.nick !== this.props.nick) {
             socket.chat.emit('changed nick', {
                 nick: this.props.nick,
                 userId: this.props.userId
             });
-        }
-
-        if (Object.keys(prevProps.likedList).length !== Object.keys(this.props.likedList).length) {
-            this.createList(prevData, true)
-        }
-
-        if (prevProps.likesCount !== this.props.likesCount) {
-            this.createList(prevData, true)
-        }
-
-        if (Object.keys(prevProps.allUsersList).length !== Object.keys(this.props.allUsersList).length) {
-            this.createList(this.props.allUsersList)
         }
     }
 
@@ -142,18 +120,10 @@ class UsersList extends Component {
 
     /**
      * Create list of clients
-     *
-     * @param data
-     * @param usePrevData
      */
-    createList = (data, usePrevData = false) => {
-        let clientsData = [];
-
-        if (!usePrevData) {
-            this.setState({
-                prevData: data
-            });
-        }
+    createList = () => {
+        let clientsData = [],
+            data = this.props.allUsersList;
 
         for (let userId in data) {
             if (data.hasOwnProperty(userId)) {
@@ -163,7 +133,7 @@ class UsersList extends Component {
                     userData = data[userId];
 
                 if (!userData.nick) {
-                    return
+                    continue
                 }
 
                 clientsData.push(
@@ -177,15 +147,6 @@ class UsersList extends Component {
                                 {this.props.likesCount !== 0
                                 && <span className='likes-count' children={this.props.likesCount}/>}
                             </span>}
-                            {/*{this.props.isModerator &&
-                            <span
-                                className={userData.isVIP ? 'set-vip-status client-action vip' : 'set-vip-status client-action'}
-                                title='Надати VIP статус'
-                                onClick={(e) => {
-                                    e.target.classList.toggle('vip');
-                                    this.setVIPStatus(userData.id)
-                                }}
-                            />}*/}
                             {userData.socketId === socket.chat.id &&
                             <span className='client-action change-nick' onClick={this.props.changeNick}/>}
                             {this.props.isModerator &&
@@ -291,6 +252,10 @@ const mapDispatchToProps = (dispatch) => {
          */
         changeMutedList: (list) => {
             dispatch(userActions.changeMutedList(list))
+        },
+
+        setAllUsersList: (list) => {
+            dispatch(userActions.setAllUsersList(list));
         },
 
         setAsModerator: () => {

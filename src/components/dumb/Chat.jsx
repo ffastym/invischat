@@ -51,13 +51,11 @@ class Chat extends Component {
             socket.setNick(nick);
         }
 
-        if (this.props.nick) {
-            socket.addToPublicList();
-        }
-
         if (!this.props.room) {
             socket.joinChat()
         }
+
+        socket.updateUsersList();
 
         window.addEventListener('beforeunload', this.onBeforeUnload, false);
         socket.subscribeJoinRoom()
