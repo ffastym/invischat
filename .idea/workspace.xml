@@ -2,85 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="373ee0b0-8c3c-4988-8ffe-1e0897108897" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/build/precache-manifest.813dba41957ea0d32218673cbcee6e0a.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/main.4857e486.chunk.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/main.4857e486.chunk.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/1.50e9e4f5.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/1.50e9e4f5.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/2.c1e6ec1b.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/2.c1e6ec1b.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/main.af3198f2.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/main.af3198f2.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/runtime~main.9731bda5.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/runtime~main.9731bda5.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actions/forumActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dumb/Loader.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dumb/PostPreview.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/smart/CreatePost.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/smart/Forum.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/smart/Login.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/smart/NewPosts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/smart/Post.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/smart/Posts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/forumReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/CreatePost.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/Forum.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/Loader.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/Login.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/precache-manifest.ca008a2d09b23593a28367987addb47b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/sitemap.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/1.67b528bb.chunk.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/2.e8ce0df9.chunk.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/1.67b528bb.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/2.e8ce0df9.chunk.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/main.36c4fca2.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/main.36c4fca2.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/1.1576a724.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/1.1576a724.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.3d0c924a.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.3d0c924a.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/runtime~main.229c360f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/runtime~main.229c360f.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/precache-manifest.c23cf73012431ead05f00d19b1f19cd5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/2.e8ce0df9.chunk.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/2.e8ce0df9.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/main.4857e486.chunk.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/main.4857e486.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/1.50e9e4f5.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/1.50e9e4f5.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/2.c1e6ec1b.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/2.c1e6ec1b.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.0bd84ad0.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.0bd84ad0.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/runtime~main.9731bda5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/runtime~main.9731bda5.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/sitemap.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/robots.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/cloudinary.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/cloudinary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/io.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/io.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/listeners/chatEvents.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/listeners/chatEvents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/messages.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/renderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/renderer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/mongodb.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/mongodb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/userActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dumb/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dumb/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dumb/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dumb/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dumb/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dumb/Nav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dumb/PrivacyPolicy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dumb/PrivacyPolicy.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/smart/ChatWindow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/ChatWindow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/smart/CreateNick.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/CreateNick.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/smart/PopUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/PopUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/smart/UsersList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/UsersList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/userReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ChatMessage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ChatMessage.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ChatToolbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ChatToolbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/DarkTheme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/DarkTheme.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/Gallery.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/Gallery.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/Header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/MessagesWrapper.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/MessagesWrapper.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/PopUp.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/PopUp.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/UsersList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/UsersList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/smart/Forum.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/smart/Forum.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -93,35 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/smart/CreatePost.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="61" column="57" lean-forward="true" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
-              <folding>
-                <element signature="e#34#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/listeners/chatEvents.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
-              <folding>
-                <element signature="e#34#56#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/smart/Posts.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8">
-              <caret line="88" column="44" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
+            <state relative-caret-position="140">
+              <caret line="94" column="73" lean-forward="true" selection-start-line="94" selection-start-column="73" selection-end-line="94" selection-end-column="73" />
               <folding>
                 <element signature="e#34#91#0" expanded="true" />
               </folding>
@@ -130,19 +48,70 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
+        <entry file="file://$PROJECT_DIR$/src/components/smart/Forum.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+            <state relative-caret-position="110">
+              <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+              <folding>
+                <element signature="e#34#72#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+        <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="78" selection-start-line="78" selection-end-line="78" />
+            <state>
+              <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/dumb/Home.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="42" column="68" lean-forward="true" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/mixins.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-330">
+              <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/variables.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-28">
+              <caret line="117" column="26" lean-forward="true" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/fonts.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="28" column="36" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/listeners/chatEvents.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-122">
+              <caret line="131" column="74" lean-forward="true" selection-start-line="131" selection-start-column="74" selection-end-line="131" selection-end-column="74" />
+              <folding>
+                <element signature="e#34#56#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -150,8 +119,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/App.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1334">
-              <caret line="115" column="65" selection-start-line="115" selection-start-column="65" selection-end-line="115" selection-end-column="65" />
+            <state relative-caret-position="138">
+              <caret line="187" column="52" lean-forward="true" selection-start-line="187" selection-start-column="52" selection-end-line="187" selection-end-column="52" />
               <folding>
                 <element signature="e#34#66#0" expanded="true" />
               </folding>
@@ -160,46 +129,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/smart/Forum.jsx">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="59" column="28" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
-              <folding>
-                <element signature="e#34#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/dumb/RatingSnippet.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/smart/Post.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="148" column="16" selection-start-line="148" selection-start-column="16" selection-end-line="148" selection-end-column="48" />
-              <folding>
-                <element signature="e#34#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/io.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="286">
+              <caret line="22" column="76" lean-forward="true" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -216,11 +149,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>removeAllUploads</find>
-      <find>LazyLoadImage</find>
-      <find>crop</find>
-      <find>scroll</find>
-      <find>img</find>
       <find>padding-bottom: 20px;</find>
       <find>debugg</find>
       <find>&lt;Loader</find>
@@ -239,13 +167,18 @@
       <find>transforma</find>
       <find>get rating</find>
       <find>rating</find>
-      <find>rat</find>
       <find>pop-up</find>
       <find>filesToCache</find>
-      <find>Loader</find>
-      <find>install</find>
-      <find>rate</find>
       <find>.log(</find>
+      <find>rate</find>
+      <find>Loader</find>
+      <find>rat</find>
+      <find>install</find>
+      <find>precaching</find>
+      <find>precache</find>
+      <find>workbox</find>
+      <find>activate</find>
+      <find>likedPosts</find>
     </findStrings>
     <replaceStrings>
       <replace>IsUploaded</replace>
@@ -290,10 +223,10 @@
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\styles</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\components</dir>
-      <dir>C:\Users\Xiaomi\WebstormProjects\invischat</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src\styles\components</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\src</dir>
       <dir>C:\Users\Xiaomi\WebstormProjects\invischat\server</dir>
+      <dir>C:\Users\Xiaomi\WebstormProjects\invischat</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -302,8 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/smart/SavedList.jsx" />
-        <option value="$PROJECT_DIR$/src/components/smart/ChatToolbar.jsx" />
         <option value="$PROJECT_DIR$/src/components/dumb/Chat.jsx" />
         <option value="$PROJECT_DIR$/server/chatRooms.js" />
         <option value="$PROJECT_DIR$/src/components/dumb/LikeInterlocutor.jsx" />
@@ -334,8 +265,6 @@
         <option value="$PROJECT_DIR$/src/reducers/userReducer.js" />
         <option value="$PROJECT_DIR$/src/components/smart/UsersList.jsx" />
         <option value="$PROJECT_DIR$/src/components/dumb/Loader.jsx" />
-        <option value="$PROJECT_DIR$/src/components/dumb/Header.jsx" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/styles/components/DarkTheme.scss" />
         <option value="$PROJECT_DIR$/public/sitemap.xml" />
         <option value="$PROJECT_DIR$/robots.txt" />
@@ -345,14 +274,18 @@
         <option value="$PROJECT_DIR$/src/components/smart/Post.jsx" />
         <option value="$PROJECT_DIR$/src/components/smart/NewPosts.jsx" />
         <option value="$PROJECT_DIR$/server/middleware/renderer.js" />
-        <option value="$PROJECT_DIR$/server/listeners/chatEvents.js" />
-        <option value="$PROJECT_DIR$/src/components/App.jsx" />
-        <option value="$PROJECT_DIR$/src/components/smart/Forum.jsx" />
         <option value="$PROJECT_DIR$/src/styles/components/PopUp.scss" />
         <option value="$PROJECT_DIR$/src/components/smart/Posts.jsx" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/server/io.js" />
         <option value="$PROJECT_DIR$/src/components/smart/CreatePost.jsx" />
+        <option value="$PROJECT_DIR$/src/components/dumb/Header.jsx" />
+        <option value="$PROJECT_DIR$/src/components/App.jsx" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/components/smart/Forum.jsx" />
+        <option value="$PROJECT_DIR$/src/components/dumb/Home.jsx" />
+        <option value="$PROJECT_DIR$/src/serviceWorker.js" />
+        <option value="$PROJECT_DIR$/server/listeners/chatEvents.js" />
       </list>
     </option>
   </component>
@@ -393,46 +326,7 @@
               <item name="invischat" type="b2602c69:ProjectViewProjectNode" />
               <item name="invischat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invischat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invischat" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invischat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invischat" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="dumb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invischat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invischat" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="smart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invischat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invischat" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invischat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invischat" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invischat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invischat" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -637,12 +531,12 @@
       <workItem from="1552997348664" duration="13352000" />
       <workItem from="1553020974377" duration="6646000" />
       <workItem from="1553068621555" duration="38468000" />
-      <workItem from="1553157484790" duration="13021000" />
+      <workItem from="1553157484790" duration="17060000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="819601000" />
+    <option name="totallyTimeSpent" value="823640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -711,30 +605,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/actions/forumActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="19" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/mixins.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/socket.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2049">
-          <caret line="145" column="42" selection-start-line="145" selection-start-column="42" selection-end-line="145" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/messages.js" />
     <entry file="file://$PROJECT_DIR$/src/components/smart/PopUp.jsx">
       <provider selected="true" editor-type-id="text-editor">
@@ -774,13 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="163" column="1" selection-start-line="163" selection-start-column="1" selection-end-line="163" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/variables.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="117" column="26" lean-forward="true" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -922,20 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/dumb/Header.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="20" column="24" selection-start-line="20" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/components/DarkTheme.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1018,26 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/App.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1334">
-          <caret line="115" column="65" selection-start-line="115" selection-start-column="65" selection-end-line="115" selection-end-column="65" />
-          <folding>
-            <element signature="e#34#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/smart/Forum.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="59" column="28" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
-          <folding>
-            <element signature="e#34#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/smart/Post.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -1048,37 +877,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/smart/Posts.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="88" column="44" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
-          <folding>
-            <element signature="e#34#91#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="267">
           <caret line="78" selection-start-line="78" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/listeners/chatEvents.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
-          <folding>
-            <element signature="e#34#56#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1094,10 +896,102 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/smart/CreatePost.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="61" column="57" lean-forward="true" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
+        <state relative-caret-position="230">
+          <caret line="62" column="31" lean-forward="true" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
           <folding>
             <element signature="e#34#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dumb/Header.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="84" column="21" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="84" selection-end-column="21" />
+          <folding>
+            <element signature="e#34#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/smart/Posts.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="94" column="73" lean-forward="true" selection-start-line="94" selection-start-column="73" selection-end-line="94" selection-end-column="73" />
+          <folding>
+            <element signature="e#34#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/smart/Forum.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding>
+            <element signature="e#34#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/dumb/Home.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="42" column="68" lean-forward="true" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/mixins.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="187" column="52" lean-forward="true" selection-start-line="187" selection-start-column="52" selection-end-line="187" selection-end-column="52" />
+          <folding>
+            <element signature="e#34#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/variables.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-28">
+          <caret line="117" column="26" lean-forward="true" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="22" column="76" lean-forward="true" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/fonts.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/listeners/chatEvents.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret line="131" column="74" lean-forward="true" selection-start-line="131" selection-start-column="74" selection-end-line="131" selection-end-column="74" />
+          <folding>
+            <element signature="e#34#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
