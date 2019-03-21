@@ -21,8 +21,29 @@ class CreateNick extends Component {
         
         this.state = {
             saveNick: false,
+            isInUse: false,
             isValid : true
         };
+    }
+
+    componentDidMount() {
+        socket.chat.on('checked nick', data => {
+            if (data.isInUse) {
+                return this.setState({
+                    isInUse: data.isInUse
+                })
+            }
+
+            if (this.state.saveNick) {
+                localStorage.setItem('nickName', data.nick)
+            } else if (localStorage.getItem('nickName')) {
+                localStorage.removeItem('nickName')
+            }
+
+            socket.setNick(data.nick);
+            this.setState({isValid: false});
+            this.props.hidePopUp();
+        })
     }
 
     /**
@@ -49,15 +70,7 @@ class CreateNick extends Component {
         }
 
         if (value.length > 2 && value.length < 15) {
-            if (this.state.saveNick) {
-                localStorage.setItem('nickName', value)
-            } else if (localStorage.getItem('nickName')) {
-                localStorage.removeItem('nickName')
-            }
-
-            socket.setNick(value);
-            this.setState({isValid: false});
-            this.props.hidePopUp();
+            socket.chat.emit('check is nick exist', value);
         } else {
             this.setState({isValid: false});
         }
@@ -69,6 +82,10 @@ class CreateNick extends Component {
      * @param e
      */
     checkKey = (e) => {
+        this.setState({
+            isInUse: false
+        });
+
         if(e.key === 'Enter'){
             this.acceptAction();
         }
@@ -84,6 +101,18 @@ class CreateNick extends Component {
     };
 
     /**
+     * Show login popup
+     */
+    showLoginForm = () => {
+        this.props.hidePopUp();
+        setTimeout(() => {this.props.showPopUp('LOGIN')}, 0);
+    };
+
+    componentWillUnmount() {
+        socket.chat.off('checked nick')
+    }
+
+    /**
      * Render CreateNick component
      */
     render() {
@@ -97,13 +126,23 @@ class CreateNick extends Component {
             <React.Fragment>
                 <div className="pop-up-text">Щоб написати у загальний чат, придумайте нікнейм</div>
                 <div className={additionalClassName}>
-                    <input type='text' autoFocus={true} ref={this.getInputRef} onKeyPress={this.checkKey}/>
-                    <label className='save-nick'>
+                    <input type='text'
+                           className='nick-input'
+                           autoFocus={true}
+                           ref={this.getInputRef}
+                           onKeyPress={this.checkKey}/>
+                    <label className={this.state.saveNick ? 'checkbox-label active' : 'checkbox-label'}>
                         <input id='save_nick' type='checkbox' onChange={this.changeSavingStatus}/>
                         <span>Запам'ятати цей нік</span>
                     </label>
                     {!this.state.isValid &&
-                    <p className="error">Нікнейм повинен містити від 3 до 15 символів</p>}
+                        <p className="error">Нікнейм повинен містити від 3 до 15 символів</p>}
+                    {this.state.isInUse
+                        && <p className="error">
+                                Нікнейм зарезервований зареєєстрованим користувачем. Якщо це
+                                Ви, <button className='button ok-button authorise'
+                                            onClick={this.showLoginForm}>авторизуйтесь</button>
+                            </p>}
                 </div>
                 <div className="pop-up-actions">
                     <button className="button ok-button" onClick={this.acceptAction}>ок</button>
@@ -124,6 +163,15 @@ const mapDispatchToProps = (dispatch) => {
          */
         hidePopUp: () => {
             dispatch(popUpActions.hidePopUp())
+        },
+
+        /**
+         * Show popup
+         *
+         * @param type
+         */
+        showPopUp: (type) => {
+            dispatch(popUpActions.showPopUp(type))
         },
 
         /**

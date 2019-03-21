@@ -81,6 +81,7 @@ class UsersList extends Component {
         if (prevProps.nick !== this.props.nick) {
             socket.chat.emit('changed nick', {
                 nick: this.props.nick,
+                prevUserId: this.props.prevUserId,
                 userId: this.props.userId
             });
         }
@@ -220,6 +221,7 @@ const mapStateToProps = (state) => {
         mutedList    : state.user.mutedList,
         allUsersList : state.user.allUsersList,
         isModerator  : state.user.isModerator,
+        prevUserId   : state.user.prevUserId,
         userId       : state.user.userId,
         likesCount   : state.user.likesCount,
         likedList    : state.user.likedList

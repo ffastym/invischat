@@ -32,9 +32,7 @@ const Cloudinary = {
      * Remove all uploaded images
      */
     removeAllUploads: () => {
-        cloudinary.v2.api.delete_all_resources({invalidate: true}, (error, result) => {
-            error && console.log(error);
-        })
+        cloudinary.v2.api.delete_resources_by_tag('chat', (err) => err && console.log(err));
     }
 };
 

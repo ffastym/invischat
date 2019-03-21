@@ -115,7 +115,7 @@
 }
 
 .message-text.removed {
-    color: $color-grey;
+    color: $color-gray;
 }
 
 .message {
@@ -142,7 +142,7 @@
     transition: .1s;
 
     &:before {
-        color: $color-grey;
+        color: $color-gray;
         display: block;
         position: absolute;
         width: 100%;

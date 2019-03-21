@@ -4,6 +4,9 @@
 @import 'ContactUs.scss';
 @import 'PopUp.scss';
 @import 'Rating.scss';
+@import 'Forum.scss';
+@import 'Loader.scss';
+@import 'Login.scss';
 @import 'Gallery.scss';
 @import 'Header.scss';
 @import 'Footer.scss';
@@ -25,6 +28,10 @@ a {
 
 h1 {
     font-size: 21px;
+}
+
+h3 {
+    font-size: 18px;
 }
 
 body {
@@ -79,6 +86,28 @@ input[type='checkbox'] {
     display: none;
 }
 
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin: 15px auto 0;
+
+    &:before {
+        display: inline-block;
+        content: '';
+        height: 20px;
+        width: 20px;
+        font-family: $font-family-FA-light;
+        border: $chat-border;
+        margin-right: 15px;
+        font-size: 24px;
+    }
+
+    &.active:before {
+        content: $fa-check;
+        color: $color-green;
+    }
+}
+
 label {
     cursor: pointer;
 }
@@ -89,13 +118,16 @@ input {
     border-radius: $pop-up-border-radius;
     box-sizing: border-box;
     box-shadow: none;
-}
 
-input[type='text'] {
-    min-width: 240px;
-    text-align: center;
-    padding: 0 10px;
-    height: $button-height;
+    &[type='text'] {
+        min-width: 240px;
+        padding: 0 10px;
+        height: $button-height;
+    }
+
+    &[type='checkbox'] {
+
+    }
 }
 
 header {
@@ -117,6 +149,8 @@ textarea {
 }
 
 .error {
+    font-size: 12px;
+    font-style: italic;
     color: $color-red;
     margin-top: 10px;
 }

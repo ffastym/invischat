@@ -1,3 +1,5 @@
+import socket from "../socket";
+
 /**
  * @author Yuriy Matviyuk
  */
@@ -42,6 +44,69 @@ const userActions = {
     changeMutedList: (list) => {
         return {
             type    : 'CHANGE_MUTED_LIST',
+            payload : list
+        }
+    },
+
+    /**
+     * Set user as logged in
+     *
+     * @param data
+     *
+     * @returns {{payload: *, type: string}}
+     */
+    setAsLoggedIn(data) {
+        let userId = data._id,
+            nick = data.nick,
+            login = data.nick,
+            userData = {...data, userId, nick, login};
+
+        setTimeout(socket.updateUsersList, 1000);
+
+        delete userData.password;
+        delete userData._id;
+
+        localStorage.setItem('nick', nick);
+        localStorage.setItem('unique_id', userId);
+
+        return {
+            type: 'SET_AS_LOGGED_IN',
+            payload: userData
+        }
+    },
+
+    /**
+     * Logout
+     *
+     * @returns {{type: string}}
+     */
+    logOut: () => {
+        let userData = {
+                nick: null,
+                login: null
+            };
+
+        localStorage.removeItem('credentials');
+        localStorage.removeItem('nick');
+
+        setTimeout(socket.updateUsersList, 1000);
+
+        return {
+            type: "LOGOUT",
+            payload: userData
+        }
+    },
+
+    /**
+     * Change liked posts list
+     *
+     * @param list
+     *
+     * @returns {{payload: *, type: string}}
+     */
+    likeDislikePost: (list) => {
+        return {
+            type    : "LIKE_DISLIKE_POST",
             payload : list
         }
     },

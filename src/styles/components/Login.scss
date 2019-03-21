@@ -1,0 +1,57 @@
+.login-credentials {
+    display: block;
+    margin-top: 10px;
+    box-sizing: border-box;
+    max-width: 258px;
+    border: $chat-border;
+    border-radius: $chat-border-radius;
+    overflow: hidden;
+
+    .field {
+        position: relative;
+
+        &:not(:last-of-type) {
+            border-bottom: $chat-border;
+        }
+    }
+
+    .label {
+        @add-mixin action-button;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        &:before {
+            font-size: 12px;
+            line-height: 32px;
+            font-family: $font-family-FA-solid;
+        }
+
+        &.login:before {
+            content: $fa-user;
+        }
+
+        &.password:before {
+            content: $fa-lock;
+        }
+    }
+
+    .error {
+        text-align: left;
+        padding-left: $padding-md-base;
+        margin: 0 0 5px;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        box-sizing: border-box;
+        padding-left: 35px;
+        border-radius: unset;
+
+        &[type='text'] {
+            padding-left: 35px;
+            text-align: left;
+        }
+    }
+}

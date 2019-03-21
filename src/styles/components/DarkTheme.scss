@@ -2,6 +2,10 @@
     background: $color-background-dark;
     color: $color-primary-dark;
 
+    .settings-wrapper {
+        background: $color-background-dark;
+    }
+
     main,
     .chat-text {
         background: $color-background-dark;
@@ -16,11 +20,22 @@
     .emoji-mart input,
     .preview-wrapper,
     .quote-wrapper,
+    .post-toolbar,
+    .post-add,
     textarea,
     input,
     button {
         background: $color-dark-heavy;
         color: $color-primary-dark;
+    }
+
+    .post-toolbar {
+        opacity: .9;
+    }
+
+    .post-additional,
+    .post-comment-data {
+        color: $color-gray;
     }
 
     input,
