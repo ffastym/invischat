@@ -19,6 +19,7 @@ import userActions from "../actions/userActions";
 import popUpActions from "../actions/popUpActions";
 import roomActions from "../actions/roomActions";
 import messageActions from "../actions/messageActions";
+import Forum from "./smart/Forum";
 
 /**
  * App component
@@ -36,6 +37,16 @@ class App extends Component {
      * ComponentDidMount
      */
     componentDidMount() {
+        let credentials = localStorage.getItem('credentials');
+
+        if (credentials) {
+            socket.chat.emit('login', JSON.parse(credentials))
+        }
+
+        socket.chat.off('login response').on('login response', (data) => {
+            this.props.setAsLoggedIn(data);
+        });
+
         if (localStorage.getItem('block')) {
             this.props.setBanStatus(true)
         }
@@ -104,6 +115,12 @@ class App extends Component {
         if (!localStorage.getItem('rating')) {
             setTimeout(() => {return this.showRating()}, 600000);
         }
+
+        window.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('settings')) {
+                document.querySelector('.settings').classList.remove('active')
+            }
+        })
     }
 
     /**
@@ -150,6 +167,7 @@ class App extends Component {
                     <main className={this.props.isNavActive ? 'nav-active' : ''}>
                         <Switch>
                             <Route path="/chat" render={() => (<Chat ssr={this.props.ssr}/>)}/>
+                            <Route path="/ziznannya" render={() => (<Forum ssr={this.props.ssr}/>)}/>
                             <Route path="/privacy_policy" component={PrivacyPolicy}/>
                             <Route path="/contact_us" component={ContactUs}/>
                             <Route path="/" render={() => (<Home ssr={this.props.ssr}/>)}/>
@@ -283,6 +301,15 @@ const mapDispatchToProps = (dispatch) => {
          */
         setConnectionStatus: (isConnected) => {
             dispatch(appActions.setConnectionStatus(isConnected))
+        },
+
+        /**
+         * Set user as logged in
+         *
+         * @param data
+         */
+        setAsLoggedIn: (data) => {
+            dispatch(userActions.setAsLoggedIn(data))
         },
 
         /**

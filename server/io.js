@@ -14,6 +14,9 @@ router.get('/', serverRenderer);
 router.get('/chat', serverRenderer);
 router.get('/privacy_policy', serverRenderer);
 router.get('/contact_us', serverRenderer);
+router.get('/ziznannya', serverRenderer);
+router.get('/ziznannya/:post_id', serverRenderer);
+router.get('/ziznannya/new_post', serverRenderer);
 router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
 app.use(enforce.HTTPS({ trustXForwardedHostHeader: true,  trustProtoHeader: true }));

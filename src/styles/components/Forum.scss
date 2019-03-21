@@ -1,0 +1,275 @@
+@import 'CreatePost.scss';
+
+.forum.page-content {
+    padding-bottom: $padding-sm-base;
+}
+
+.nav-active {
+    .post-toolbar {
+        bottom: 0;
+    }
+}
+
+.posts-list {
+    height: 100%;
+    overflow: auto;
+}
+
+.forum > .post {
+    position: relative;
+
+    &:not(:last-of-type):after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: $chat-border-color;
+        position: absolute;
+        bottom: -15px;
+    }
+}
+
+.post {
+    display: block;
+    text-decoration: none;
+    max-width: 768px;
+    margin: auto;
+
+    &-text {
+        text-align: justify;
+        word-break: break-word;
+        margin: 10px 0;
+    }
+
+    &-additional {
+        display: flex;
+        align-items: center;
+        color: $color-dark-heavy;
+        font-weight: 600;
+        justify-content: space-between;
+    }
+
+    &-publication-data {
+        text-align: left;
+
+        & > span {
+            display: block;
+        }
+    }
+
+    &-popularity-data {
+        span {
+            display: inline-block;
+            margin-left: 5px;
+
+            &:before {
+                font-family: $font-family-FA-light;
+                display: block;
+                content: '';
+                width: 25px;
+                line-height: 20px;
+                height: 20px;
+            }
+
+            &.post-views-qty:before {
+                content: $fa-eye;
+            }
+
+            &.post-likes-qty:before {
+                content: $fa-heart;
+            }
+
+            &.post-comments-qty:before {
+                content: $fa-comments;
+            }
+        }
+    }
+
+    &-toolbar {
+        position: fixed;
+        display: block;
+        left: 0;
+        background: rgba(255,255,255,.8);
+        box-shadow: 0 -1px 5px 0 rgba(0,0,0,0.1);
+        height: calc(35px + #{$padding-sm-base});
+        width: 100%;
+        bottom: $header-sm-height;
+    }
+
+    &-nav-link {
+        @add-mixin nav-arrow-link;
+
+        &.back {
+            left: 10px;
+
+            &:before {
+                font-family: $font-family-FA-light;
+                content: $fa-angle-double;
+            }
+        }
+
+        &.prev {
+            left: 50px;
+
+            &:before {
+                font-family: $font-family-FA-light;
+                content: $fa-angle-right;
+                transform: rotate(180deg);
+            }
+        }
+
+        &.next {
+            right: 10px;
+
+            &:before {
+                font-family: $font-family-FA-light;
+                content: $fa-angle-right;
+            }
+        }
+    }
+
+    &.forum {
+        padding-top: 35px;
+    }
+
+    &-view {
+        padding-bottom: 60px;
+
+        &-like,
+        &-comment,
+        &-back {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+
+            &:before {
+                content: '';
+                height: inherit;
+                cursor: pointer;
+                width: inherit;
+                line-height: 40px;
+                font-size: 25px;
+                color: $color-gray;
+                font-family: $font-family-FA-light;
+            }
+        }
+
+        &-like {
+            &:before {
+                content: $fa-heart;
+            }
+
+            &.liked:before {
+                font-family: $font-family-FA-solid;
+            }
+        }
+
+        &-comment {
+            margin-left: 10px;
+
+            &:before {
+                content: $fa-new-comment;
+            }
+        }
+    }
+
+    &-comments,
+    &-write-comment,
+    &-create-form {
+        margin: auto;
+        max-width: 768px;
+    }
+
+    &-comments {
+        text-align: left;
+        margin-top: 10px;
+        border-top: $chat-border;
+
+        &-title {
+            padding-top: 15px;
+            display: block;
+            font-size: 18px;
+        }
+    }
+
+    &-add {
+        text-decoration: none;
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        bottom: 65px;
+        background: $color-light-grey;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+        opacity: .8;
+        border-radius: 50%;
+        right: 20px;
+        z-index: 2;
+
+        &:before {
+            content: $fa-plus;
+            height: inherit;
+            width: inherit;
+            line-height: 40px;
+            font-size: 25px;
+            color: $color-gray;
+            font-family: $font-family-FA-light;
+        }
+    }
+
+    &-comment {
+        padding: 10px 0;
+
+        &:not(:last-of-type) {
+            border-bottom: 1px solid $color-light-grey;
+        }
+
+        &-data {
+            display: flex;
+            justify-content: space-between;
+            color: $color-dark-heavy;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+    }
+
+    &-write-comment {
+        text-align: left;
+
+        textarea {
+            margin: 15px 0;
+            display: block;
+            width: 100%;
+            height: 100px;
+        }
+
+        .actions {
+            text-align: center;
+        }
+    }
+}
+
+.comments-message {
+    margin: 20px auto;
+    max-width: 768px;
+}
+
+.post-not-found {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    p {
+        margin: 20px 0;
+    }
+}
+
+img.lazy-image {
+    opacity: .1;
+    will-change: opacity;
+    transition: all 0.3s;
+
+    &.loaded {
+        opacity: 1;
+    }
+}

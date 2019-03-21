@@ -8,6 +8,8 @@ import {Helmet} from "react-helmet"
 import {NavLink} from 'react-router-dom'
 import messageActions from "../../actions/messageActions";
 import socket from "../../socket";
+import popUpActions from "../../actions/popUpActions";
+import userActions from "../../actions/userActions";
 
 /**
  * Header component
@@ -29,9 +31,16 @@ const Header = (props) => {
         themeSwitchClassName = props.theme === 'dark'
             ? 'action theme-switch dark'
             : 'action theme-switch',
+        loginClassName = props.isLoggedIn
+            ? 'action logout'
+            : 'action login',
         notificationsSwitchClassName = props.isNotificationsEnabled
             ? 'action notifications-switch'
             : 'action notifications-switch active';
+
+    const toggleSettings = (e) => {
+        e.target.classList.toggle('active')
+    };
 
     return (
         <header>
@@ -42,20 +51,28 @@ const Header = (props) => {
                 <span className="action now-online"
                       title="now online">{props.onlineCount}
                 </span>
-                <span className={notificationsSwitchClassName}
-                      onClick={props.changeNotifications}
-                      title='on/off notifications'
-                />
-                <span className={themeSwitchClassName}
-                      onClick={props.setTheme}
-                      title='change theme'
-                />
+                <span className='action settings' onClick={toggleSettings}>
+                    <span className="settings-wrapper">
+                        <span className={notificationsSwitchClassName}
+                              onClick={props.changeNotifications}
+                              title='on/off notifications'
+                        />
+                        <span className={themeSwitchClassName}
+                              onClick={props.setTheme}
+                              title='change theme'
+                        />
+                    </span>
+                </span>
                 {props.isInChat && props.isMobile && <span className={chatSwitchClassName}
                       onClick={props.changeChatPosition}
                       title='switch chat'
                       children={props.newMessagesQty ?
                           <span className='new-qty'>{props.newMessagesQty}</span> : false}
                 />}
+                <span className={loginClassName}
+                      title={props.isLoggedIn ? 'вийти з аккаунта' : 'увійти в аккаунт'}
+                      onClick={props.isLoggedIn ? props.logOut : props.logIn}
+                />
                 <span className={burgerClassName}
                       onClick={props.toggleMenu}
                       title='show menu'>
@@ -63,8 +80,8 @@ const Header = (props) => {
             </div>
             <Helmet>
                 <meta name="theme-color" content={props.theme === 'dark' ? '#2F2F2F' : '#FFFFFF'} />
-                {!props.ssr && window.location.href !== 'https://www.invischat.com/chat'
-                    && <link rel="canonical" href="https://www.invischat.com/chat"/>}
+                {!props.ssr && window.location.href !== 'https://www.invischat.com'
+                    && <link rel="canonical" href="https://www.invischat.com"/>}
             </Helmet>
         </header>
     )
@@ -75,6 +92,7 @@ const mapStateToProps = (state) => {
         chatPosition           : state.app.chatPosition,
         isMobile               : state.app.isMobile,
         isInChat               : state.app.isInChat,
+        isLoggedIn             : state.user.isLoggedIn,
         isNavActive            : state.app.isNavActive,
         isNotificationsEnabled : state.app.isNotificationsEnabled,
         newMessagesQty         : state.message.newMessagesQty,
@@ -105,6 +123,21 @@ const mapDispatchToProps = (dispatch) => {
         changeChatPosition: () => {
             dispatch(appActions.setChatPosition());
             dispatch(messageActions.setNewMessagesQty(0))
+        },
+
+        /**
+         * LogOut
+         */
+        logOut: () => {
+            dispatch(popUpActions.showPopUp('LOGOUT'));
+            dispatch(userActions.logOut())
+        },
+
+        /**
+         * Login
+         */
+        logIn: () => {
+            dispatch(popUpActions.showPopUp('LOGIN'));
         },
 
         /**

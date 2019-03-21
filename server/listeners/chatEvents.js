@@ -4,6 +4,7 @@
 import io from '../io'
 import chatRooms from '../chatRooms'
 import Cloudinary from '../cloudinary';
+import {ObjectId} from 'mongodb'
 import MailSender from '../email'
 import mongodb from '../mongodb'
 
@@ -22,7 +23,7 @@ io.on('connection', (socket) => {
     // Increment clients count after new user connection
     io.emit('change clients count', ++clientsCount);
 
-    mongodb.getData('rating').then((result) => {
+    mongodb.getData('app', {ratingDocument: true}).then((result) => {
         if (result.length && result[0].hasOwnProperty('rating')) {
             rating = result[0].rating;
             socket.emit('get rating', rating);
@@ -30,21 +31,12 @@ io.on('connection', (socket) => {
     }).catch((err) => console.log('Get data form DB err', err));
 
     socket.on('disconnect', (reason) => {
-        console.log('reason ---> ', reason);
-        console.log('rooms before ---> ', rooms);
-        console.log('gender ---> ', socket.gender);
-        console.log('current room ---> ', socket.currentRoom);
-        console.log('socket.adapter.rooms ---> ', socket.adapter.rooms);
-
         if (reason === 'transport close') {
             chatRooms.leaveRoom(rooms, {gender: socket.gender, room: socket.currentRoom, destroy: true});
-            console.log('on transport close');
         } else if (socket.adapter.rooms.hasOwnProperty(socket.currentRoom)) {
             io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
-            console.log('on emit to room and wait');
         } else if (socket.gender && rooms[socket.gender][socket.currentRoom]) {
             delete rooms[socket.gender][socket.currentRoom];
-            console.log('disconnect with delete');
         }
 
         // Decrement clients count after new user connection
@@ -58,29 +50,161 @@ io.on('connection', (socket) => {
         io.emit('change clients count', --clientsCount)
     });
 
+    socket.on('fetch posts', () => {
+        mongodb.getData("posts").then((result) => {
+                socket.emit('get posts', result);
+        }).catch((err) => console.log(err));
+    });
+
+    socket.on('check is nick exist', nick => {
+        mongodb.getData('users', {nick}).then(result => {
+            socket.emit('checked nick', {isInUse: result.length, nick})
+        })
+    });
+
+    socket.on('create post', post => {
+        mongodb.insertOne("newPosts", post).then(() => {
+            //MailSender.sendEmail(io, JSON.stringify(post));
+            socket.emit('post added');
+        }).catch((err) => console.log(err));
+    });
+
+    socket.on('fetch new posts', () => {
+        mongodb.getData('newPosts').then((posts) => {
+            socket.emit('get new posts', posts)
+        }).catch(err => console.log(err))
+    });
+
+    socket.on('add/delete post', (newPost) => {
+        let post = {...newPost};
+
+        if (!post.publish) {
+            delete post.publish;
+            return mongodb.deleteOne('newPosts', {_id: ObjectId(post._id)})
+        }
+
+        delete post.publish;
+
+        mongodb.getData("app", {forum: true}).then((result) => {
+            let post_id = result[0].lastPostId + 1;
+
+            mongodb.insertOne("posts", {post_id, post}).then(() => {
+                mongodb.updateOne(
+                    'app',
+                    {forum: true},
+                    {$inc: {lastPostId: 1}}
+                ).then(() => {
+                    mongodb.deleteOne('newPosts', {_id: ObjectId(post._id)})
+                })
+            }).catch((err) => {
+                console.log('post adding err ---> ', err);
+                socket.emit('post adding error')
+            });
+        }).catch((err) => console.log(err));
+    });
+    
+    socket.on('see post', (id) => {
+        const post_id = parseInt(id);
+
+        mongodb.updateOne(
+            'posts',
+            {post_id},
+            {$inc: {"post.viewsQty" : 1}}
+        ).then(() => {
+            socket.emit('seen post')
+        }).catch(err => console.log(err))
+    });
+
+    socket.on('login', (data) => {
+        let nick = data.nick,
+            userData;
+
+        if (data.isNew) {
+            mongodb.getData("users", {nick}).then((users) => {
+                if (!users.length) {
+                    userData = {
+                        nick: data.nick,
+                        password: data.password,
+                        likesQty: 0,
+                        likedPosts: []
+                    };
+
+                    mongodb.insertOne('users', {...userData}).then(() => {
+                        mongodb.getData(
+                            "users",
+                            {nick: data.nick}
+                        ).then((result) => {
+                            socket.emit('login response', result[0]);
+                        })
+                    })
+                } else {
+                    socket.emit('login response', {nickExist: true})
+                }
+            });
+        } else {
+            mongodb.getData(
+                "users",
+                {nick: data.nick, password: data.password}
+            ).then((result) => {
+                socket.emit('login response', result.length ? result[0] : {invalid: true});
+            })
+        }
+    });
+
+    socket.on('like post', data => {
+        const postId = parseInt(data.postId);
+        
+        mongodb.updateOne(
+            'posts',
+            {post_id: postId},
+            {$inc : {'post.likesQty': data.isLike ? 1 : -1}}
+        );
+
+        let likedPosts = {},
+            post = 'likedPosts.' + postId;
+        likedPosts[post] = data.isLike;
+
+        mongodb.updateOne(
+            'users',
+            {_id: ObjectId(data.userId)},
+            {$set: likedPosts}
+        )
+    });
+
+    socket.on('comment post', comment => {
+        mongodb.updateOne(
+            'posts',
+            {post_id: parseInt(comment.postId, 10)},
+            {$push: {'post.comments': comment}}
+        ).then(() => {
+            socket.emit('update post data', comment)
+        }).catch(err => console.log(err))
+    });
+
     socket.on('chat rate', (rate) => {
-        let ratesQty = parseInt(rating.ratesQty),
+        let ratesQty = rating.ratesQty,
             average = parseFloat(rating.average),
             newRating = {};
 
-        let newAverage = ((ratesQty * average + rate) / (ratesQty + 1)),
-            newRatesQty = ratesQty + 1;
+        let newAverage = ((ratesQty * average + rate) / (ratesQty + 1));
 
-        newRating = {"average" : newAverage, "ratesQty" : newRatesQty.toString(10)};
+        newRating = {"average" : newAverage, "ratesQty" : ratesQty + 1};
 
-        const filter = {"ratingDocument" : "true"},
-              newData = {"rating": newRating};
-
-        mongodb.updateOne(filter, newData).then(() => {
+        mongodb.updateOne(
+            "app",
+            {ratingDocument : true},
+            {
+                $set: {"rating.average": newAverage},
+                $inc: {"rating.ratesQty": 1}
+            }
+        ).then(() => {
             socket.emit('get rating', newRating);
         }).catch((err) => {console.log('Document update error ---> ', err);})
     });
 
     //remove image from server after uploading
     socket.on('remove uploaded image', (img) => {
-        setTimeout(() => {
-            Cloudinary.removeImage(img)
-        }, 60000)
+        Cloudinary.removeImage(img)
     });
 
     socket.on('send mail', (message) => {
@@ -152,7 +276,6 @@ io.on('connection', (socket) => {
         });
 
         if (!data.isFull) {
-            console.log('before and' + rooms + ' delete ---> ', data.room);
             return rooms[data.gender][data.room] = data.room
         }
 
@@ -172,7 +295,18 @@ io.on('connection', (socket) => {
     });
 
     socket.on('changed nick', (data) => {
-        users[data.userId].nick = data.nick;
+        const user = users[data.userId],
+              id = data.userId,
+              prevId = data.prevUserId;
+
+        if (!user && users[prevId]) {
+            users[id] = {...users[prevId]};
+            delete users[prevId];
+            delete users[id][prevId]
+        } else {
+            user.nick = data.nick;
+        }
+
         io.emit('list update force', users);
     });
 

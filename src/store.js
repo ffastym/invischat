@@ -6,6 +6,7 @@ import gallery from './reducers/galleryReducer'
 import logger from 'redux-logger'
 import message from './reducers/messageReducer'
 import popup from './reducers/popUpReducer'
+import forum from './reducers/forumReducer'
 import room from './reducers/roomReducer'
 import thunk from 'redux-thunk'
 import user from './reducers/userReducer'
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 export default createStore(
     combineReducers({
-        app, user, room, message, popup, gallery
+        app, user, room, message, popup, gallery, forum
     }),
     {},
     applyMiddleware(...middleware)

@@ -23,15 +23,16 @@ const mongodb = {
     /**
      * Fetching documents from database
      *
+     * @param collection
      * @param query
      *
      * @returns {Promise}
      */
-    getData(query) {
+    getData(collection, query = {}) {
         return new Promise ((resolve, reject) => {this.connect().then(
             (db) => {
                 db.db(this.dbName)
-                    .collection("app")
+                    .collection(collection)
                     .find(query)
                     .toArray((err, result) => {
                         if (err) {
@@ -45,27 +46,66 @@ const mongodb = {
         )});
     },
 
-    /**
-     * Update document in database
-     *
-     * @param filter
-     * @param newDocument
-     *
-     * @returns {Promise}
-     */
-    updateOne(filter, newDocument) {
+    insertOne(collection, document) {
         return new Promise ((resolve, reject) => {this.connect().then(
             (db) => {
                 db.db(this.dbName)
-                    .collection("app")
-                    .updateOne(
-                        filter,
-                        {$set: newDocument}
-                    ).then((obj) => {
+                    .collection(collection)
+                    .insertOne(document, (err, result) => {
+                        if (err) {
+                            reject(err)
+                        } else {
+                            resolve(result)
+                        }
+                    })
+                })
+            }
+        )
+    },
+
+    /**
+     * Update document in database
+     *
+     * @param collection
+     * @param filter
+     * @param update
+     *
+     * @returns {Promise}
+     */
+    updateOne(collection, filter, update) {
+        return new Promise ((resolve, reject) => {this.connect().then(
+            (db) => {
+                db.db(this.dbName)
+                    .collection(collection)
+                    .updateOne(filter, update)
+                    .then((obj) => {
                         resolve(obj)
                     }).catch((err) => {
                         reject(err);
                     })
+            }
+        )});
+    },
+
+    /**
+     * Delete one document from collection
+     *
+     * @param collection
+     * @param filter
+     *
+     * @returns {Promise}
+     */
+    deleteOne(collection, filter) {
+        return new Promise ((resolve, reject) => {this.connect().then(
+            (db) => {
+                db.db(this.dbName)
+                    .collection(collection)
+                    .deleteOne(filter)
+                    .then((obj) => {
+                        resolve(obj)
+                    }).catch((err) => {
+                    reject(err);
+                })
             }
         )});
     }

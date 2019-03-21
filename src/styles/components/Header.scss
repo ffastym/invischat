@@ -68,6 +68,54 @@ header {
     }
 }
 
+.settings {
+    &:before {
+        content: $fa-settings;
+    }
+
+    &.active {
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.2);
+
+        .settings-wrapper {
+            padding-top: 7px;
+            transition: max-height .5s, padding-top .1s;
+            max-height: 80px;
+        }
+    }
+}
+
+.logout {
+    &:before {
+        content: $fa-sign-out;
+    }
+}
+
+.login {
+    &:before {
+        content: $fa-sign-in;
+    }
+}
+
+.settings-wrapper {
+    padding-top: 0;
+    position: absolute;
+    left: 0;
+    width: $button-width;
+    top: 30px;
+    max-height: 0;
+    z-index: 2;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.2);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: $color-white;
+    overflow: hidden;
+    transition: max-height .5s, padding-top .1s;
+
+    .action {
+        margin-right: 0;
+    }
+}
+
 .new-qty {
     font-size: 10px;
     left: 5px;

@@ -5,11 +5,16 @@ const initialState = {
     gender           : null,
     nick             : null,
     userId           : null,
+    prevUserId       : null,
     isNewInPublic    : true,
+    isLoggedIn       : false,
     mutedList        : [],
     likedList        : {},
     allUsersList     : {},
-    likesCount       : 0,
+    likesQty         : null,
+    commentsQty      : null,
+    login            : null,
+    likedPosts       : {},
     isBlocked        : false,
     isModerator      : false,
     senderId         : null,
@@ -29,6 +34,27 @@ const userReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 allUsersList: action.payload
+            };
+            break;
+        case 'LIKE_DISLIKE_POST':
+            state = {
+                ...state,
+                likedPosts: action.payload
+            };
+            break;
+        case 'SET_AS_LOGGED_IN':
+            state = {
+                ...state,
+                isLoggedIn: true,
+                prevUserId: state.userId,
+                ...action.payload
+            };
+            break;
+        case 'LOGOUT':
+            state = {
+                ...state,
+                isLoggedIn: false,
+                ...action.payload
             };
             break;
         case 'SET_BAN_STATUS':

@@ -2,7 +2,7 @@
   Colors
 */
 $color-white: #FFFFFF;
-$color-grey: #808080;
+$color-gray: #808080;
 $color-dark-grey: #2F2F2F;
 $color-dark-heavy: #2A2A2A;
 $color-semi-grey: #b8b8b8;
@@ -79,7 +79,7 @@ $main-sm-height: calc(100% - (#{$header-sm-height} + #{$footer-sm-height}));
 /*
   Borders
 */
-$chat-border-color: $color-grey;
+$chat-border-color: $color-gray;
 $chat-border: 1px solid $chat-border-color;
 $chat-border-radius: 15px;
 $pop-up-border-radius: 25px;
@@ -109,10 +109,22 @@ $fa-plane      : '\f1d8';
 $fa-heart      : '\f004';
 $fa-trash      : '\f1f8';
 $fa-ban        : '\f506';
+$fa-sign-out   : '\f2f5';
+$fa-sign-in    : '\f2f6';
 $fa-star       : '\f005';
 $fa-star-half  : '\f5c0';
 $fa-arrow-right: '\f0a9';
+$fa-angle-right: '\f105';
+$fa-angle-double: '\f100';
 $fa-spin       : '\f3f4';
+$fa-eye        : '\f06e';
+$fa-plus       : '\f067';
+$fa-settings   : '\f1de';
+$fa-undo       : '\f0e2';
+$fa-user       : '\f007';
+$fa-lock       : '\f023';
+$fa-new-comment: '\f4b2';
+$fa-image-file : '\f1c5';
 $fa-check      : '\f00c';
 $fa-users      : '\f0c0';
 $fa-x          : '\f00d';

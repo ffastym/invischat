@@ -9,6 +9,7 @@ import LikeInterlocutor from '../dumb/LikeInterlocutor'
 import popUpActions from "../../actions/popUpActions"
 import {Redirect} from 'react-router-dom'
 import Rating from "./Rating";
+import Login from "./Login";
 
 /**
  * PopUp component
@@ -69,6 +70,25 @@ class PopUp extends Component {
                 state = {
                     title         : 'Зберегти співрозмовника',
                     customContent : <LikeInterlocutor/>
+                };
+                break;
+            case 'LOGIN' :
+                state = {
+                    title         : 'Авторизація',
+                    customContent : <Login/>
+                };
+                break;
+            case 'LOGOUT' :
+                state = {
+                    title: 'Вихід з аккаунта',
+                    text: 'Ви успішно вийшли з аккаунта'
+                };
+                break;
+            case 'POST_ADDED' :
+                state = {
+                    title : 'Пост створено',
+                    text  : 'Ваш пост успішно створено та відправлено на перевірку, після якої, у ' +
+                        'разі позитивного рішення, він з\'явиться у загальній стрічці'
                 };
                 break;
             case 'PRIVATE_REQUEST_REJECTED' :
