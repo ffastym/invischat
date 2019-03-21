@@ -186,11 +186,19 @@ class App extends Component {
                 </div>
                 <Footer rating={this.props.rating}/>
                 {this.props.isPopUpShow && <PopUp/>}
-                <Helmet>
-                    <title>{title}</title>
-                    <meta name="description" content={description}/>
-                    <meta name="keywords" content={keywords}/>
-                </Helmet>
+                <Helmet
+                    title={title}
+                    meta={[
+                        {
+                            name: 'description',
+                            content: description,
+                        },
+                        {
+                            name: 'keywords',
+                            content: keywords,
+                        }
+                    ]}
+                />
             </div>
         )
     }
