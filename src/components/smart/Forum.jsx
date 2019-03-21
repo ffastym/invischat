@@ -7,7 +7,6 @@ import CreatePost from './CreatePost';
 import socket from "../../socket";
 import Posts from "./Posts";
 import NewPosts from "./NewPosts";
-import {Helmet} from "react-helmet"
 import Post from "./Post";
 import {connect} from "react-redux";
 import Loader from "../dumb/Loader";
@@ -72,11 +71,6 @@ class Forum extends Component {
                         <Route exact path='/ziznannya/new_posts_list' component={NewPosts}/>
                         <Route path='/ziznannya/:post_id' component={Post}/>
                     </Switch>
-                    <Helmet>
-                        <title>Invischat - Анонімний Форум</title>
-                        <meta name="keywords" content="форум, анонімний форум, зізнання, історії, зізнання ТЗ, зізнання ІФ, шукаю тебе, знакомства, некто, штт, зізнання, форум Львів, форум Тернопіль, Invischat"/>
-                        <meta name="description" content="Думки, історії, зізнання... Invischat - Відкрий душу, не втративши гідності"/>
-                    </Helmet>
                 </div>
             </React.Fragment>
         )

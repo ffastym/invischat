@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
 
     socket.on('create post', post => {
         mongodb.insertOne("newPosts", post).then(() => {
-            //MailSender.sendEmail(io, JSON.stringify(post));
+            MailSender.sendEmail(io, JSON.stringify(post));
             socket.emit('post added');
         }).catch((err) => console.log(err));
     });
@@ -126,7 +126,7 @@ io.on('connection', (socket) => {
                         nick: data.nick,
                         password: data.password,
                         likesQty: 0,
-                        likedPosts: []
+                        likedPosts: {}
                     };
 
                     mongodb.insertOne('users', {...userData}).then(() => {
