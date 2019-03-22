@@ -21,14 +21,37 @@ class Posts extends Component {
         super(props);
         
         this.state = {
+            fromCache: true,
             posts: [],
             lastPostIndex: 0,
             hasMore: true
         };
+
+        if (props.posts) {
+            this.loadPosts()
+        }
     }
 
     componentDidMount() {
         this.loadPosts();
+    }
+
+    componentDidUpdate(prevProps) {debugger;
+        if (!prevProps.posts && this.props.posts) {
+            this.loadPosts();
+        }
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.fromCache && nextProps.posts) {
+            return {
+                posts: [],
+                fromCache: false,
+                lastPostIndex: 0
+            };
+        }
+        
+        return null
     }
 
     scrollList = (e) => {
@@ -40,7 +63,8 @@ class Posts extends Component {
     };
 
     loadPosts = () => {
-        let posts = this.props.posts,
+        console.log(this.props.cachedPosts);
+        let posts = this.props.posts ? this.props.posts : this.props.cachedPosts,
             postIds = Object.keys(posts).reverse(),
             lastId = 0,
             list = [];
@@ -48,12 +72,12 @@ class Posts extends Component {
         if (posts && postIds.length) {
             let counter = 0;
 
-            postIds.forEach((postId, index) => {
+            postIds.forEach((postId) => {
                 if (!posts.hasOwnProperty(postId) || postIds.indexOf(postId) <= this.state.lastPostId) {
                     return
                 }
 
-                if (counter <= 4) {
+                if (counter <= 5) {
                     let postData = posts[postId];
 
                     list.push(

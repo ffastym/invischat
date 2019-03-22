@@ -25,10 +25,16 @@ class Forum extends Component {
     constructor(props) {
         super(props);
         
-        this.state = {};
+        this.state = {
+            cachedPosts: null
+        };
     }
 
     componentDidMount() {
+        const cachedPosts = JSON.parse(localStorage.getItem('postsData'));
+
+        this.setState({cachedPosts});
+
         if (!this.props.postsData) {
             socket.chat.emit('fetch posts')
         }
@@ -40,7 +46,8 @@ class Forum extends Component {
                 postsData[post.post_id] = post.post
             });
 
-            this.props.setAllPostsData(postsData)
+            this.props.setAllPostsData(postsData);
+            localStorage.setItem('postsData', JSON.stringify(postsData))
         });
 
         socket.chat.off('update post data').on('update post data', data => {
@@ -57,16 +64,16 @@ class Forum extends Component {
      */
     render() {
         let title = 'Анонімний Форум Зізнання',
-        description = 'Думки, історії, зізнання... Invischat - Відкрий душу, не втративши гідності',
-        keywords = 'форум, анонімний форум, зізнання, історії, зізнання ТЗ, зізнання ІФ, шукаю тебе, знакомства, некто, штт, зізнання, форум Львів, форум Тернопіль, Invischat';
+            description = 'Думки, історії, зізнання... Invischat - Відкрий душу, не втративши гідності',
+            keywords = 'форум, анонімний форум, зізнання, історії, зізнання ТЗ, зізнання ІФ, шукаю тебе, знакомства, некто, штт, зізнання, форум Львів, форум Тернопіль, Invischat';
 
 
         return (
             <div className='page-content forum'>
                 <Switch>
                     <Route exact path='/ziznannya' render = {() => (
-                        this.props.postsData
-                            ? <Posts posts={this.props.postsData}/>
+                        this.props.postsData || this.state.cachedPosts
+                            ? <Posts posts={this.props.postsData} cachedPosts={this.state.cachedPosts}/>
                             : <div className='loader-wrapper'>
                                 <Loader text='Пости завантажуються, будь ласка, зачекайте...'/>
                             </div>
