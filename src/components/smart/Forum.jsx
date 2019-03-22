@@ -11,6 +11,7 @@ import Post from "./Post";
 import {connect} from "react-redux";
 import Loader from "../dumb/Loader";
 import forumActions from "../../actions/forumActions";
+import {Helmet} from "react-helmet";
 
 /**
  * Forum component
@@ -55,24 +56,40 @@ class Forum extends Component {
      * Render Forum component
      */
     render() {
+        let title = 'Анонімний Форум Зізнання',
+        description = 'Думки, історії, зізнання... Invischat - Відкрий душу, не втративши гідності',
+        keywords = 'форум, анонімний форум, зізнання, історії, зізнання ТЗ, зізнання ІФ, шукаю тебе, знакомства, некто, штт, зізнання, форум Львів, форум Тернопіль, Invischat';
+
+
         return (
-            <React.Fragment>
-                <div className='page-content forum'>
-                    <Switch>
-                        <Route exact path='/ziznannya' render = {() => (
-                            this.props.postsData
-                                ? <Posts posts={this.props.postsData}/>
-                                : <div className='loader-wrapper'>
-                                    <Loader text='Пости завантажуються, будь ласка, зачекайте...'/>
-                                </div>
-                            )}
-                        />
-                        <Route exact path='/ziznannya/new_post' component={CreatePost}/>
-                        <Route exact path='/ziznannya/new_posts_list' component={NewPosts}/>
-                        <Route path='/ziznannya/:post_id' component={Post}/>
-                    </Switch>
-                </div>
-            </React.Fragment>
+            <div className='page-content forum'>
+                <Switch>
+                    <Route exact path='/ziznannya' render = {() => (
+                        this.props.postsData
+                            ? <Posts posts={this.props.postsData}/>
+                            : <div className='loader-wrapper'>
+                                <Loader text='Пости завантажуються, будь ласка, зачекайте...'/>
+                            </div>
+                        )}
+                    />
+                    <Route exact path='/ziznannya/new_post' component={CreatePost}/>
+                    <Route exact path='/ziznannya/new_posts_list' component={NewPosts}/>
+                    <Route path='/ziznannya/:post_id' component={Post}/>
+                </Switch>
+                <Helmet
+                    title={title}
+                    meta={[
+                        {
+                            name: 'description',
+                            content: description,
+                        },
+                        {
+                            name: 'keywords',
+                            content: keywords,
+                        }
+                    ]}
+                />
+            </div>
         )
     }
 }

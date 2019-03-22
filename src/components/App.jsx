@@ -20,7 +20,6 @@ import popUpActions from "../actions/popUpActions";
 import roomActions from "../actions/roomActions";
 import messageActions from "../actions/messageActions";
 import Forum from "./smart/Forum";
-import {Helmet} from "react-helmet";
 
 /**
  * App component
@@ -157,16 +156,7 @@ class App extends Component {
    * @returns {*}
    */
     render() {
-        let wrapperClassName = this.props.theme === 'dark' ? 'page-wrapper dark' : 'page-wrapper',
-            title = 'Invischat - Анонімний Чат',
-            description = 'Invischat - Анонімний чат з випадковим співрозмовником та форум зізнань',
-            keywords = 'чат, анонімний чат, lfyou, знайомства, чат знайомства в україні, знакомства, некто, чат онлайн, chat, шукаю тебе, анонімний чат тз, тз, шт, анонімний чат іф, зізнання, anonumous chat, чат невидимки, Invischat, анонімний чат, знайомства, шукаю тебе';
-
-        if (!this.props.ssr && window.location.href === 'https://www.invischat.com/ziznannya') {
-            title = 'Invischat | Анонімний Форум';
-            description = 'Думки, історії, зізнання... Invischat - Відкрий душу, не втративши гідності';
-            keywords = 'форум, анонімний форум, зізнання, історії, зізнання ТЗ, зізнання ІФ, шукаю тебе, знакомства, некто, штт, зізнання, форум Львів, форум Тернопіль, Invischat';
-        }
+        let wrapperClassName = this.props.theme === 'dark' ? 'page-wrapper dark' : 'page-wrapper';
 
         return (
             <div className={wrapperClassName}>
@@ -186,19 +176,6 @@ class App extends Component {
                 </div>
                 <Footer rating={this.props.rating}/>
                 {this.props.isPopUpShow && <PopUp/>}
-                <Helmet
-                    title={title}
-                    meta={[
-                        {
-                            name: 'description',
-                            content: description,
-                        },
-                        {
-                            name: 'keywords',
-                            content: keywords,
-                        }
-                    ]}
-                />
             </div>
         )
     }
