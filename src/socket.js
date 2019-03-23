@@ -181,6 +181,7 @@ const socket = {
                 key: messageId,
                 gender: state.user.gender,
                 nick: state.user.nick,
+                status: state.user.status,
                 isNoAdmin: state.user.isNoAdmin,
                 socketId: socket.chat.id,
                 room: message.type === 'private' ? state.room.roomName : null

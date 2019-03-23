@@ -18,6 +18,7 @@ const initialState = {
     isBlocked        : false,
     isModerator      : false,
     senderId         : null,
+    status           : null,
     senderNick       : null,
     interlocutorNick : null
 };

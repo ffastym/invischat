@@ -19,11 +19,22 @@
                     //text-shadow: 0 0 10px rgba(255, 255, 255, 1);
                 }
             }
+
+            .status {
+                position: absolute;
+                word-break: keep-all;
+                font-size: 9px;
+                line-height: 14px;
+                font-style: italic;
+                color: $color-white;
+                bottom: 0;
+            }
         }
     }
 
     &.anon {
-        .message.vip:after {
+        .message.vip:after,
+        .status {
             left: 3px;
         }
 
@@ -50,7 +61,8 @@
     }
 
     &.same {
-        .message.vip:after {
+        .message.vip:after,
+        .status {
             right: 3px;
         }
 

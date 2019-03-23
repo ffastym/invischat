@@ -68,7 +68,16 @@ table{
                     color:#FFFFFF;
                     bottom:0;
                 }
-.message-container.anon .message.vip:after{
+.message-container.anon .message .status, .message-container.same .message .status{
+                position:absolute;
+                word-break:keep-all;
+                font-size:9px;
+                line-height:14px;
+                font-style:italic;
+                color:#FFFFFF;
+                bottom:0;
+            }
+.message-container.anon .message.vip:after, .message-container.anon .status{
             left:3px;
         }
 .message-container.anon.active .message{
@@ -86,7 +95,7 @@ table{
 .message-container.anon .delete-message, .message-container.anon .like-message{
             left:30px;
         }
-.message-container.same .message.vip:after{
+.message-container.same .message.vip:after, .message-container.same .status{
             right:3px;
         }
 .message-container.same.active .message{

@@ -199,6 +199,8 @@ class ChatMessage extends Component {
                             dangerouslySetInnerHTML={{__html: this.state.messageText}}
                         />
                     }
+                    {this.props.status
+                        && <span className="status">{this.props.status}</span>}
                     {this.props.image &&
                         <span className="message-image">
                             <img src={this.props.image}
