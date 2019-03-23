@@ -11,6 +11,7 @@ import mongodb from '../mongodb'
 let clientsCount = 0,
     users = {},
     rating = null,
+    lastMessages = [],
     rooms = {
         male   : {},
         female : {}
@@ -243,6 +244,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('send public message', (message) => {
+        lastMessages.push(message);
+
+        if (lastMessages.length >= 100) {
+            lastMessages.splice(0,1)
+        }
+
         io.emit('get public message', message)
     });
 
@@ -320,6 +327,10 @@ io.on('connection', (socket) => {
         io.emit('change clients', users);
         socket.broadcast.emit('new user connected', data.nick);
         io.to(socket.id).emit('get public chat info');
+    });
+
+    socket.on('fetch last messages', () => {
+        socket.emit('get last messages', lastMessages)
     });
 
     socket.on('reconnect to public chat', (data) => {

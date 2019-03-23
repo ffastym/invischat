@@ -82,63 +82,21 @@ class MessagesWrapper extends PureComponent {
 
             socket.chat.off('liked message').on('liked message', (data) => {
                 this.likesHandler(data)
+            });
+
+            socket.chat.emit('fetch last messages');
+
+            socket.chat.off('get last messages').on('get last messages', messages => {
+                if (messages.length) {
+                    messages.forEach(message => {
+                        this.displayMessage(message)
+                    })
+                }
             })
         }
 
         socket.chat.off(getMessageEvent).on(getMessageEvent, (message) => {
-            //Ignore message if client is muted
-            if (this.props.mutedList.indexOf(message.socketId) !== -1) {
-                return false
-            }
-
-            const isAlien = message.socketId !== socket.chat.id;
-
-            if (message.botMessage) {
-                return this.sendBotMessage(message.botMessage)
-            }
-
-            if (this.props.isMobile) {
-                if (type === 'private' && this.props.chatPosition !== 0) {
-                    this.props.setNewMessagesQty(this.props.newMessagesQty + 1)
-                }
-
-                if (type === 'public' && this.props.chatPosition === 0) {
-                    this.props.setNewMessagesQty(this.props.newMessagesQty + 1)
-                }
-            }
-
-            if (isAlien) {
-                this.scrollToLastMessage();
-
-                if (this.props.isNotificationsEnabled && type === 'private' && this.state.notify) {
-                    this.state.notify.play();
-                }
-            } else {
-                this.scrollToLastMessage(true);
-            }
-
-            this.setState({
-                messages: this.state.messages.concat(
-                    <ChatMessage key={message.messageId}
-                                 message={message.text}
-                                 type={this.props.type}
-                                 label={socket.chat.id !== message.socketId ? 'anon' : 'you'}
-                                 messageId={message.messageId}
-                                 quotedMessage={message.quotedMessage}
-                                 quotedImage={message.quotedImage}
-                                 publicColor={message.publicColor}
-                                 isNoAdmin={message.isNoAdmin}
-                                 socketId={message.socketId}
-                                 gender={message.gender}
-                                 nickName={message.nick}
-                                 image={message.imageUrl}
-                    />
-                )
-            });
-
-            if (message.imageUrl) {
-                this.props.addImageToGallery({url: message.imageUrl, type: this.props.type})
-            }
+            this.displayMessage(message)
         });
 
         socket.chat.off('deleted message').on('deleted message', (id) => {
@@ -150,6 +108,63 @@ class MessagesWrapper extends PureComponent {
         });
 
         this.props.isMobile && window.addEventListener("resize", this.resizeHandler)
+    };
+
+    displayMessage = message => {
+        const type = this.props.type;
+        //Ignore message if client is muted
+        if (this.props.mutedList.indexOf(message.socketId) !== -1) {
+            return false
+        }
+
+        const isAlien = message.socketId !== socket.chat.id;
+
+        if (message.botMessage) {
+            return this.sendBotMessage(message.botMessage)
+        }
+
+        if (this.props.isMobile) {
+            if (type === 'private' && this.props.chatPosition !== 0) {
+                this.props.setNewMessagesQty(this.props.newMessagesQty + 1)
+            }
+
+            if (type === 'public' && this.props.chatPosition === 0) {
+                this.props.setNewMessagesQty(this.props.newMessagesQty + 1)
+            }
+        }
+
+        if (isAlien) {
+            this.scrollToLastMessage();
+
+            if (this.props.isNotificationsEnabled && type === 'private' && this.state.notify) {
+                this.state.notify.play();
+            }
+        } else {
+            this.scrollToLastMessage(true);
+        }
+
+        this.setState({
+            messages: this.state.messages.concat(
+                <ChatMessage key={message.messageId}
+                             message={message.text}
+                             type={this.props.type}
+                             label={socket.chat.id !== message.socketId ? 'anon' : 'you'}
+                             messageId={message.messageId}
+                             quotedMessage={message.quotedMessage}
+                             quotedImage={message.quotedImage}
+                             publicColor={message.publicColor}
+                             isNoAdmin={message.isNoAdmin}
+                             socketId={message.socketId}
+                             gender={message.gender}
+                             nickName={message.nick}
+                             image={message.imageUrl}
+                />
+            )
+        });
+
+        if (message.imageUrl) {
+            this.props.addImageToGallery({url: message.imageUrl, type: this.props.type})
+        }
     };
 
     resizeHandler = () => {
@@ -379,7 +394,7 @@ class MessagesWrapper extends PureComponent {
     getScrollHeight = () => {
         const chat = this.chatTextRef;
 
-        if (chat.scrollHeight === Math.ceil(chat.scrollTop + chat.clientHeight)) {
+        if (chat.scrollHeight - 1 <= chat.scrollTop + chat.clientHeight) {
             this.setState({
                 newMessagesQty: 0
             })
