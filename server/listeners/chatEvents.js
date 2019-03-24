@@ -246,6 +246,10 @@ io.on('connection', (socket) => {
     socket.on('send public message', (message) => {
         lastMessages.push(message);
 
+        if (!users.userId) {
+            socket.emit('need users update')
+        }
+
         if (lastMessages.length >= 50) {
             lastMessages.splice(0,1)
         }

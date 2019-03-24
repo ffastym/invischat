@@ -174,15 +174,15 @@ if ('function' === typeof importScripts) {
   },
   {
     "url": "index.html",
-    "revision": "6edb09ab0ab76ee57ebba3b2bb718d2d"
+    "revision": "f8e85b293fed5c4e2e443d411a1dd25e"
   },
   {
-    "url": "precache-manifest.29c73883bcd822ceac4a380c7b8b6eac.js",
-    "revision": "29c73883bcd822ceac4a380c7b8b6eac"
+    "url": "precache-manifest.c6b03097f289b9578802a6495eb10ddb.js",
+    "revision": "c6b03097f289b9578802a6495eb10ddb"
   },
   {
     "url": "service-worker.js",
-    "revision": "680de4a4ea6c4f36f075dd78a260094d"
+    "revision": "0886aee249ff6bd750f8ddb058cb5c97"
   },
   {
     "url": "static/css/2.e8ce0df9.chunk.css",
@@ -201,8 +201,8 @@ if ('function' === typeof importScripts) {
     "revision": "94530d28d3c53e44ccc05769e91e931a"
   },
   {
-    "url": "static/js/main.37730bee.chunk.js",
-    "revision": "c656feb43d55041b45781312cfda174e"
+    "url": "static/js/main.899ebf3e.chunk.js",
+    "revision": "b802d77008aa881e3a24a46df21f637b"
   },
   {
     "url": "static/js/runtime~main.9731bda5.js",
@@ -222,7 +222,7 @@ if ('function' === typeof importScripts) {
                 plugins: [
                     new workbox.expiration.Plugin({
                         maxEntries: 60,
-                        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+                        maxAgeSeconds: 30 * 24 * 60 * 60, // 7 Days
                     }),
                 ],
             })

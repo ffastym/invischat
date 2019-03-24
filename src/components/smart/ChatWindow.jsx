@@ -33,6 +33,12 @@ class ChatWindow extends Component {
         };
     }
 
+    componentDidMount() {
+        socket.chat.off('need users update').on('need users update', () => {
+            socket.updateUsersList()
+        })
+    }
+
     /**
      * Drop image in dropzone handler
      *

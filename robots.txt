@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /ziznannya/new_posts_list
+Disallow: /ziznannya/privacy_policy
 Host: invisiblechat.herokuapp.com
