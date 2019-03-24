@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import App from '../../src/components/App'
+import Head from '../../src/components/dumb/Head'
 import {StaticRouter} from "react-router-dom"
 import path from "path"
 import fs from "fs"
@@ -32,6 +33,10 @@ export default (req, res) => {
             console.error('err', err);
             return res.status(404).end()
         }
+
+        htmlData = htmlData.replace(
+            `</head>`,
+            `${ReactDOMServer.renderToString(<Head url={req.url}/>)}</head>`);
 
         const context = {};
         // render the app as a string

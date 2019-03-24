@@ -134,6 +134,13 @@ header {
     border-bottom: $chat-border;
 }
 
+header,
+footer {
+    position: relative;
+    background: $color-white;
+    z-index: 2;
+}
+
 input,
 textarea {
     outline: none;

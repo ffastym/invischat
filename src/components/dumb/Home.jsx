@@ -3,7 +3,6 @@
  */
 import React from 'react'
 import  { Redirect } from 'react-router-dom'
-import {Helmet} from "react-helmet"
 import userActions from '../../actions/userActions'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
@@ -17,10 +16,6 @@ import {NavLink} from 'react-router-dom'
  * @constructor
  */
 const Home = (props) => {
-    let title = 'Invischat - Анонімний Чат | Анонімний Форум',
-        description = 'Анонімний чат з випадковим співрозмовником і форум "Зізнання". Знайомства та спілкування. Відкрий душу, не втративши гідності',
-        keywords = 'чат, анонімний чат, форум, lfyou, знайомства, чат знайомства в україні, знакомства, некто, чат онлайн, chat, шукаю тебе, анонімний чат тз, тз, шт, анонімний чат іф, зізнання, анонімний форум, anonumous chat, чат невидимки, Invischat, анонімний чат, типове зізнання, шукаю тебе';
-
     if (!props.ssr) {
         const gender = localStorage && localStorage.getItem('gender');
 
@@ -32,19 +27,6 @@ const Home = (props) => {
 
     return (
         <div className='page-content home'>
-            <Helmet
-                title={title}
-                meta={[
-                    {
-                        name: 'description',
-                        content: description,
-                    },
-                    {
-                        name: 'keywords',
-                        content: keywords,
-                    }
-                ]}
-            />
             <div className='main-logo'>
                 <img src='/images/logo.png' alt='Invischat'/>
             </div>

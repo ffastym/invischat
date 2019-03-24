@@ -483,6 +483,9 @@ table{
                         transform:rotate(360deg);
                 transition:.1s;
             }
+.action-secondary.cancel:before{
+            content:'\f28d';
+        }
 .action-secondary.save-user:before{
             content:'\f004';
         }
@@ -1613,7 +1616,7 @@ footer{
 .dark main, .dark .chat-text{
         background:#2F2F2F;
     }
-.dark .write-animation, .dark .action-secondary, .dark .unread-messages-count, .dark .pop-up, .dark .emoji-mart .emoji-mart-category-label > span, .dark .emoji-mart, .dark .emoji-mart input, .dark .preview-wrapper, .dark .quote-wrapper, .dark .post-toolbar, .dark .post-add, .dark textarea, .dark input, .dark button{
+.dark .write-animation, .dark .action-secondary, .dark .unread-messages-count, .dark .pop-up, .dark .emoji-mart .emoji-mart-category-label > span, .dark .emoji-mart, .dark .emoji-mart input, .dark .preview-wrapper, .dark .quote-wrapper, .dark .post-toolbar, .dark .post-add, .dark textarea, .dark header, .dark footer, .dark input, .dark button{
         background:#2A2A2A;
         color:#E3E3E3;
     }
@@ -1798,6 +1801,11 @@ input[type='checkbox']{
     }
 header{
     border-bottom:1px solid #808080;
+}
+header, footer{
+    position:relative;
+    background:#FFFFFF;
+    z-index:2;
 }
 input, textarea{
     outline:none;

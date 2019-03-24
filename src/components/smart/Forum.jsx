@@ -11,8 +11,6 @@ import Post from "./Post";
 import {connect} from "react-redux";
 import Loader from "../dumb/Loader";
 import forumActions from "../../actions/forumActions";
-import {Helmet} from "react-helmet";
-
 /**
  * Forum component
  */
@@ -56,11 +54,6 @@ class Forum extends Component {
      * Render Forum component
      */
     render() {
-        let title = 'Анонімний Форум Зізнання',
-        description = 'Думки, історії, зізнання... Invischat - Відкрий душу, не втративши гідності',
-        keywords = 'форум, анонімний форум, зізнання, історії, зізнання ТЗ, зізнання ІФ, шукаю тебе, знакомства, некто, штт, зізнання, форум Львів, форум Тернопіль, Invischat';
-
-
         return (
             <div className='page-content forum'>
                 <Switch>
@@ -76,19 +69,6 @@ class Forum extends Component {
                     <Route exact path='/ziznannya/new_posts_list' component={NewPosts}/>
                     <Route path='/ziznannya/:post_id' component={Post}/>
                 </Switch>
-                <Helmet
-                    title={title}
-                    meta={[
-                        {
-                            name: 'description',
-                            content: description,
-                        },
-                        {
-                            name: 'keywords',
-                            content: keywords,
-                        }
-                    ]}
-                />
             </div>
         )
     }

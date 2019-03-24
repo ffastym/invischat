@@ -10,8 +10,6 @@ import appActions from "../../actions/appActions";
 import userActions from "../../actions/userActions";
 import messageActions from "../../actions/messageActions";
 import Gallery from "./Gallery";
-import {Helmet} from "react-helmet";
-
 /**
  * Chat page component
  */
@@ -150,10 +148,6 @@ class Chat extends Component {
      * @returns {*}
      */
     render() {
-        let title = 'Invischat - Анонімний Чат',
-            description = 'Invischat - Анонімний чат з випадковим співрозмовником та форум зізнань',
-            keywords = 'чат, анонімний чат, lfyou, знайомства, чат знайомства в україні, знакомства, некто, чат онлайн, chat, шукаю тебе, анонімний чат тз, тз, шт, анонімний чат іф, зізнання, anonumous chat, чат невидимки, Invischat, анонімний чат, знайомства, шукаю тебе';
-
         if (!this.props.ssr) {
             if (!localStorage.getItem('gender')) {
                 return <Redirect to='/'/>
@@ -173,19 +167,6 @@ class Chat extends Component {
                         {this.props.isGalleryActive && <Gallery/>}
                     </div>
                 </div>
-                <Helmet
-                    title={title}
-                    meta={[
-                        {
-                            name: 'description',
-                            content: description,
-                        },
-                        {
-                            name: 'keywords',
-                            content: keywords,
-                        }
-                    ]}
-                />
             </div>
         )
     }

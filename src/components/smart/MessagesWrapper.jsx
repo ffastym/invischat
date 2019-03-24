@@ -285,7 +285,8 @@ class MessagesWrapper extends PureComponent {
         const isPrivate = this.props.type === 'private';
 
         if (isPrivate && this.props.room && !this.props.isFull) {
-            return this.props.showPopUp('CAN_NOT_REFRESH')
+            this.sendBotMessage('SEARCH_CANCEL');
+            return socket.leaveRoom()
         }
 
         this.setState({
@@ -338,6 +339,9 @@ class MessagesWrapper extends PureComponent {
                 break;
             case 'USER_DISCONNECTED' :
                 text = 'У співрозмовника виникли проблеми зі з\'єднанням. Очікуємо відновлення зв\'язку';
+                break;
+            case 'SEARCH_CANCEL' :
+                text = 'Пошук співрозмовника припинено';
                 break;
             case 'ROOM_IS_EMPTY' :
                 if (this.props.isFull) {
@@ -448,8 +452,12 @@ class MessagesWrapper extends PureComponent {
      * Render MessagesWrapper component
      */
     render() {
-        const saveUserClassName = this.props.likedList[this.props.interlocutorId] ?
-            'action-secondary save-user saved' : 'action-secondary save-user';
+        const saveUserClassName = this.props.likedList[this.props.interlocutorId]
+                ? 'action-secondary save-user saved'
+                : 'action-secondary save-user',
+              searchNewClassName =  this.props.type === 'private' && this.props.room && !this.props.isFull
+                ? 'action-secondary cancel'
+                : 'action-secondary refresh';
 
         return (
             <div className='chat-text-wrapper'
@@ -457,7 +465,7 @@ class MessagesWrapper extends PureComponent {
                  onClick={this.toggleList}
                  ref={this.getChatTextWrapperRef}>
                 <div className="actions-secondary">
-                    <span className="action-secondary refresh"
+                    <span className={searchNewClassName}
                           title="шукати нового співрозмовника"
                           onClick={this.refreshChat}
                     />

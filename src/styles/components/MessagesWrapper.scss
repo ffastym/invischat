@@ -104,6 +104,12 @@
         }
     }
 
+    &.cancel {
+        &:before {
+            content: $fa-stop;
+        }
+    }
+
     &.save-user {
         &:before {
             content: $fa-heart;
