@@ -9,6 +9,7 @@ import Home from './dumb/Home'
 import Nav from './dumb/Nav'
 import ContactUs from './smart/ContactUs'
 import PopUp from './smart/PopUp';
+import Gallery from "./dumb/Gallery";
 import PrivacyPolicy from './dumb/PrivacyPolicy'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
@@ -176,6 +177,7 @@ class App extends Component {
                 </div>
                 <Footer rating={this.props.rating}/>
                 {this.props.isPopUpShow && <PopUp/>}
+                {this.props.isGalleryActive && <Gallery/>}
             </div>
         )
     }
@@ -183,16 +185,17 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isNavActive : state.app.isNavActive,
-        theme       : state.app.theme,
-        likesCount  : state.user.likesCount,
-        isInChat    : state.app.isInChat,
-        isFull      : state.room.isFull,
-        room        : state.room.roomName,
-        userId      : state.user.userId,
-        isMobile    : state.app.isMobile,
-        chatPosition: state.app.chatPosition,
-        isPopUpShow : state.popup.isPopUpShow
+        isNavActive     : state.app.isNavActive,
+        theme           : state.app.theme,
+        likesCount      : state.user.likesCount,
+        isInChat        : state.app.isInChat,
+        isFull          : state.room.isFull,
+        isGalleryActive : state.gallery.isActive,
+        room            : state.room.roomName,
+        userId          : state.user.userId,
+        isMobile        : state.app.isMobile,
+        chatPosition    : state.app.chatPosition,
+        isPopUpShow     : state.popup.isPopUpShow
     }
 };
 

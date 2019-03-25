@@ -9,7 +9,6 @@ import {connect} from "react-redux";
 import appActions from "../../actions/appActions";
 import userActions from "../../actions/userActions";
 import messageActions from "../../actions/messageActions";
-import Gallery from "./Gallery";
 /**
  * Chat page component
  */
@@ -164,7 +163,6 @@ class Chat extends Component {
                          style={!this.props.isMobile ? {left: this.props.chatPosition + "px", transition: "linear .1s"} : {}}>
                         <ChatWindow type='private' ssr={this.props.ssr}/>
                         <ChatWindow type='public' ssr={this.props.ssr}/>
-                        {this.props.isGalleryActive && <Gallery/>}
                     </div>
                 </div>
             </div>
@@ -176,7 +174,6 @@ const mapStateToProps = (state) => {
     return {
         chatPosition    : state.app.chatPosition,
         publicColor     : state.message.publicColor,
-        isGalleryActive : state.gallery.isActive,
         gender          : state.user.gender,
         allUsersList    : state.user.allUsersList,
         userId          : state.user.userId,
