@@ -12,6 +12,7 @@ import PopUp from './smart/PopUp';
 import Gallery from "./dumb/Gallery";
 import PrivacyPolicy from './dumb/PrivacyPolicy'
 import React, {Component} from 'react'
+import CookiesBanner from './dumb/CookiesBanner'
 import {connect} from 'react-redux'
 import {Switch, Route, withRouter} from 'react-router-dom'
 import socket from "../socket"
@@ -50,6 +51,10 @@ class App extends Component {
 
         if (localStorage.getItem('block')) {
             this.props.setBanStatus(true)
+        }
+
+        if (localStorage.getItem('acceptCookies')) {
+            this.props.acceptCookies()
         }
 
         if (localStorage.getItem('not_admin')) {
@@ -178,6 +183,8 @@ class App extends Component {
                 <Footer rating={this.props.rating}/>
                 {this.props.isPopUpShow && <PopUp/>}
                 {this.props.isGalleryActive && <Gallery/>}
+                {!this.props.ssr && !this.props.isAcceptCookies
+                    && <CookiesBanner/>}
             </div>
         )
     }
@@ -189,6 +196,7 @@ const mapStateToProps = (state) => {
         theme           : state.app.theme,
         likesCount      : state.user.likesCount,
         isInChat        : state.app.isInChat,
+        isAcceptCookies : state.app.isAcceptCookies,
         isFull          : state.room.isFull,
         isGalleryActive : state.gallery.isActive,
         room            : state.room.roomName,
@@ -208,6 +216,13 @@ const mapDispatchToProps = (dispatch) => {
          */
         changeOnlineCount: (count) => {
             dispatch(appActions.changeOnlineCount(count))
+        },
+
+        /**
+         * Accept Cookies
+         */
+        acceptCookies: () => {
+            dispatch(appActions.acceptCookies())
         },
 
         /**

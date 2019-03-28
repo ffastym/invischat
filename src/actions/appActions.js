@@ -13,6 +13,14 @@ const appActions = {
         }
     },
 
+    acceptCookies: () => {
+        localStorage.setItem('acceptCookies', 'true');
+
+        return {
+            type: 'ACCEPT_COOKIES'
+        }
+    },
+
     /**
      * Set connection status
      *

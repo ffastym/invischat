@@ -8,6 +8,7 @@ const initialState = {
     isNavActive            : false,
     isNeedRedirect         : true,
     isInChat               : false,
+    isAcceptCookies        : false,
     isNotificationsEnabled : true,
     onlineCount            : null,
     theme                  : 'light'
@@ -19,6 +20,12 @@ const appReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 isNavActive: !state.isNavActive
+            };
+            break;
+        case 'ACCEPT_COOKIES':
+            state = {
+                ...state,
+                isAcceptCookies: true
             };
             break;
         case 'SET_CHAT_POSITION':

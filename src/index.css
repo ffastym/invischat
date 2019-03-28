@@ -1350,6 +1350,20 @@ img.lazy-image.loaded{
             padding-left:35px;
             text-align:left;
         }
+.cookies-banner{
+    position:fixed;
+    z-index:999;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:5px;
+    background:white;
+    box-shadow:0 0 5px 0 rgba(0,0,0,.4);
+    text-align:center;
+}
+.cookies-banner button{
+        margin-top:10px;
+    }
 .image-gallery{
     position:fixed;
     top:0;
