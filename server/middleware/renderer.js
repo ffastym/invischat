@@ -13,6 +13,7 @@ let rating = null,
     posts = null;
 
 export default (req, res) => {
+    console.log('test ---> ', 'text');
     mongodb.getData("app", {"ratingDocument": true}).then((result) => {
         if (result.length && result[0].hasOwnProperty('rating')) {
             rating = result[0].rating;

@@ -19,7 +19,7 @@ router.get('/ziznannya/:post_id', serverRenderer);
 router.get('/ziznannya/new_post', serverRenderer);
 router.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
-app.use(enforce.HTTPS({ trustXForwardedHostHeader: true,  trustProtoHeader: true }));
+//app.use(enforce.HTTPS({ trustXForwardedHostHeader: true,  trustProtoHeader: true }));
 app.use(router);
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));

@@ -17,8 +17,6 @@ const Nav = (props) => {
     return (
         <nav className="menu">
             <NavLink className="nav-link" exact onClick={props.toggleMenu} to='/'>Головна</NavLink>
-            <NavLink className="nav-link" onClick={props.toggleMenu} to='/chat'>Чат</NavLink>
-            <NavLink className="nav-link" exact onClick={props.toggleMenu} to='/ziznannya'>Зізнання</NavLink>
             <NavLink className="nav-link" onClick={props.toggleMenu} to='/contact_us'>Написати Нам</NavLink>
             <NavLink className="nav-link" onClick={props.toggleMenu} to='/privacy_policy'>Політика <br/> Конфіденційності</NavLink>
         </nav>
