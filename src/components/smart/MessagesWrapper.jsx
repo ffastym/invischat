@@ -49,7 +49,8 @@ class MessagesWrapper extends PureComponent {
 
         if (type === 'private') {
             let message = 'Очікуємо співрозмовника... </br> Поки йде пошук, можете поспілкуватися' +
-                ' в загальному чаті.';
+                ' в загальному чаті. або подітитися цікавою' +
+                ' історією <a href="https://pidsluhano.herokuapp.com" target="_blank">ТУТ</a>';
 
             if (this.props.isMobile) {
                 message += '</br> Щоб перейти в загальний чат зробіть свайп вліво ' +

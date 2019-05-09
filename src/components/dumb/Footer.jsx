@@ -14,7 +14,7 @@ const Footer = ({rating}) => {
     return (
         <footer>
             <RatingSnippet rating={rating}/>
-            <div className="fb-like" data-href="https://www.invischat.com" data-layout="button_count" data-action="like"
+            <div className="fb-like" data-href="http://www.invischat.com" data-layout="button_count" data-action="like"
                  data-size="small" data-show-faces="false" data-share="false">Like</div>
         </footer>
     )
