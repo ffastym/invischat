@@ -174,11 +174,16 @@ const socket = {
                 state = store.getState(),
                 type = message.type;
 
+            let date = new Date(),
+                hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+                minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+
             let messageData = {
                 ...message,
                 publicColor: type === 'public' && state.message.publicColor,
                 messageId: messageId,
                 key: messageId,
+                date: hours + ':' + minutes,
                 gender: state.user.gender,
                 nick: state.user.nick,
                 status: type === 'public' && state.user.status,

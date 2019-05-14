@@ -23,7 +23,6 @@ class ChatMessage extends Component {
             messageText: null,
             deletedImageUrl: '/images/deleted.jpg',
             isShowActions: false,
-            date: null,
             isLiked: false
         };
 
@@ -38,10 +37,7 @@ class ChatMessage extends Component {
     componentDidMount() {
         this.detectURL(this.props.message);
 
-        let date = new Date(),
-            hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
-            minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
-            name;
+        let name;
 
         if (this.props.type === 'public') {
             name = this.props.nickName
@@ -53,10 +49,7 @@ class ChatMessage extends Component {
             name = 'Ви'
         }
 
-        this.setState({
-            date: !this.state.date ? hours + ':' + minutes : this.state.date,
-            name: name
-        })
+        this.setState({name})
     }
 
     /**
@@ -176,7 +169,7 @@ class ChatMessage extends Component {
 
         return (
             <p className={containerClassName} id={this.props.messageId}>
-                {isYourMessage
+                {isYourMessage || this.props.isModerator
                     ? <span className="message-action delete-message"
                             onClick={this.deleteMessage}
                             title="видалити повідомлення"
@@ -217,7 +210,7 @@ class ChatMessage extends Component {
                             {this.props.quotedImage && <img src={this.props.quotedImage} alt=""/>}
                         </span>}
                 </span>
-                <span className="time">{this.state.name + ", " + this.state.date}</span>
+                <span className="time">{this.state.name + ", " + this.props.date}</span>
             </p>
         )
     }
@@ -227,6 +220,7 @@ const mapStateToProps = (state) => {
     return {
         nick       : state.user.nick,
         userGender : state.user.gender,
+        isModerator: state.user.isModerator,
         gallery    : state.gallery
     }
 };

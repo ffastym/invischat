@@ -57,10 +57,15 @@ class MessagesWrapper extends PureComponent {
                 '<img width="50px" src="/images/swipe.gif" alt="swipe invischat"/>'
             }
 
+            let date = new Date(),
+                hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+                minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+
             this.setState({
                 messages: this.state.messages.concat(<ChatMessage
                     key={Math.round(100000 + Math.random() * (999999 - 100000))}
                     gender="bot"
+                    date={hours + ':' + minutes}
                     message={message}
                     socketId={null}
                     label='bot'
@@ -152,6 +157,7 @@ class MessagesWrapper extends PureComponent {
                              label={socket.chat.id !== message.socketId ? 'anon' : 'you'}
                              messageId={message.messageId}
                              quotedMessage={message.quotedMessage}
+                             date={message.date}
                              quotedImage={message.quotedImage}
                              publicColor={message.publicColor}
                              status={message.status}
@@ -197,6 +203,7 @@ class MessagesWrapper extends PureComponent {
                     <ChatMessage key={message.messageId}
                                  message={message.text}
                                  type={message.type}
+                                 date={message.date}
                                  label={socket.chat.id !== message.socketId ? 'anon' : 'you'}
                                  messageId={message.messageId}
                                  quotedMessage={message.quotedMessage}
@@ -380,10 +387,15 @@ class MessagesWrapper extends PureComponent {
             return
         }
 
+        let date = new Date(),
+            hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+            minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+
         this.setState({
             messages: this.state.messages.concat(
                 <ChatMessage key={Math.round(100000 + Math.random() * (999999 - 100000))}
                              gender="bot"
+                             date={hours + ':' + minutes}
                              socketId={null}
                              message={text}
                              label='bot'

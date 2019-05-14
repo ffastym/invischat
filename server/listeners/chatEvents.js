@@ -374,6 +374,10 @@ io.on('connection', (socket) => {
     });
 
     socket.on('delete message', (id) => {
+        lastMessages = lastMessages.filter((message) => {
+            return message.messageId !== id
+        });
+
         io.emit('deleted message', id)
     });
 
