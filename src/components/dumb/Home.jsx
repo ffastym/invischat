@@ -28,18 +28,18 @@ const Home = (props) => {
     return (
         <div className='page-content home'>
             <div className='main-logo'>
-                <img src='/images/logo.png' alt='Invischat'/>
+                <h1>TerChat</h1>
             </div>
             <div className='gender-hint'>Обери свою стать:</div>
             <div className='gender-fieldset'>
                 <NavLink className='gender female'
-                         aria-label="Invischat дівчина"
+                         aria-label="TerChat дівчина"
                          onClick={() => {props.setGender('female')}}
                          to='/chat'>
                     <img src='../../images/female.png' alt=''/>
                 </NavLink>
                 <NavLink className='gender male'
-                         aria-label="Invischat хлопець"
+                         aria-label="TerChat хлопець"
                          onClick={() => {props.setGender('male')}}
                          to='/chat'>
                     <img src='../../images/male.png' alt=''/>

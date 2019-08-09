@@ -74,7 +74,7 @@ $footer-sm-height: 45px;
 $header-md-height: 45px;
 $private-chat-md-width: 49.5%;
 $public-chat-md-width: 49.5%;
-$main-sm-height: calc(100% - (#{$header-sm-height} + #{$footer-sm-height}));
+$main-sm-height: calc(100% - #{$header-sm-height});
 
 /*
   Borders
@@ -83,6 +83,7 @@ $chat-border-color: $color-gray;
 $chat-border: 1px solid $chat-border-color;
 $chat-border-radius: 15px;
 $pop-up-border-radius: 25px;
+$light-shadow: 0 0 5px -2px rgba(0,0,0,.7);
 
 /*
   FA icons

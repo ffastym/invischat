@@ -3,7 +3,6 @@
  */
 import Aside from './dumb/Aside'
 import Chat from './dumb/Chat'
-import Footer from './dumb/Footer'
 import Header from './dumb/Header'
 import Home from './dumb/Home'
 import Nav from './dumb/Nav'
@@ -180,7 +179,6 @@ class App extends Component {
                         </Switch>
                     </main>
                 </div>
-                <Footer rating={this.props.rating}/>
                 {this.props.isPopUpShow && <PopUp/>}
                 {this.props.isGalleryActive && <Gallery/>}
                 {!this.props.ssr && !this.props.isAcceptCookies

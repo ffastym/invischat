@@ -131,14 +131,11 @@ input {
     }
 }
 
-header {
-    border-bottom: $chat-border;
-}
-
 header,
 footer {
     position: relative;
     background: $color-white;
+    box-shadow: $light-shadow;
     z-index: 2;
 }
 
@@ -161,6 +158,16 @@ textarea {
     font-style: italic;
     color: $color-red;
     margin-top: 10px;
+}
+
+.main-logo h1 {
+    font-size: 50px;
+    line-height: 1.5;
+    color: $color-dark-grey;
+
+    @media(--sm-min) {
+        font-size: 72px;
+    }
 }
 
 .page-wrapper {

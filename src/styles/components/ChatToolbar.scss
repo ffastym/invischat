@@ -2,14 +2,20 @@
 
 .chat-actions-toolbar {
     position: relative;
+    z-index: 2;
 
     .actions-wrapper {
         justify-content: space-between;
         align-items: flex-end;
-        border-top: $chat-border;
+        box-shadow: $light-shadow;
         display: flex;
         min-height: max-content;
         padding: 10px;
+
+        @media (--sm-min) {
+            box-shadow: none;
+            border-top: $chat-border
+        }
     }
 
     &.disabled {
