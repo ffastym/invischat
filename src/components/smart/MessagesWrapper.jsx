@@ -145,30 +145,31 @@ class MessagesWrapper extends PureComponent {
             if (this.props.isNotificationsEnabled && type === 'private' && this.state.notify) {
                 this.state.notify.play();
             }
+
+          this.setState({
+            messages: this.state.messages.concat(
+              <ChatMessage key={message.messageId}
+                           message={message.text}
+                           type={this.props.type}
+                           label={socket.chat.id !== message.socketId ? 'anon' : 'you'}
+                           messageId={message.messageId}
+                           quotedMessage={message.quotedMessage}
+                           date={message.date}
+                           quotedImage={message.quotedImage}
+                           publicColor={message.publicColor}
+                           status={message.status}
+                           isNoAdmin={message.isNoAdmin}
+                           socketId={message.socketId}
+                           gender={message.gender}
+                           nickName={message.nick}
+                           image={message.imageUrl}
+              />
+            )
+          });
         } else {
+            document.getElementById(message.messageId).dataset.sent = "true"
             this.scrollToLastMessage(true);
         }
-
-        this.setState({
-            messages: this.state.messages.concat(
-                <ChatMessage key={message.messageId}
-                             message={message.text}
-                             type={this.props.type}
-                             label={socket.chat.id !== message.socketId ? 'anon' : 'you'}
-                             messageId={message.messageId}
-                             quotedMessage={message.quotedMessage}
-                             date={message.date}
-                             quotedImage={message.quotedImage}
-                             publicColor={message.publicColor}
-                             status={message.status}
-                             isNoAdmin={message.isNoAdmin}
-                             socketId={message.socketId}
-                             gender={message.gender}
-                             nickName={message.nick}
-                             image={message.imageUrl}
-                />
-            )
-        });
 
         if (message.imageUrl) {
             this.props.addImageToGallery({url: message.imageUrl, type: this.props.type})
@@ -182,19 +183,12 @@ class MessagesWrapper extends PureComponent {
     componentDidUpdate(prevProps, prevState, snapshot) {
         let message = this.props.fakeMessageData;
 
-        if (prevProps.isConnected && !this.props.isConnected) {
-            setTimeout(() => {
-                this.sendBotMessage('CONNECTION_PROBLEM');
-            }, 100)
-        }
-
         if (!prevProps.isConnected && this.props.isConnected) {
             if (this.props.type === 'private') {
                 socket.reJoinRoom()
             }
 
             socket.updateUsersList();
-            this.sendBotMessage('CONNECTION_RESTORED');
         }
 
         if (prevProps.fakeMessageData.key !== message.key && this.props.type === message.type) {

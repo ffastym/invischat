@@ -163,12 +163,11 @@ class ChatToolbar extends Component {
     render() {
         const type = this.props.type,
               roomIsFull = this.props.isFull,
-              isConnected = this.props.isConnected,
               imagePreviewUrl = type === 'public' ? this.props.publicImageUrl : this.props.privateImageUrl,
               isUploadedImage = type === 'public' ? this.props.publicIsUploadedImg : this.props.privateIsUploadedImg,
               quotedImage = type === 'public' ? this.props.publicQuotedImage : this.props.privateQuotedImage,
               quotedMessage = type === 'public' ? this.props.publicQuotedMessage : this.props.privateQuotedMessage,
-              isActive = (roomIsFull && isConnected) || (type === 'public'),
+              isActive = roomIsFull || type === 'public',
               toolbarClassName = isActive ? 'chat-actions-toolbar' : 'chat-actions-toolbar disabled',
               hasQuote = quotedMessage || quotedImage;
 
@@ -225,7 +224,6 @@ class ChatToolbar extends Component {
 const mapStateToProps = (state) => {
     return {
         isFull               : state.room.isFull,
-        isConnected          : state.app.isConnected,
         publicMessage        : state.message.public.text,
         privateMessage       : state.message.private.text,
         privateQuotedMessage : state.message.private.quotedMessage,

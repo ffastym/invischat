@@ -280,10 +280,6 @@ io.on('connection', (socket) => {
         socket.join(data.room, () => {
             socket.currentRoom = data.room;
             socket.gender = data.gender;
-
-            if (socket.adapter.rooms[data.room].length > 1) {
-                socket.broadcast.to(data.room).emit('get private message', {botMessage: 'CONNECTION_RESTORED'});
-            }
         });
 
         if (!data.isFull) {

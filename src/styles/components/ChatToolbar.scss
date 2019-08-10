@@ -24,6 +24,22 @@
         .actions-wrapper {
             pointer-events: none;
         }
+
+        .message-input {
+            &:after {
+                @add-mixin action-button;
+                position: absolute;
+                content: $fa-lock;
+                color: $color-gray;
+                right: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                top: 50%;
+                transform: translateY(-50%);
+                font-family: $font-family-FA-solid;
+            }
+        }
     }
 
     .action {

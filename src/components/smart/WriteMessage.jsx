@@ -98,8 +98,7 @@ class WriteMessage extends Component {
     render() {
         const type = this.props.type,
             roomIsFull = this.props.isFull,
-            isConnected = this.props.isConnected,
-            isEditable = (roomIsFull && isConnected) || (type === 'public' && isConnected && typeof this.props.nick === "string");
+            isEditable = roomIsFull || (type === 'public' && typeof this.props.nick === "string");
 
         return (
             <span className="action write-message">
@@ -124,8 +123,7 @@ const mapStateToProps = (state) => {
         publicMessageData  : state.message.public,
         isFull             : state.room.isFull,
         nick               : state.user.nick,
-        room               : state.room.roomName,
-        isConnected        : state.app.isConnected
+        room               : state.room.roomName
     }
 };
 

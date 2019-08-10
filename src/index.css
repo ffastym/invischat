@@ -113,6 +113,26 @@ table{
 .message-container.same .delete-message, .message-container.same .like-message{
             right:30px;
         }
+.message-container.you .time:before{
+            content:'\f3f4';
+            -webkit-animation:spin 1s linear infinite;
+                    animation:spin 1s linear infinite;
+            font-family:Font Awesome;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:absolute;
+            left:-18px;
+            top:4px;
+            width:15px;
+            height:15px;
+        }
+.message-container.you[data-sent=true] .time:before{
+                content:'\f00c';
+                color:#4A9000;
+                -webkit-animation:none;
+                        animation:none;
+            }
 .message-container .likes-count{
         position:absolute;
         height:20px;
@@ -537,6 +557,43 @@ table{
 .chat-actions-toolbar.disabled .actions-wrapper{
             pointer-events:none;
         }
+.chat-actions-toolbar.disabled .message-input:after{
+                border-radius:5px;
+                cursor:pointer;
+                display:inline-block;
+                height:35px;
+                text-align:center;
+                width:35px;
+            }
+.chat-actions-toolbar.disabled .message-input:after input{
+        visibility:hidden;
+    }
+.chat-actions-toolbar.disabled .message-input:after:before{
+        color:#808080;
+        content:'';
+        width:100%;
+        height:100%;
+        font-size:20px;
+        line-height:36px;
+        left:0;
+        top:0;
+        display:block;
+        font-family:Font Awesome;
+        position:absolute;
+    }
+.chat-actions-toolbar.disabled .message-input:after{
+                position:absolute;
+                content:'\f023';
+                color:#808080;
+                right:5px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                top:50%;
+                -webkit-transform:translateY(-50%);
+                        transform:translateY(-50%);
+                font-family:Font Awesome solid;
+            }
 .chat-actions-toolbar .action{
         height:40px
     }

@@ -184,6 +184,7 @@ const socket = {
                 messageId: messageId,
                 key: messageId,
                 date: hours + ':' + minutes,
+                type: type,
                 gender: state.user.gender,
                 nick: state.user.nick,
                 status: type === 'public' && state.user.status,
@@ -193,15 +194,16 @@ const socket = {
                 room: message.type === 'private' ? state.room.roomName : null
             };
 
-            if (state.user.isBlocked) {
-                messageData.type = message.type;
-                store.dispatch(messageActions.sendFakeMessage(messageData))
-            } else {
-                socket.chat.emit('send ' + type + ' message', messageData);
-            }
+            store.dispatch(messageActions.sendFakeMessage(messageData))
 
             document.getElementById(type + '_message').innerHTML = '';
             store.dispatch(messageActions.resetMessageData(type))
+
+          if (state.user.isBlocked) {
+            return
+          }
+
+          socket.chat.emit('send ' + type + ' message', {...messageData, success: true});
         }
 
         return socket

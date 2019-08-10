@@ -88,6 +88,30 @@
         }
     }
 
+    &.you {
+        .time:before {
+            content: $fa-spin;
+            animation:spin 1s linear infinite;
+            font-family: $font-family-FA-light;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: -18px;
+            top: 4px;
+            width: 15px;
+            height: 15px;
+        }
+
+        &[data-sent=true] {
+            .time:before {
+                content: $fa-check;
+                color: $color-green;
+                animation: none;
+            }
+        }
+    }
+
     .likes-count {
         position: absolute;
         height: 20px;
