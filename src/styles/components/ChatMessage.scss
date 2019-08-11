@@ -110,6 +110,14 @@
                 animation: none;
             }
         }
+
+        &[data-sent=false] {
+            .time:before {
+                content: $fa-mute;
+                color: $color-red;
+                animation: none;
+            }
+        }
     }
 
     .likes-count {

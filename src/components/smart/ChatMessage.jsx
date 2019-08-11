@@ -22,6 +22,7 @@ class ChatMessage extends Component {
             isSameGender: false,
             messageText: null,
             deletedImageUrl: '/images/deleted.jpg',
+            isYourMessage: (props.socketId === socket.chat.id) || (props.sockId === props.socketId),
             isShowActions: false,
             isLiked: false
         };
@@ -36,6 +37,12 @@ class ChatMessage extends Component {
      */
     componentDidMount() {
         this.detectURL(this.props.message);
+
+        setTimeout(() => {
+          if (!this.messageRef.dataset.sent) {
+            this.messageRef.dataset.sent = "false"
+          }
+        }, 60000)
 
         let name;
 
@@ -158,7 +165,7 @@ class ChatMessage extends Component {
      */
     render() {
         let activeClass = this.state.isShowActions ? " active" : "",
-            isYourMessage = this.props.socketId === socket.chat.id,
+            isYourMessage = this.state.isYourMessage,
             genderClass = this.props.gender === this.props.userGender ? ' same' : ' anon',
             label = isYourMessage ? 'you' : '',
             hasQuote = this.props.quotedMessage || this.props.quotedImage,
@@ -168,7 +175,7 @@ class ChatMessage extends Component {
                 : "message-action like-message";
 
         return (
-            <p className={containerClassName} id={this.props.messageId}>
+            <p className={containerClassName} id={this.props.messageId} ref={node => {this.messageRef = node}}>
                 {isYourMessage || this.props.isModerator
                     ? <span className="message-action delete-message"
                             onClick={this.deleteMessage}
@@ -220,6 +227,7 @@ const mapStateToProps = (state) => {
     return {
         nick       : state.user.nick,
         userGender : state.user.gender,
+        sockId   : state.user.socketId,
         isModerator: state.user.isModerator,
         gallery    : state.gallery
     }

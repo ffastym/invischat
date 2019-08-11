@@ -16,6 +16,7 @@ const initialState = {
     login            : null,
     likedPosts       : {},
     isBlocked        : false,
+    socketId         : null,
     isModerator      : false,
     senderId         : null,
     status           : null,
@@ -35,6 +36,12 @@ const userReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 allUsersList: action.payload
+            };
+            break;
+        case 'SET_SOCKET_ID':
+            state = {
+                ...state,
+                socketId: action.payload
             };
             break;
         case 'LIKE_DISLIKE_POST':

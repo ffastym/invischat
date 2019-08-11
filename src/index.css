@@ -133,6 +133,12 @@ table{
                 -webkit-animation:none;
                         animation:none;
             }
+.message-container.you[data-sent=false] .time:before{
+                content:'\f05e';
+                color:#ff0000;
+                -webkit-animation:none;
+                        animation:none;
+            }
 .message-container .likes-count{
         position:absolute;
         height:20px;

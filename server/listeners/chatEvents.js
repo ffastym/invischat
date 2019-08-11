@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
         if (reason === 'transport close') {
             chatRooms.leaveRoom(rooms, {gender: socket.gender, room: socket.currentRoom, destroy: true});
         } else if (socket.adapter.rooms.hasOwnProperty(socket.currentRoom)) {
-            io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
+            // io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
         } else if (socket.gender && rooms[socket.gender][socket.currentRoom]) {
             delete rooms[socket.gender][socket.currentRoom];
         }

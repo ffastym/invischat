@@ -125,6 +125,19 @@ const userActions = {
         }
     },
 
+  /**
+   * Set socket id
+   *
+   * @param id
+   * @returns {{payload: *, type: string}}
+   */
+    setSocketId: id => {
+        return {
+          type    : 'SET_SOCKET_ID',
+          payload : id
+        }
+    },
+
     /**
      * Like/dislike user
      *

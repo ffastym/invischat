@@ -21,6 +21,7 @@ const socket = {
      */
     connect: () => {
         socket.chat = socket.io(process.env.NODE_ENV === 'development' ? 'localhost:3001' : '');
+        store.dispatch(userActions.setSocketId(socket.chat.id))
 
         return socket
     },

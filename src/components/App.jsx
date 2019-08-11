@@ -107,6 +107,7 @@ class App extends Component {
 
         socket.chat.off('reconnect').on('reconnect', () => {
             this.props.setConnectionStatus(true);
+            this.props.setSocketId(socket.chat.id)
 
             if (this.props.isInChat && !this.props.isFull && this.props.room) {
                 socket.reJoinRoom()
@@ -317,6 +318,15 @@ const mapDispatchToProps = (dispatch) => {
          */
         setConnectionStatus: (isConnected) => {
             dispatch(appActions.setConnectionStatus(isConnected))
+        },
+
+      /**
+       * Set socket id
+       *
+       * @param id
+       */
+        setSocketId: (id) => {
+            dispatch(userActions.setSocketId(id))
         },
 
         /**
