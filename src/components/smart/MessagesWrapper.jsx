@@ -203,6 +203,7 @@ class MessagesWrapper extends PureComponent {
                                  quotedMessage={message.quotedMessage}
                                  quotedImage={message.quotedImage}
                                  publicColor={message.publicColor}
+                                 status={message.status}
                                  socketId={message.socketId}
                                  gender={message.gender}
                                  nickName={message.nick}
