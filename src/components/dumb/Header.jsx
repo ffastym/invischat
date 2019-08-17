@@ -45,7 +45,7 @@ const Header = (props) => {
     return (
         <header>
             <NavLink exact={true} to='/' className='logo'>
-                <h1>TerChat</h1>
+                <h1>Invischat</h1>
             </NavLink>
             <div className='actions'>
                 <span className="action now-online"
