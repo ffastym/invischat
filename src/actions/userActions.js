@@ -182,6 +182,7 @@ const userActions = {
 
         if (isBlockForce) {
             isBlocked = true
+            localStorage.setItem('block', 'blocked');
         } else if (localStorage.getItem('block')) {
             isBlocked = false;
             localStorage.removeItem('block');

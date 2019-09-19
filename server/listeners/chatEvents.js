@@ -10,6 +10,7 @@ import mongodb from '../mongodb'
 
 let clientsCount = 0,
     users = {},
+    ipList = {},
     rating = null,
     lastMessages = [],
     rooms = {
@@ -21,17 +22,28 @@ let clientsCount = 0,
  * Listening events from chat
  */
 io.on('connection', (socket) => {
-  var ipAddr = socket.request.headers["x-forwarded-for"];
-  if (ipAddr){
-    var list = ipAddr.split(",");
-    ipAddr = list[list.length-1];
-  } else {
-    ipAddr = socket.request.connection.remoteAddress;
-  }
-  console.log('ip ---> ', ipAddr)
+    let ipAddr = socket.request.headers["x-forwarded-for"];
+    if (ipAddr){
+      let list = ipAddr.split(",");
+      ipAddr = list[list.length - 1];
+    } else {
+      ipAddr = socket.request.connection.remoteAddress;
+    }
+
+    ipList[socket.id] = ipAddr
 
     // Increment clients count after new user connection
     io.emit('change clients count', ++clientsCount);
+
+    mongodb.getData('app', {ban: true}).then((result) => {
+        if (result.length && result[0].hasOwnProperty('ipList')) {
+            result[0].ipList.forEach((ip) => {
+              if (ip === socket.request.connection.remoteAddress) {
+                io.to(socket.id).emit('block', true);
+              }
+            })
+        }
+    }).catch((err) => console.log('Get blocked users form DB err', err));
 
     mongodb.getData('app', {ratingDocument: true}).then((result) => {
         if (result.length && result[0].hasOwnProperty('rating')) {
@@ -42,6 +54,7 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', (reason) => {
         if (reason === 'transport close') {
+            delete ipList[socket.id]
             chatRooms.leaveRoom(rooms, {gender: socket.gender, room: socket.currentRoom, destroy: true});
         } else if (socket.adapter.rooms.hasOwnProperty(socket.currentRoom)) {
             // io.sockets.to(socket.currentRoom).emit('get private message', {botMessage: 'USER_DISCONNECTED'});
@@ -223,7 +236,13 @@ io.on('connection', (socket) => {
 
     //ban chosen user
     socket.on('block user', (id) => {
-        io.to(id).emit('block');
+      mongodb.updateOne(
+        'app',
+        {ban: true},
+        {$push: {"ipList" : ipList[id]}}
+      ).then(() => {
+        io.to(id).emit('block', true);
+      }).catch(err => console.log(err))
     });
 
     socket.on('join chat', (gender) => {

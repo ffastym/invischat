@@ -101,8 +101,8 @@ class App extends Component {
             this.props.setLikesCount(isLiked ? this.props.likesCount + 1 : this.props.likesCount - 1)
         });
 
-        socket.chat.off('block').on('block', () => {
-            this.props.setBanStatus()
+        socket.chat.off('block').on('block', (force) => {
+            this.props.setBanStatus(force)
         });
 
         socket.chat.off('reconnect').on('reconnect', () => {

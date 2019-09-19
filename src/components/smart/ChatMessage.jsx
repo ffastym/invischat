@@ -175,7 +175,7 @@ class ChatMessage extends Component {
                 : "message-action like-message";
 
         return (
-            <p className={containerClassName} id={this.props.messageId} ref={node => {this.messageRef = node}}>
+            <p className={containerClassName} data-sent={this.props.isBlocked} id={this.props.messageId} ref={node => {this.messageRef = node}}>
                 {isYourMessage || this.props.isModerator
                     ? <span className="message-action delete-message"
                             onClick={this.deleteMessage}
@@ -228,6 +228,7 @@ const mapStateToProps = (state) => {
         nick       : state.user.nick,
         userGender : state.user.gender,
         sockId   : state.user.socketId,
+        isBlocked: state.user.isBlocked,
         isModerator: state.user.isModerator,
         gallery    : state.gallery
     }
