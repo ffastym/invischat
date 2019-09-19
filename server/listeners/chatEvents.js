@@ -37,15 +37,15 @@ io.on('connection', (socket) => {
 
     mongodb.getData('app', {ban: true}).then((result) => {
         if (result.length && result[0].hasOwnProperty('ipList')) {
-            result[0].ipList.forEach((ip) => {
-              let ipAddr = socket.request.headers["x-forwarded-for"];
-              if (ipAddr){
-                let list = ipAddr.split(",");
-                ipAddr = list[list.length - 1];
-              } else {
-                ipAddr = socket.request.connection.remoteAddress;
-              }
+            let ipAddr = socket.request.headers["x-forwarded-for"];
+            if (ipAddr){
+              let list = ipAddr.split(",");
+              ipAddr = list[list.length - 1];
+            } else {
+              ipAddr = socket.request.connection.remoteAddress;
+            }
 
+            result[0].ipList.forEach((ip) => {
               if (ip === ipAddr) {
                 io.to(socket.id).emit('block', true);
               }
