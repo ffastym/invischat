@@ -21,6 +21,15 @@ let clientsCount = 0,
  * Listening events from chat
  */
 io.on('connection', (socket) => {
+  var ipAddr = socket.request.headers["x-forwarded-for"];
+  if (ipAddr){
+    var list = ipAddr.split(",");
+    ipAddr = list[list.length-1];
+  } else {
+    ipAddr = socket.request.connection.remoteAddress;
+  }
+  console.log('ip ---> ', ipAddr)
+
     // Increment clients count after new user connection
     io.emit('change clients count', ++clientsCount);
 
