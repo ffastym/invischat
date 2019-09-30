@@ -49,11 +49,13 @@ export default (req, res) => {
         );
 
         // inject the rendered app into our html and send it
-        return res.send(
-            htmlData.replace(
-                `<div id="root"></div>`,
-                `<div id="root">${html}</div>`
-            )
-        );
+      res.set('location', 'https://invischat.herokuapp.com' + req.url);
+      res.status(301)
+      return res.send(
+        htmlData.replace(
+          `<div id="root"></div>`,
+          `<div id="root">${html}</div>`
+        )
+      )
     });
 }

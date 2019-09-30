@@ -5,27 +5,27 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>https://www.invischat.com/</loc>
+  <loc>https://invischat.herokuapp.com/</loc>
   <lastmod>2019-03-10T10:12:08+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.invischat.com/chat</loc>
+  <loc>https://invischat.herokuapp.com/chat</loc>
   <lastmod>2019-03-10T10:12:08+00:00</lastmod>
   <priority>1.00</priority>
 </url>
   <url>
-    <loc>https://www.invischat.com/ziznannya</loc>
+    <loc>https://invischat.herokuapp.com/ziznannya</loc>
     <lastmod>2019-03-10T10:12:08+00:00</lastmod>
     <priority>1.00</priority>
   </url>
 <url>
-  <loc>https://www.invischat.com/contact_us</loc>
+  <loc>https://invischat.herokuapp.com/contact_us</loc>
   <lastmod>2019-03-10T10:12:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.invischat.com/privacy_policy</loc>
+  <loc>https://invischat.herokuapp.com/privacy_policy</loc>
   <lastmod>2019-03-10T10:12:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
