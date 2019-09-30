@@ -48,13 +48,15 @@ export default (req, res) => {
             </StaticRouter>
         );
 
-        // inject the rendered app into our html and send it
-      res.set('location', 'https://invischat.herokuapp.com' + req.url);
-      res.status(301)
+      if (req.headers.host !== 'invischat.herokuapp.com') {
+        res.set('location', 'https://invischat.herokuapp.com' + req.url);
+        res.status(301)
+      }
+
       return res.send(
         htmlData.replace(
           `<div id="root"></div>`,
-          `<div id="root">${html}</div>`
+          `<div id="root">${html}</div>` // inject the rendered app into our html and send it
         )
       )
     });
