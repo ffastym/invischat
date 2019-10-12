@@ -54,14 +54,8 @@ class Chat extends Component {
         }
 
         socket.updateUsersList();
-
-        window.addEventListener('beforeunload', this.onBeforeUnload, false);
         socket.subscribeJoinRoom()
     }
-
-    onBeforeUnload = () => {
-        return "Усю переписку буде втрачено. Ви справді бажаєте покинути чат?";
-    };
 
     /**
      * Detect first touch on chat screen
@@ -130,8 +124,6 @@ class Chat extends Component {
      */
     componentWillUnmount() {
         this.props.setIsInChat(false);
-
-        window.removeEventListener('beforeunload', this.onBeforeUnload);
 
         if (this.props.room) {
             socket.leaveChat()

@@ -38,6 +38,9 @@ class App extends Component {
      * ComponentDidMount
      */
     componentDidMount() {
+        window.onbeforeunload = (e) => {
+            return "Усю переписку буде втрачено. Ви справді бажаєте покинути чат?"
+        };
         let credentials = localStorage.getItem('credentials');
 
         if (credentials) {
